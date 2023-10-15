@@ -1,9 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   return (
     <div>
-      <div className="container" style={{ width: '65%', margin: '0px auto', padding: '25px', background: 'white', marginTop: '30px', borderRadius: '15px', boxShadow: '0px 0px 10px 6px var(--bs-dark-border-subtle)' }}>
+      <div className="container" style={{ width: '65%', margin: '0px auto', padding: '25px 50px', background: 'white', marginTop: '30px', borderRadius: '15px', boxShadow: '0px 0px 10px 6px var(--bs-dark-border-subtle)' }}>
         <div className="row">
           <div className="col-md-6 col-xxl-6" style={{ minHeight: '250px' }}>
             <img className="w-100 fit-cover" src="assets/img/signin-image.jpg" width="431" height="460" style={{ height: 'min-content' }} alt="Login" />
@@ -34,7 +35,7 @@ const Login = () => {
               </span>
               <input className="form-control shadow-none" type="password" style={{ borderStyle: 'none', borderBottomStyle: 'solid', borderRadius: '0px' }} placeholder="Enter Password" name="password" required minLength="6" />
             </div>
-            <a className="btn btn-primary fs-6" role="button" style={{ marginTop: '25px', borderRadius: '3px' }} href="Dashboard/Dashboard_Home.html">Log In</a>
+            <Link className="btn btn-primary fs-6" role="button" style={{ marginTop: '25px', borderRadius: '3px' }} to={"/Dashboard"}>Log In</Link>
           </div>
         </div>
       </div>

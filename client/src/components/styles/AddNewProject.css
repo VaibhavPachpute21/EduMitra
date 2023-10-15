@@ -1,0 +1,20 @@
+AddNewProject.css
+.AddNewProject .form-label {
+  margin: 0;
+}
+
+.AddNewProject .form-control {
+  border-radius: 0;
+  background: #21252908;
+  width: 90%;
+  border: none;
+  border-bottom-style: solid;
+  border-right-style: solid;
+  border-bottom-right-radius: 5px;
+  border-width: 1px;
+  margin-bottom: .4rem;
+}
+
+.AddNewProject .form-control:focus {
+  box-shadow: none;
+}
