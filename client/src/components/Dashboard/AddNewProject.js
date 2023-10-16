@@ -7,6 +7,9 @@ function AddNewProject() {
     shortDescription: '',
     longDescription: '',
     whyChooseProject: '',
+    howDiffProject:'',
+    futureEnhacement:'',
+    builtWith:'',
     difficultiesFaced: '',
     projectImages: [],
   });
@@ -74,12 +77,36 @@ function AddNewProject() {
             value={project.whyChooseProject}
             onChange={handleInputChange}
           />
+          <label className="form-label font-monospace" style={{ marginTop: '1.5rem' }}>How this Project gonna make difference?</label>
+          <textarea
+            className="form-control shadow-none"
+            name="howDiffProject"
+            rows="5"
+            value={project.howDiffProject}
+            onChange={handleInputChange}
+          />
           <label className="form-label font-monospace" style={{ marginTop: '1.5rem' }}>Describe Difficulties Faced</label>
           <textarea
             className="form-control shadow-none"
             name="difficultiesFaced"
             rows="5"
             value={project.difficultiesFaced}
+            onChange={handleInputChange}
+          />
+          <label className="form-label font-monospace" style={{ marginTop: '1.5rem' }}>Future Enhancements</label>
+          <textarea
+            className="form-control shadow-none"
+            name="futureEnhacement"
+            rows="5"
+            value={project.futureEnhacement}
+            onChange={handleInputChange}
+          />
+          <label className="form-label font-monospace" style={{ marginTop: '1.5rem' }}>Built With</label>
+          <textarea
+            className="form-control shadow-none"
+            name="builtWith"
+            rows="2"
+            value={project.builtWith}
             onChange={handleInputChange}
           />
           <label className="form-label font-monospace" style={{ marginTop: '1.5rem' }}>Upload Project Images</label>
