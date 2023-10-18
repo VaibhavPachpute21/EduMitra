@@ -1,7 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux'
+import {increment,decrement} from '../actions/cartActions'
 
 const ProjectList = () => {
+  const dispatch = useDispatch()
   const projects = [
     {
       id: 1,

@@ -1,6 +1,10 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import {increment,decrement} from '../actions/cartActions'
 
 const HomePage = () => {
+    const currentval=useSelector((state)=>state.counterReducer.count);
+
     return (
         <div>
             <section class="py-4" style={{ background: 'url("https://q9k6x7m8.stackpathcdn.com/assets/home/homepage/header/desktop-illustration-night-8a30863e0990a34b55cf882b1ee789d5e27dbbb286d9b7f90705322c67fe44f8.png") right / cover no-repeat, rgba(255,255,255,0)', padding: '0px 0px' }}>
@@ -19,6 +23,8 @@ const HomePage = () => {
                     </form>
                 </div>
             </section>
+            <p>currentval: {currentval.toString()}</p>
+
             <div class="container py-4 py-xl-5">
                 <div class="row mb-5">
                     <div class="col-md-8 col-xl-6 text-center mx-auto">
