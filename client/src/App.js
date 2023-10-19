@@ -1,9 +1,10 @@
 import './App.css';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Navbar from './components/Navbar';
 import { Routes, Route, Outlet,useLocation } from 'react-router-dom';
 import HomePage from './components/HomePage';
 import SingleProject from './components/SingleProject';
-
 import Login from './components/Login';
 import Register from './components/Register';
 import ProjectList from './components/ProjectList';
@@ -17,6 +18,7 @@ function App() {
   return (
     <>
       {location.pathname.startsWith('/Dashboard')?<></>:<Navbar />}
+      <ToastContainer position='top-center'/>
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/Login' element={<Login />} />

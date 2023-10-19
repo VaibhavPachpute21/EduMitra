@@ -8,6 +8,7 @@ const femalePP = ["https://img.freepik.com/free-vector/3d-cartoon-young-woman-sm
 
 // API to Register new user
 router.post('/register', async (req, res) => {
+  console.log(req.body);
   try {
     const user = new userModel({
       name: req.body.name,
@@ -21,7 +22,7 @@ router.post('/register', async (req, res) => {
     });
 
     const savedUser = await user.save();
-    res.status(201).json({ user: savedUser });
+    res.status(200).json({ user: savedUser });
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
@@ -29,6 +30,7 @@ router.post('/register', async (req, res) => {
 
 // API to Login user
 router.post('/login', async (req, res) => {
+  console.log(req.body);
   try {
     const user = await userModel.findOne({
       email: req.body.email,
