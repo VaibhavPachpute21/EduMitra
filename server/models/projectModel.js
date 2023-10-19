@@ -47,6 +47,19 @@ const projectSchema = new mongoose.Schema({
         required: true,
     },
     projectImages: [String], // Store image URLs as strings
+    comments: [
+        {
+            user: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'User',
+            },
+            text: String,
+            date: {
+                type: Date,
+                default: Date.now,
+            },
+        },
+    ],
 },
     {
         timestamps: true,

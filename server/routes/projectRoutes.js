@@ -64,4 +64,40 @@ router.get('/userProject', verifyToken, async (req, res) => {
   }
 });
 
+// API to get Single Project by id
+router.get('/:projectId', async (req, res) => {
+  try {
+    const project = await Project.findById(req.params.projectId);
+
+    if (!project) {
+      return res.status(404).json({ message: 'Project not found' });
+    }
+
+    res.status(200).json(project);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+router.post('/addComment/:projectId', verifyToken, async (req, res) => {
+  try {
+    const project = await Project.findById(req.params.projectId);
+    if (!project) {
+      return res.status(404).json({ message: 'Project not found' });
+    }
+
+    const newComment = {
+      user: req.userId,
+      text: req.body.text,
+    };
+
+    project.comments.push(newComment);
+    const updatedProject = await project.save();
+
+    res.status(201).json(updatedProject);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
 module.exports = router;

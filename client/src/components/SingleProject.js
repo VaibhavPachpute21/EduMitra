@@ -1,31 +1,38 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux'
+import { getSingleProject } from '../actions/projectActions'
+
 
 const SingleProject = () => {
+  const { projectID } = useParams();
+  const dispatch = useDispatch()
+  const projectsData = useSelector((state) => state.projectReducer);
+  const { loading, singleProject, error } = projectsData;
+
+  useEffect(() => {
+    dispatch(getSingleProject(projectID))
+    console.log(projectID)
+    console.log(singleProject)
+  }, [dispatch])
+
   return (
     <div>
-      <section className="py-4 py-xl-5" style={{backgroundColor:'#f8f8f8'}}>
+      {singleProject && <section className="py-4 py-xl-5" style={{ backgroundColor: '#f8f8f8' }}>
         <div className="container h-100" style={{ background: '#fff', paddingTop: '15px', paddingBottom: '15px' }}>
           <div className="row h-100">
             <div className="col-md-10 col-lg-10 col-xl-8 text-center d-flex d-sm-flex d-md-flex justify-content-center align-items-center mx-auto justify-content-md-start align-items-md-center justify-content-xl-center">
               <div>
-                <h2 className="text-uppercase fw-bold mb-3">empath.ly</h2>
-                <p className="mb-4">
-                  empath.ly uses machine learning to analyze emotions during video calls or metaverse activities. We empower employers, marketers, developers, and the visually impaired to empathize remotely.
-                </p>
-                <div className="carousel slide carousel-dark" data-bs-ride="false" data-bs-touch="false" id="carousel-1">
-                  <div className="carousel-inner">
-                    <div className="carousel-item active">
-                      <img className="w-100 d-block" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" alt="Slide Image" />
-                      <p>Caption 1</p>
-                    </div>
-                    <div className="carousel-item">
-                      <img className="w-100 d-block" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" alt="Slide Image" />
-                      <p>Caption 2</p>
-                    </div>
-                    <div className="carousel-item">
-                      <img className="w-100 d-block" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" alt="Slide Image" />
-                      <p>Caption 3</p>
-                    </div>
+                <h2 className="text-uppercase fw-bold mb-3">{singleProject.pTitle}</h2>
+                <p className="mb-4">{singleProject.shortDescription}</p>
+                <div className="carousel slide carousel-dark" data-bs-ride="false" data-bs-touch="false" id="carousel-1" style={{ height: '500px',width:'700px' }}>
+                  <div className="carousel-inner" style={{ width: '100%', height: '100%' }}>
+                    {singleProject.projectImages.map((image, index) => (
+                      <div className={`carousel-item ${index === 0 ? 'active' : ''}`} key={index} style={{ width: '100%', height: '100%',objectFit:'contain',alignItems:'center', }}>
+                        <img className="m-auto" src={image} alt={`Project Image ${index + 1}`} height={'100%'}/>
+                        <p>Caption {index + 1}</p>
+                      </div>
+                    ))}
                   </div>
                   <div>
                     <button className="carousel-control-prev" href="#carousel-1" role="button" data-bs-slide="prev">
@@ -38,27 +45,32 @@ const SingleProject = () => {
                     </button>
                   </div>
                   <div className="carousel-indicators" style={{ padding: '10px' }}>
-                    <button type="button" data-bs-target="#carousel-1" data-bs-slide-to="0" className="active"></button>
-                    <button type="button" data-bs-target="#carousel-1" data-bs-slide-to="1"></button>
-                    <button type="button" data-bs-target="#carousel-1" data-bs-slide-to="2"></button>
+                    {singleProject.projectImages.map((image, index) => (
+                      <button
+                        type="button"
+                        data-bs-target="#carousel-1"
+                        data-bs-slide-to={index}
+                        className={index === 0 ? 'active' : ''}
+                        key={index}
+                      ></button>
+                    ))}
                   </div>
                 </div>
                 <h1 className="text-start">Abstract</h1>
-                <p className="text-start">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p>
+                <p className="text-start">{singleProject.longDescription}</p>
+                <h1 className="text-start">Why We choose this Project</h1>
+                <p className="text-start">{singleProject.whyChooseProject}</p>
+                <h1 className="text-start">How it will make diffrence</h1>
+                <p className="text-start">{singleProject.howDiffProject}</p>
                 <h1 className="text-start">Challenges Faced</h1>
-                <p className="text-start">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p>
-                <h1 className="text-start">Explain Real-life Usage</h1>
-                <p className="text-start">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p>
+                <p className="text-start">{singleProject.difficultiesFaced}</p>
                 <h1 className="text-start">Future Developments</h1>
-                <p className="text-start">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p>
+                <p className="text-start">{singleProject.futureEnhancement}</p>
+                <h1 className="text-start">This is Build With</h1>
+                <p className="text-start">{singleProject.builtWith.split(',').map((item, index) => (
+                  <span className="m-1 badge text-bg-primary" key={index}>{item}</span>
+                ))}</p>
+
                 <h1 className="text-start">Source Code</h1>
                 <p className="text-start">
                   <i className="fab fa-github"></i>
@@ -77,38 +89,20 @@ const SingleProject = () => {
                     <div className="col" style={{ marginTop: '0px' }}>
                       <div className="card border-0 shadow-none">
                         <div className="card-body text-center d-flex flex-column align-items-center p-0">
-                          <img className="rounded-circle mb-3 fit-cover" width="130" height="130" src="https://img.freepik.com/premium-vector/man-character_665280-46969.jpg?size=626&amp;ext=jpg" alt="User 1" />
-                          <h5 className="fw-bold text-primary card-title mb-0"><strong>John Smith</strong></h5>
-                          <p className="text-muted card-text mb-2">Erat netus</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col" style={{ marginTop: '0px' }}>
-                      <div className="card border-0 shadow-none">
-                        <div className="card-body text-center d-flex flex-column align-items-center p-0">
-                          <img className="rounded-circle mb-3 fit-cover" width="130" height="130" src="https://img.freepik.com/premium-vector/man-character_665280-46969.jpg?size=626&amp;ext=jpg" alt="User 1" />
-                          <h5 className="fw-bold text-primary card-title mb-0"><strong>John Smith</strong></h5>
-                          <p className="text-muted card-text mb-2">Erat netus</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col" style={{ marginTop: '0px' }}>
-                      <div className="card border-0 shadow-none">
-                        <div className="card-body text-center d-flex flex-column align-items-center p-0">
-                          <img className="rounded-circle mb-3 fit-cover" width="130" height="130" src="https://img.freepik.com/premium-vector/man-character_665280-46969.jpg?size=626&amp;ext=jpg" alt="User 1" />
-                          <h5 className="fw-bold text-primary card-title mb-0"><strong>John Smith</strong></h5>
-                          <p className="text-muted card-text mb-2">Erat netus</p>
+                          <img className="rounded-circle mb-3 fit-cover" width="130" height="130" src={singleProject.creatorInfo.profilePic} alt="Image" />
+                          <h5 className="fw-bold text-primary card-title mb-0"><strong>{singleProject.creatorInfo.name}</strong></h5>
+                          <p className="text-muted card-text mb-2">{singleProject.creatorInfo.college}</p>
                         </div>
                       </div>
                     </div>
                   </div>
-                  
+
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </section>}
     </div>
   );
 };
