@@ -1,9 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import {increment,decrement} from '../actions/cartActions'
+import { increment, decrement } from '../actions/cartActions'
+import { getAllProjects } from '../actions/projectActions'
+import { Link } from 'react-router-dom'
 
 const HomePage = () => {
-    const currentval=useSelector((state)=>state.counterReducer.count);
+    const dispatch = useDispatch()
+    const currentval = useSelector((state) => state.counterReducer.count);
+    const projectsData = useSelector((state) => state.projectReducer);
+    const { loading, projects, error } = projectsData;
+
+    useEffect(() => {
+        dispatch(getAllProjects())
+        console.log(projects)
+    }, [dispatch])
 
     return (
         <div>
@@ -23,7 +33,6 @@ const HomePage = () => {
                     </form>
                 </div>
             </section>
-            <p>currentval: {currentval.toString()}</p>
 
             <div class="container py-4 py-xl-5">
                 <div class="row mb-5">
@@ -32,54 +41,28 @@ const HomePage = () => {
                     </div>
                 </div>
                 <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
-                    <div class="col">
-                        <div class="card"><img class="card-img-top w-100 d-block fit-cover" style={{ height: "200px" }} src="https://d112y698adiu2z.cloudfront.net/photos/production/software_thumbnail_photos/001/892/978/datas/medium.gif" />
-                            <div class="card-body p-4">
-                                <p class="text-primary card-text mb-0">Entertainment</p>
-                                <h4 class="card-title">uDirect</h4>
-                                <p class="card-text">The inspiration for uDirect came from MadLibs; a phrasal template word game that is known to be funny and entertaining.</p>
-                                <div class="d-flex"><img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50" height="50" src="https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?size=626&amp;ext=jpg" />
-                                    <div>
-                                        <p class="fw-bold mb-0">Ajay Chauhan</p>
-                                        <p class="text-muted mb-0">IIT Bombay</p>
+                    {loading ? <>Loading</> : projects.slice(0, 3).map((project) => {
+                        return <div class="col">
+                            <Link to={`/Project/${project._id}`} className="text-decoration-none text-black">
+                            <div class="card"><img class="card-img-top w-100 d-block fit-cover" style={{ height: "200px" }} src={project.projectImages[0]} />
+                                <div class="card-body p-4">
+                                    {/* <p class="text-primary card-text mb-0">Entertainment</p> */}
+                                    <h4 class="card-title">{project.pTitle}</h4>
+                                    <p class="card-text">{project.shortDescription}</p>
+                                    <div class="d-flex"><img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50" height="50" src={project.creatorInfo.profilePic} />
+                                        <div>
+                                            <p class="fw-bold mb-0">{project.creatorInfo.name}</p>
+                                            <p class="text-muted mb-0">{project.creatorInfo.college}</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            </Link>
                         </div>
-                    </div>
-                    <div class="col">
-                        <div class="card"><img class="card-img-top w-100 d-block fit-cover" style={{ height: "200px" }} src="https://i.ytimg.com/vi/p32-SGH-LHM/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AH-CYAC0AWKAgwIABABGFIgZSgtMA8=&amp;rs=AOn4CLBR4Aguh_njtXPfm3Ozxq21odviLQ" />
-                            <div class="card-body p-4">
-                                <p class="text-primary card-text mb-0">Environment</p>
-                                <h4 class="card-title">cleanup.ai</h4>
-                                <p class="card-text">Our AI analyzes and instantly categorizes the object as garbage, recycling, or compost, with results tailored to your location's waste disposal laws.</p>
-                                <div class="d-flex"><img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50" height="50" src="https://img.freepik.com/free-vector/3d-cartoon-young-woman-smiling-circle-frame-character-illustration-vector-design_40876-3100.jpg?size=626&amp;ext=jpg" />
-                                    <div>
-                                        <p class="fw-bold mb-0">Salonee Pathak</p>
-                                        <p class="text-muted mb-0">COEP Pune</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card"><img class="card-img-top w-100 d-block fit-cover" style={{ height: "200px" }} src="https://d112y698adiu2z.cloudfront.net/photos/production/software_thumbnail_photos/002/598/454/datas/medium.gif" />
-                            <div class="card-body p-4">
-                                <p class="text-primary card-text mb-0">Transportation</p>
-                                <h4 class="card-title">ARrive</h4>
-                                <p class="card-text">An augmented reality that recognizes bus signs in real time and can overlay information about the bus schedules and locate the nearest bus stops.</p>
-                                <div class="d-flex"><img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50" height="50" src="https://img.freepik.com/free-vector/isolated-young-handsome-man-different-poses-white-background-illustration_632498-859.jpg?size=626&amp;ext=jpg" />
-                                    <div>
-                                        <p class="fw-bold mb-0">John Smith</p>
-                                        <p class="text-muted mb-0">MIT&nbsp;</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    })}
                 </div>
                 <div class="row text-center">
-                    <div class="col" style={{ padding: "12px" }}><button class="btn btn-primary fs-5 me-2 py-2 px-4 rounded-0" type="button">View More</button></div>
+                    <div class="col" style={{ padding: "12px" }}><Link class="btn btn-primary fs-5 me-2 py-2 px-4 rounded-0" type="button" to={'/Projects'}>View More</Link></div>
                 </div>
             </div>
         </div>

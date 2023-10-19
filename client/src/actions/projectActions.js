@@ -18,7 +18,8 @@ export const addNewProject = (project) => async (dispatch) => {
 export const getAllProjects = () => async (dispatch) => {
   dispatch({ type: "GET_ALL_PROJECTS_REQUEST" });
   try {
-    const res = await axios.get('http://127.0.0.1:8080/api/projects/allProject');
+    const res = await axios.get('http://127.0.0.1:8080/api/project/allProject');
+    console.log(res.data.projects)
     dispatch({ type: "GET_ALL_PROJECTS_SUCCESS", payload: res.data.projects });
   } catch (error) {
     dispatch({ type: "GET_ALL_PROJECTS_ERROR", payload: error });
@@ -27,10 +28,14 @@ export const getAllProjects = () => async (dispatch) => {
 };
 
 // Action to get user-specific projects
-export const getUserProjects = () => async (dispatch) => {
+export const getUserProjects = (userToken) => async (dispatch) => {
   dispatch({ type: "GET_USER_PROJECTS_REQUEST" });
   try {
-    const res = await axios.get('http://127.0.0.1:8080/api/projects/userProject');
+    const res = await axios.get('http://127.0.0.1:8080/api/project/userProject', {
+      headers: {
+        Authorization: `Bearer ${userToken}`,
+      },
+    });
     dispatch({ type: "GET_USER_PROJECTS_SUCCESS", payload: res.data.userProjects });
   } catch (error) {
     dispatch({ type: "GET_USER_PROJECTS_ERROR", payload: error });

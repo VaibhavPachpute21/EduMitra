@@ -1,12 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { logoutUser } from '../../actions/userActions'
+import { getUserProjects } from '../../actions/projectActions'
+import { Link } from 'react-router-dom';
+
 
 export const Dashboard = () => {
-    const userData=useSelector(state => state.userLoginReducer)
-    const {currentUser}=userData;
+    const dispatch = useDispatch();
+    const userData = useSelector(state => state.userLoginReducer)
+    const { currentUser } = userData;
+    const projectsData = useSelector((state) => state.projectReducer);
+    const { loading, userProjects, error } = projectsData;
+    useEffect(() => {
+        dispatch(getUserProjects(currentUser.token))
+        console.log(userProjects)
+    }, [dispatch])
 
-    
+
     return (
         <div>
             <section>
@@ -40,50 +49,36 @@ export const Dashboard = () => {
                         </div>
                     </div>
                 </div>
+
                 <div className="container py-4 py-xl-5">
                     <h2>Hello {currentUser.user.name}!</h2>
                 </div>
+
                 <div className="container py-4 py-xl-5">
                     <div className="row mb-5" style={{ background: 'var(--bs-body-bg)', padding: '12px', boxShadow: '0px 4px 6px 1px rgba(43,49,54,0.35)', borderRadius: '5px' }}>
                         <div className="col-sm-10 col-md-7 col-lg-8">
                             <h2>Your Projects</h2>
                         </div>
                         <div className="col" style={{ textAlign: 'right' }}>
-                            <button className="btn btn-primary fs-5 me-2 py-2 px-4" type="button" style={{ borderRadius: '0px' }}>
+                            <Link className="btn btn-primary fs-5 me-2 py-2 px-4" to={'/Dashboard/AddNewProject'} style={{ borderRadius: '0px' }}>
                                 Add New Project
-                            </button>
+                            </Link>
                         </div>
                     </div>
                     <div className="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
-                        {/* Repeat the following card section for each project */}
-                        <div className="col-xxl-3">
-                            <div style={{ borderRadius: '5px', padding: '5px', background: 'var(--bs-body-bg)', boxShadow: '0px 0px 5px 2px var(--bs-dark-border-subtle)' }}>
-                                <img className="rounded img-fluid d-block w-100 fit-cover" style={{ height: '200px' }} src="https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/002/255/061/datas/gallery.jpg" alt="Project" />
-                                <div className="py-4">
-                                    <h4><span style={{ color: 'rgb(0, 0, 0)' }}>empath.ly</span></h4>
-                                    <p><span style={{ color: 'rgb(0, 0, 0)' }}>empath.ly uses machine learning to analyze emotions during video calls or metaverse activities. We empower employers, marketers, developers, and the visually impaired to empathize remotely.</span></p>
+                        {userProjects.map((project) => {
+                            return <div className="col-xxl-3">
+                                <Link to={`/Project/${project._id}`} className="text-decoration-none text-black">
+                                <div style={{ borderRadius: '5px', padding: '5px', background: 'var(--bs-body-bg)', boxShadow: '0px 0px 5px 2px var(--bs-dark-border-subtle)' }}>
+                                    <img className="rounded img-fluid d-block w-100 fit-cover" style={{ height: '200px' }} src={project.projectImages[0]} alt="Project" />
+                                    <div className="py-4">
+                                        <h4><span style={{ color: 'rgb(0, 0, 0)' }}>{project.pTitle}</span></h4>
+                                        <p><span style={{ color: 'rgb(0, 0, 0)' }}>{project.shortDescription}</span></p>
+                                    </div>
                                 </div>
+                                </Link>
                             </div>
-                        </div>
-                        <div className="col-xxl-3">
-                            <div style={{ borderRadius: '5px', padding: '5px', background: 'var(--bs-body-bg)', boxShadow: '0px 0px 5px 2px var(--bs-dark-border-subtle)' }}>
-                                <img className="rounded img-fluid d-block w-100 fit-cover" style={{ height: '200px' }} src="https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/002/255/061/datas/gallery.jpg" alt="Project" />
-                                <div className="py-4">
-                                    <h4><span style={{ color: 'rgb(0, 0, 0)' }}>empath.ly</span></h4>
-                                    <p><span style={{ color: 'rgb(0, 0, 0)' }}>empath.ly uses machine learning to analyze emotions during video calls or metaverse activities. We empower employers, marketers, developers, and the visually impaired to empathize remotely.</span></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-xxl-3">
-                            <div style={{ borderRadius: '5px', padding: '5px', background: 'var(--bs-body-bg)', boxShadow: '0px 0px 5px 2px var(--bs-dark-border-subtle)' }}>
-                                <img className="rounded img-fluid d-block w-100 fit-cover" style={{ height: '200px' }} src="https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/002/255/061/datas/gallery.jpg" alt="Project" />
-                                <div className="py-4">
-                                    <h4><span style={{ color: 'rgb(0, 0, 0)' }}>empath.ly</span></h4>
-                                    <p><span style={{ color: 'rgb(0, 0, 0)' }}>empath.ly uses machine learning to analyze emotions during video calls or metaverse activities. We empower employers, marketers, developers, and the visually impaired to empathize remotely.</span></p>
-                                </div>
-                            </div>
-                        </div>
-                        {/* Repeat this card section for each project */}
+                        })}
                     </div>
                 </div>
                 <div className="container py-4 py-xl-5">
@@ -92,9 +87,9 @@ export const Dashboard = () => {
                             <h2>Trending Projects</h2>
                         </div>
                         <div className="col" style={{ textAlign: 'right' }}>
-                            <button className="btn btn-primary fs-5 me-2 py-2 px-4" type="button" style={{ borderRadius: '0px' }}>
+                            <Link className="btn btn-primary fs-5 me-2 py-2 px-4" to="/Projects" style={{ borderRadius: '0px' }}>
                                 Explore more
-                            </button>
+                            </Link>
                         </div>
                     </div>
                     <div className="row gy-4 row-cols-1 row-cols-md-2">
