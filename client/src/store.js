@@ -2,12 +2,14 @@ import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import counterReducer from './reducers/cartReducers'
 import {userRegisterReducer,userLoginReducer,getAllUsersReducer} from './reducers/userReducers'
+import {projectReducer} from './reducers/projectReducers'
 
 const rootReducer=combineReducers({
     counterReducer:counterReducer,
     userRegisterReducer:userRegisterReducer,
     userLoginReducer:userLoginReducer,
-    getAllUsersReducer:getAllUsersReducer
+    getAllUsersReducer:getAllUsersReducer,
+    projectReducer:projectReducer
 })
 
 const currentUser = localStorage.getItem('currentUser') ? JSON.parse(localStorage.getItem('currentUser')) : null

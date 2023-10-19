@@ -1,7 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux'
+import { logoutUser } from '../actions/userActions'
 
 function Sidebar() {
+  const dispatch=useDispatch();
+  const userData=useSelector(state => state.userLoginReducer)
+  const {currentUser}=userData;
+
   return (
     <div className="bg-body shadow d-flex flex-column flex-shrink-0 position-fixed top-0 bottom-0" style={{ width: '4.5rem' }}>
       <Link className="text-center link-body-emphasis d-block p-3 text-decoration-none border-bottom" to="/" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
@@ -42,14 +48,14 @@ function Sidebar() {
 
       <div className="dropdown p-3 border-top">
         <a className="dropdown-toggle link-body-emphasis d-flex align-items-center text-decoration-none" aria-expanded="false" data-bs-toggle="dropdown" role="button">
-          <img className="rounded-circle" alt="" width="32" height="32" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" style={{ objectFit: 'cover' }} />
+          <img className="rounded-circle" alt="" width="32" height="32" src={currentUser?`${currentUser.user.profilePic}`:"https://cdn.bootstrapstudio.io/placeholders/1400x800.png" }style={{ objectFit: 'cover' }} />
         </a>
         <div className="dropdown-menu shadow text-small" data-popper-placement="top-start">
           <a className="dropdown-item" href="#">New project...</a>
           <a className="dropdown-item" href="#">Settings</a>
           <a className="dropdown-item" href="#">Profile</a>
           <div className="dropdown-divider"></div>
-          <a className="dropdown-item" href="#">Sign out</a>
+          <button className="dropdown-item" onClick={()=>{dispatch(logoutUser)}}>Sign out</button>
         </div>
       </div>
     </div>

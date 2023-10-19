@@ -6,6 +6,11 @@ const projectSchema = new mongoose.Schema({
         ref: 'User',
         required: true,
     },
+    creatorInfo: {
+        name: String,
+        profilePic: String,
+        college: String,
+    },
     pTitle: {
         type: String,
         required: true,

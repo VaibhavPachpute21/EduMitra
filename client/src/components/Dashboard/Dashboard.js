@@ -1,6 +1,12 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { logoutUser } from '../../actions/userActions'
 
 export const Dashboard = () => {
+    const userData=useSelector(state => state.userLoginReducer)
+    const {currentUser}=userData;
+
+    
     return (
         <div>
             <section>
@@ -33,6 +39,9 @@ export const Dashboard = () => {
                             </div>
                         </div>
                     </div>
+                </div>
+                <div className="container py-4 py-xl-5">
+                    <h2>Hello {currentUser.user.name}!</h2>
                 </div>
                 <div className="container py-4 py-xl-5">
                     <div className="row mb-5" style={{ background: 'var(--bs-body-bg)', padding: '12px', boxShadow: '0px 4px 6px 1px rgba(43,49,54,0.35)', borderRadius: '5px' }}>

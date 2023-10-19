@@ -30,33 +30,38 @@ router.post('/add', verifyToken, async (req, res) => {
   try {
     const newProject = new Project({
       creator: req.userId,
+      creatorInfo: {
+        name: req.name,
+        profilePic: req.profilePic,
+        college: req.college,
+      },
       ...req.body,
     });
     const savedProject = await newProject.save();
-    res.status(201).json(savedProject);
+    res.status(200).json(savedProject);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 });
 
 // API to get all the Project
-router.get('/allProject',async (req,res)=>{
-    try {
-        const projects=await Project.find({});
-        res.status(200).json({projects}); 
-    } catch (error) {
-        res.status(400).json({message:error.message})
-    }
+router.get('/allProject', async (req, res) => {
+  try {
+    const projects = await Project.find({});
+    res.status(200).json({ projects });
+  } catch (error) {
+    res.status(400).json({ message: error.message })
+  }
 });
 
 // API to get user specific project
-router.get('/userProject',verifyToken,async (req,res)=>{
-    try {
-        const userProjects= await Project.find({creator:req.userId})
-        res.status(200).json({userProjects})      
-    } catch (error) {
-        res.status(400).json({message:error.message})
-    }
+router.get('/userProject', verifyToken, async (req, res) => {
+  try {
+    const userProjects = await Project.find({ creator: req.userId })
+    res.status(200).json({ userProjects })
+  } catch (error) {
+    res.status(400).json({ message: error.message })
+  }
 });
 
 module.exports = router;
