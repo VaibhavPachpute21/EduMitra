@@ -8,9 +8,13 @@ const userSchema = mongoose.Schema({
     email: {
         type: String,
         required: true,
-        unique: true, 
+        unique: true,
     },
     phone: {
+        type: String,
+        required: true,
+    },
+    gender: {
         type: String,
         required: true,
     },
@@ -26,11 +30,15 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    profilePic: {
+        type: String,
+        required: true,
+    },
 },
     {
         timestamps: true,
     });
 
-const userModel=mongoose.model('User', userSchema);
+const userModel = mongoose.model('User', userSchema);
 
 module.exports = userModel;
