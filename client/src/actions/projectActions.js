@@ -2,17 +2,24 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 
 // Action to add a new project
-export const addNewProject = (project) => async (dispatch) => {
+export const addNewProject = (project, userToken) => async (dispatch) => {
+  console.log(project)
+  console.log(userToken)
   dispatch({ type: "ADD_PROJECT_REQUEST" });
   try {
-    const res = await axios.post('http://127.0.0.1:8080/api/projects/add', project);
+    const res = await axios.post('http://127.0.0.1:8080/api/project/add', project, {
+      headers: {
+        Authorization: `Bearer ${userToken}`,
+      },
+    });
     dispatch({ type: "ADD_PROJECT_SUCCESS" });
     toast.success("Project Added!!");
   } catch (error) {
     dispatch({ type: "ADD_PROJECT_ERROR", payload: error });
-    toast.error(error.response ? error.response.data.message : "Failed to add project");
+    toast.error(error.response ? error.response.data.message : "Failed to add the project");
   }
 };
+
 
 // Action to get all projects
 export const getAllProjects = () => async (dispatch) => {
@@ -58,17 +65,17 @@ export const getSingleProject = (projectId) => async (dispatch) => {
 
 export const addComment = (projectId, commentText, userToken) => async (dispatch) => {
   try {
-      const res = await axios.post(`http://127.0.0.1:8080/api/projects/addComment/${projectId}`, { text: commentText }, {
-          headers: {
-              Authorization: `Bearer ${userToken}`,
-          },
-      });
+    const res = await axios.post(`http://127.0.0.1:8080/api/projects/addComment/${projectId}`, { text: commentText }, {
+      headers: {
+        Authorization: `Bearer ${userToken}`,
+      },
+    });
 
-      dispatch({ type: "ADD_COMMENT_SUCCESS", payload: res.data });
-      // Optionally, you can refresh the project data after adding the comment
-      // dispatch(getProjectDetails(projectId));
+    dispatch({ type: "ADD_COMMENT_SUCCESS", payload: res.data });
+    // Optionally, you can refresh the project data after adding the comment
+    // dispatch(getProjectDetails(projectId));
   } catch (error) {
-      dispatch({ type: "ADD_COMMENT_ERROR", payload: error });
-      toast.error(error.response ? error.response.data.message : "Failed to add comment");
+    dispatch({ type: "ADD_COMMENT_ERROR", payload: error });
+    toast.error(error.response ? error.response.data.message : "Failed to add comment");
   }
 };

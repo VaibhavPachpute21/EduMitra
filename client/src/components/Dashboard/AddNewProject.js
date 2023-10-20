@@ -1,15 +1,29 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/AddNewProject.css'
 import axios from 'axios'
+import { addNewProject } from '../../actions/projectActions'
+import { useDispatch, useSelector } from 'react-redux';
 
 function AddNewProject() {
+  const dispatch = useDispatch();
+  const projectsData = useSelector((state) => state.projectReducer);
+  const userData = useSelector(state => state.userLoginReducer)
+  const { currentUser } = userData;
+  const { loading, error } = projectsData;
+
   const [project, setProject] = useState({
+    creator: currentUser.user._id,
+    creatorInfo: {
+      name: currentUser.user.name,
+      profilePic: currentUser.user.profilePic,
+      college: currentUser.user.college,
+    },
     pTitle: '',
     shortDescription: '',
     longDescription: '',
     whyChooseProject: '',
     howDiffProject: '',
-    futureEnhacement: '',
+    futureEnhancement: '',
     builtWith: '',
     difficultiesFaced: '',
     projectImages: [],
@@ -70,7 +84,7 @@ function AddNewProject() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form Data:', project);
+    dispatch(addNewProject(project, currentUser.token))
   };
 
   return (
@@ -139,9 +153,9 @@ function AddNewProject() {
           <textarea
             className="form-control shadow-none"
             required
-            name="futureEnhacement"
+            name="futureEnhancement"
             rows="5"
-            value={project.futureEnhacement}
+            value={project.futureEnhancement}
             onChange={handleInputChange}
           />
           <label className="form-label font-monospace" style={{ marginTop: '1.5rem' }}>Built With<span className='text-danger'>*</span><br /><span>Add with comma-separation eg.VSCode,Javascript,MySQL</span></label>
