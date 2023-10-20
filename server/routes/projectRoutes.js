@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 const Project = require('../models/projectModel');
+const userModel = require('../models/userModel')
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -104,10 +105,11 @@ router.post('/addComment/:projectId', verifyToken, async (req, res) => {
     if (!project) {
       return res.status(404).json({ message: 'Project not found' });
     }
-
+    const uname=await userModel.findById(req.userId)
     const newComment = {
       user: req.userId,
       text: req.body.text,
+      name: uname.name
     };
 
     project.comments.push(newComment);

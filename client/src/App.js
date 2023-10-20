@@ -12,6 +12,7 @@ import { Dashboard } from './components/Dashboard/Dashboard';
 import Profile from './components/Dashboard/Profile';
 import Sidebar from './components/Sidebar';
 import AddNewProject from './components/Dashboard/AddNewProject';
+import StudentList from './components/Dashboard/StudentList';
 
 function App() {
   const location=useLocation();
@@ -35,6 +36,7 @@ function App() {
         }>
           <Route path='/Dashboard' element={<Dashboard />} />
           <Route path='/Dashboard/AddNewProject' element={<AddNewProject />} />
+          <Route path='/Dashboard/Peers' element={<StudentList />} />
           <Route path='/Dashboard/Profile' element={<Profile />} />
         </Route>
       </Routes>

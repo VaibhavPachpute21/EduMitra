@@ -44,18 +44,45 @@ export const userLoginReducer = (state = {}, action) => {
 
 export const getAllUsersReducer = (state = { allUsers: [] }, action) => {
     switch (action.type) {
+        case "GET_ALL_USERS_REQ":
+            return {
+                loading: true
+            }
 
         case "GET_ALL_USERS_SUCCESS":
             return {
                 allUsers: action.payload,
-
+                loading: false,
+                success: true
             }
         case "GET_ALL_USER_FAIL":
             return {
-                error: action.payload
+                error: action.payload,
+                loading: false
             }
         default:
             return state;
     }
 }
 
+export const getUsersByCollageReducer = (state = { allColleagues: [] }, action) => {
+    switch (action.type) {
+        case "GET_ALL_COLLEAGUES_REQ":
+            return {
+                loading: true
+            }
+        case "GET_ALL_COLLEAGUES_SUCCESS":
+            return {
+                allColleagues: action.payload,
+                loading: false,
+                success: true,
+            }
+        case "GET_ALL_COLLEAGUES_FAIL":
+            return {
+                error: action.payload,
+                loading: false
+            }
+        default:
+            return state;
+    }
+}

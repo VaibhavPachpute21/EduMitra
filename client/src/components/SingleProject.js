@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
-import { getSingleProject } from '../actions/projectActions'
+import { getSingleProject, addComment } from '../actions/projectActions'
 
 
 const SingleProject = () => {
@@ -9,6 +9,30 @@ const SingleProject = () => {
   const dispatch = useDispatch()
   const projectsData = useSelector((state) => state.projectReducer);
   const { loading, singleProject, error } = projectsData;
+  const userData = useSelector(state => state.userLoginReducer)
+  const { currentUser } = userData;
+  const [commentText, setCommentText] = useState('');
+
+  const handleCommentSubmit = () => {
+    dispatch(addComment(singleProject._id, commentText, currentUser.token));
+    setCommentText('');
+  };
+
+  const getProperDate = (date) => {
+    const inputDate = new Date(date);
+    const options = {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true,
+    };
+    const formattedDateTime = inputDate.toLocaleDateString('en-US', options);
+  
+    return formattedDateTime;
+  };
+  
 
   useEffect(() => {
     dispatch(getSingleProject(projectID))
@@ -25,11 +49,11 @@ const SingleProject = () => {
               <div>
                 <h2 className="text-uppercase fw-bold mb-3">{singleProject.pTitle}</h2>
                 <p className="mb-4">{singleProject.shortDescription}</p>
-                <div className="carousel slide carousel-dark" data-bs-ride="false" data-bs-touch="false" id="carousel-1" style={{ height: '500px',width:'700px' }}>
+                <div className="carousel slide carousel-dark" data-bs-ride="false" data-bs-touch="false" id="carousel-1" style={{ height: '500px', width: '700px' }}>
                   <div className="carousel-inner" style={{ width: '100%', height: '100%' }}>
                     {singleProject.projectImages.map((image, index) => (
-                      <div className={`carousel-item ${index === 0 ? 'active' : ''}`} key={index} style={{ width: '100%', height: '100%',objectFit:'contain',alignItems:'center', }}>
-                        <img className="m-auto" src={image} alt={`Project Image ${index + 1}`} height={'100%'}/>
+                      <div className={`carousel-item ${index === 0 ? 'active' : ''}`} key={index} style={{ width: '100%', height: '100%', objectFit: 'contain', alignItems: 'center', }}>
+                        <img className="m-auto" src={image} alt={`Project Image ${index + 1}`} height={'100%'} />
                         <p>Caption {index + 1}</p>
                       </div>
                     ))}
@@ -74,14 +98,10 @@ const SingleProject = () => {
                 <h1 className="text-start">Source Code</h1>
                 <p className="text-start">
                   <i className="fab fa-github"></i>
-                  <a className="text-start text-decoration-none text-black" href="#">
-                    View Source Code
-                  </a>
+                  <a className="text-start text-decoration-none text-black" href="#">View Source Code</a>
                   <br />
                   <i className="fab fa-youtube"></i>&nbsp;
-                  <a className="text-decoration-none text-black" href="#">
-                    View Demo
-                  </a>
+                  <a className="text-decoration-none text-black" href="#">View Demo</a>
                 </p>
                 <div>
                   <h1 className="text-start">Created By</h1>
@@ -96,14 +116,30 @@ const SingleProject = () => {
                       </div>
                     </div>
                   </div>
-
                 </div>
+                <div className='input-group mt-3 mb-3'>
+                  <input className='form-control' type="text" placeholder="Add a comment..."
+                    value={commentText} onChange={(e) => setCommentText(e.target.value)} />
+                  <button className='btn btn-outline-primary' onClick={handleCommentSubmit}>Submit Comment</button>
+                </div>
+                {singleProject.comments.map((comment) => {
+                  const date = getProperDate(new Date(comment.date));
+                  return (
+                    <div className='text-start p-1 m-1 bg-light border border-secondary-subtle rounded-2' key={comment._id}>
+                      <div className='container'>
+                        <p className='p-0 mb-0'><strong>{comment.name}</strong></p>
+                        <p className='p-0 mb-0 ps-2'>{comment.text}</p>
+                        <p className='p-0 mb-0 ps-2'>{date}</p>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>
         </div>
       </section>}
-    </div>
+    </div >
   );
 };
 
