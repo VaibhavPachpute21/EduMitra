@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import '../styles/AddNewProject.css'
+import axios from 'axios'
 
 function AddNewProject() {
   const [project, setProject] = useState({
@@ -7,12 +8,13 @@ function AddNewProject() {
     shortDescription: '',
     longDescription: '',
     whyChooseProject: '',
-    howDiffProject:'',
-    futureEnhacement:'',
-    builtWith:'',
+    howDiffProject: '',
+    futureEnhacement: '',
+    builtWith: '',
     difficultiesFaced: '',
     projectImages: [],
   });
+  const [imgUploading, setImgUploading] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -28,11 +30,46 @@ function AddNewProject() {
       ...project,
       projectImages: images,
     });
+    handleImageUpload(images);
   };
+
+  const handleImageUpload = async (images) => {
+    setImgUploading(true);
+    try {
+      const imageUrls = [];
+      for (let index = 0; index < images.length; index++) {
+        const image = images[index];
+        const formData = new FormData();
+        formData.append('image', image);
+
+        const response = await axios.post(
+          'https://api.imgbb.com/1/upload?key=fbceae2d513cb2adb77ffbcb1473a512',
+          formData
+        );
+
+        if (response.data.success) {
+          imageUrls.push(response.data.data.url);
+          setProject((prevProject) => ({
+            ...prevProject,
+            projectImages: [...imageUrls],
+          }));
+          console.log(`Image ${index + 1} uploaded successfully.`);
+        } else {
+          console.error(`Image ${index + 1} upload failed:`, response.data);
+        }
+      }
+    } catch (error) {
+      console.error('Image Upload Error:', error);
+    }
+    setImgUploading(false);
+  };
+
+  useEffect(() => {
+    console.log(project);
+  }, [project]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission here, e.g., send data to the server
     console.log('Form Data:', project);
   };
 
@@ -41,7 +78,7 @@ function AddNewProject() {
       <div className="container p-3">
         <h1>Add New Project</h1>
         <form onSubmit={handleSubmit}>
-          <label className="form-label font-monospace">Project Title</label>
+          <label className="form-label font-monospace">Project Title<span className='text-danger'>*</span></label>
           <input
             className="form-control shadow-none"
             type="text"
@@ -53,70 +90,79 @@ function AddNewProject() {
             value={project.pTitle}
             onChange={handleInputChange}
           />
-          <label className="form-label font-monospace" style={{ marginTop: '1.5rem' }}>Short Description</label>
+          <label className="form-label font-monospace" style={{ marginTop: '1.5rem' }}>Short Description<span className='text-danger'>*</span></label>
           <textarea
             className="form-control shadow-none"
+            required
             name="shortDescription"
             rows="5"
             value={project.shortDescription}
             onChange={handleInputChange}
           />
-          <label className="form-label font-monospace" style={{ marginTop: '1.5rem' }}>Long Description</label>
+          <label className="form-label font-monospace" style={{ marginTop: '1.5rem' }}>Long Description<span className='text-danger'>*</span></label>
           <textarea
             className="form-control shadow-none"
+            required
             name="longDescription"
             rows="5"
             value={project.longDescription}
             onChange={handleInputChange}
           />
-          <label className="form-label font-monospace" style={{ marginTop: '1.5rem' }}>Why You Choose This Project</label>
+          <label className="form-label font-monospace" style={{ marginTop: '1.5rem' }}>Why You Choose This Project<span className='text-danger'>*</span></label>
           <textarea
             className="form-control shadow-none"
+            required
             name="whyChooseProject"
             rows="5"
             value={project.whyChooseProject}
             onChange={handleInputChange}
           />
-          <label className="form-label font-monospace" style={{ marginTop: '1.5rem' }}>How this Project gonna make difference?</label>
+          <label className="form-label font-monospace" style={{ marginTop: '1.5rem' }}>How this Project gonna make difference?<span className='text-danger'>*</span></label>
           <textarea
             className="form-control shadow-none"
+            required
             name="howDiffProject"
             rows="5"
             value={project.howDiffProject}
             onChange={handleInputChange}
           />
-          <label className="form-label font-monospace" style={{ marginTop: '1.5rem' }}>Describe Difficulties Faced</label>
+          <label className="form-label font-monospace" style={{ marginTop: '1.5rem' }}>Describe Difficulties Faced<span className='text-danger'>*</span></label>
           <textarea
             className="form-control shadow-none"
+            required
             name="difficultiesFaced"
             rows="5"
             value={project.difficultiesFaced}
             onChange={handleInputChange}
           />
-          <label className="form-label font-monospace" style={{ marginTop: '1.5rem' }}>Future Enhancements</label>
+          <label className="form-label font-monospace" style={{ marginTop: '1.5rem' }}>Future Enhancements<span className='text-danger'>*</span></label>
           <textarea
             className="form-control shadow-none"
+            required
             name="futureEnhacement"
             rows="5"
             value={project.futureEnhacement}
             onChange={handleInputChange}
           />
-          <label className="form-label font-monospace" style={{ marginTop: '1.5rem' }}>Built With</label>
+          <label className="form-label font-monospace" style={{ marginTop: '1.5rem' }}>Built With<span className='text-danger'>*</span><br /><span>Add with comma-separation eg.VSCode,Javascript,MySQL</span></label>
           <textarea
             className="form-control shadow-none"
+            required
             name="builtWith"
             rows="2"
             value={project.builtWith}
             onChange={handleInputChange}
           />
-          <label className="form-label font-monospace" style={{ marginTop: '1.5rem' }}>Upload Project Images</label>
+          <label className="form-label font-monospace" style={{ marginTop: '1.5rem' }}>Upload Project Images<span className='text-danger'>*</span></label>
           <input
             className="form-control border-0"
+            required
             type="file"
             multiple
             accept="image/*"
             onChange={handleImageChange}
           />
+          {imgUploading && <p>Uploading...</p>}
           <button className="btn btn-primary mt-3" type="submit">Upload Project</button>
         </form>
       </div>
