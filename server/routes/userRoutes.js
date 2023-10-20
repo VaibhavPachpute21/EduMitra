@@ -55,12 +55,46 @@ router.post('/login', async (req, res) => {
   }
 });
 
+// API to get ALL Users
 router.get('/allUsers', async (req, res) => {
   try {
       const users = await userModel.find({});
       res.status(200).json({users}) 
   } catch (error) {
     res.status(400).json({message:error.message})
+  }
+});
+
+// API to get user with collage name
+router.get('/collageUsers/:collegeName', async (req, res) => {
+  try {
+    const collegeName = req.params.collegeName;
+
+    const users = await userModel.find({ college: collegeName });
+
+    if (users.length === 0) {
+      return res.status(404).json({ message: 'No users found for this college name.' });
+    }
+
+    res.status(200).json({ users });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+router.get('/profile/:userID', async (req, res) => {
+  try {
+    const userId = req.params.userID;
+
+    const user = await userModel.find({ _id: userId });
+
+    if (user.length === 0) {
+      return res.status(404).json({ message: 'No users found.' });
+    }
+
+    res.status(200).json(...user);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 });
 

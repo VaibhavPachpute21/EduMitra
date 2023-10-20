@@ -79,6 +79,25 @@ router.get('/:projectId', async (req, res) => {
   }
 });
 
+// Get Projects by Collage
+router.get('/collageProject/:collegeName', async (req, res) => {
+  try {
+    const collegeName = req.params.collegeName;
+
+    // Query the database to find projects with the specified college name
+    const projects = await Project.find({ 'creatorInfo.college': collegeName });
+
+    if (projects.length === 0) {
+      return res.status(404).json({ message: 'No projects found for this college name.' });
+    }
+
+    res.status(200).json({ projects });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+
 router.post('/addComment/:projectId', verifyToken, async (req, res) => {
   try {
     const project = await Project.findById(req.params.projectId);
