@@ -93,6 +93,23 @@ export const projectReducer = (state = projectInitialState, action) => {
         loading: false,
         error: action.payload,
       };
+      case "ADD_GRADES_REQUEST":
+        return {
+          ...state,
+          loading: true,
+        };
+      case "ADD_GRADES_SUCCESS":
+        return {
+          ...state,
+          loading: false,
+          singleProject: action.payload,
+        };
+      case "ADD_GRADES_ERROR":
+        return {
+          ...state,
+          loading: false,
+          error: action.payload,
+        };
     default:
       return state;
   }

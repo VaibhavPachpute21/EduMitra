@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 import { getSingleProject, addComment } from '../actions/projectActions'
 import { toast } from 'react-toastify';
+import StarRating from '../components/Common/StarRating'
 
 
 const SingleProject = () => {
@@ -49,12 +50,12 @@ const SingleProject = () => {
     <div>
       {singleProject && <section className="py-4 py-xl-5" style={{ backgroundColor: '#f8f8f8' }}>
         <div className="container h-100" style={{ background: '#fff', paddingTop: '15px', paddingBottom: '15px' }}>
-          <div className="row h-100">
-            <div className="col-md-10 col-lg-10 col-xl-8 text-center d-flex d-sm-flex d-md-flex justify-content-center align-items-center mx-auto justify-content-md-start align-items-md-center justify-content-xl-center">
+          <div className="w-100">
+            <div className="col-md-10 col-lg-10 col-xl-8 text-center justify-content-center align-items-center mx-auto justify-content-md-start align-items-md-center justify-content-xl-center">
               <div>
                 <h2 className="text-uppercase fw-bold mb-3">{singleProject.pTitle}</h2>
                 <p className="mb-4">{singleProject.shortDescription}</p>
-                <div className="carousel slide carousel-dark" data-bs-ride="false" data-bs-touch="false" id="carousel-1" style={{ height: '500px', width: '700px' }}>
+                <div className="carousel slide carousel-dark" data-bs-ride="false" data-bs-touch="false" id="carousel-1" style={{ height: '500px',width:'100%' }}>
                   <div className="carousel-inner" style={{ width: '100%', height: '100%' }}>
                     {singleProject.projectImages.map((image, index) => (
                       <div className={`carousel-item ${index === 0 ? 'active' : ''}`} key={index} style={{ width: '100%', height: '100%', objectFit: 'contain', alignItems: 'center', }}>
@@ -142,6 +143,21 @@ const SingleProject = () => {
               </div>
             </div>
           </div>
+          {singleProject.grades.CQ && singleProject.grades.CQ && singleProject.grades.CQ != null ? <div style={{
+            position: 'fixed', float: 'right', top: '120px', right: 10,
+          }}>
+            <div class="card" style={{ width: '18rem', }}>
+              <div class="card-body">
+                <h5 class="card-title">{singleProject.pTitle} Grades</h5>
+                <p class="card-text mb-0">Project Content and Quality</p>
+                <StarRating grade={singleProject.grades.CQ} />
+                <p class="card-text mb-0">Project Execution and Creativity</p>
+                <StarRating grade={singleProject.grades.EC} />
+                <p class="card-text mb-0">Presentation and Communication</p>
+                <StarRating grade={singleProject.grades.PC} />
+              </div>
+            </div>
+          </div> : ""}
         </div>
       </section>}
     </div >

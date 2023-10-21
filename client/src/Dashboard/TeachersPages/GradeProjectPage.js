@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
-import { getSingleProject, addComment } from '../../actions/projectActions'
+import { getSingleProject, addGradesToProject } from '../../actions/projectActions'
 import { toast } from 'react-toastify';
 
 
@@ -145,7 +145,7 @@ const GradeProjectPage = () => {
                 <div><input type="range" name="EC" id="EC" min="1" max="10" step="1" value={gradeData.EC} onChange={handleGradeChange}/> {gradeData.EC}</div>
                 <p class="card-text mb-0">Presentation and Communication</p>
                 <div> <input type="range" name="PC" id="PC" min="1" max="10" step="1" value={gradeData.PC} onChange={handleGradeChange}/> {gradeData.PC}</div>
-                <button href="#" class="btn btn-primary mt-2 rounded-0">Add Grade</button>
+                <button href="#" class="btn btn-primary mt-2 rounded-0" onClick={()=>{dispatch(addGradesToProject(projectID,gradeData,currentUser.token))}}>Add Grade</button>
               </div>
             </div>
           </div>

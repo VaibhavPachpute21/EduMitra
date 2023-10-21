@@ -98,14 +98,14 @@ router.get('/collageProject/:collegeName', async (req, res) => {
   }
 });
 
-
+// Add New comment
 router.post('/addComment/:projectId', verifyToken, async (req, res) => {
   try {
     const project = await Project.findById(req.params.projectId);
     if (!project) {
       return res.status(404).json({ message: 'Project not found' });
     }
-    const uname=await userModel.findById(req.userId)
+    const uname = await userModel.findById(req.userId)
     const newComment = {
       user: req.userId,
       text: req.body.text,
@@ -115,6 +115,25 @@ router.post('/addComment/:projectId', verifyToken, async (req, res) => {
     project.comments.push(newComment);
     const updatedProject = await project.save();
 
+    res.status(201).json(updatedProject);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
+// Add Grades to Project
+router.post('/addGrades/:projectId', verifyToken, async (req, res) => {
+  try {
+    const project = await Project.findById(req.params.projectId);
+    if (!project) {
+      return res.status(404).json({ message: 'Project not found' });
+    }
+    project.grades = {
+      CQ: req.body.CQ,
+      EC: req.body.EC,
+      PC: req.body.PC,
+    };
+    const updatedProject = await project.save();
     res.status(201).json(updatedProject);
   } catch (error) {
     res.status(400).json({ error: error.message });

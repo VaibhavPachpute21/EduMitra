@@ -85,7 +85,7 @@ export const getProjectsByCollegeName = (collegeName) => async (dispatch) => {
 
   try {
     const response = await axios.get(`http://127.0.0.1:8080/api/project/collageProject/${collegeName}`);
-    
+
     dispatch({
       type: "GET_PROJECTS_BY_COLLEGE_SUCCESS",
       payload: response.data.projects,
@@ -97,3 +97,23 @@ export const getProjectsByCollegeName = (collegeName) => async (dispatch) => {
     });
   }
 };
+
+// Action to add grades to a project
+export const addGradesToProject = (projectId, grades, userToken) => async (dispatch) => {
+  dispatch({ type: "ADD_GRADES_REQUEST" });
+
+  try {
+    const res = await axios.post(`http://127.0.0.1:8080/api/project/addGrades/${projectId}`, grades, {
+      headers: {
+        Authorization: `Bearer ${userToken}`,
+      },
+    });
+
+    dispatch({ type: "ADD_GRADES_SUCCESS", payload: res.data });
+    toast.success("Grades added successfully!");
+  } catch (error) {
+    dispatch({ type: "ADD_GRADES_ERROR", payload: error });
+    toast.error(error.response ? error.response.data.message : "Failed to add grades");
+  }
+};
+
