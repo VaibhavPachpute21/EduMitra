@@ -1,4 +1,4 @@
-import './App.css';
+import './styles/App.css';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Navbar from './components/Navbar';
@@ -7,12 +7,14 @@ import HomePage from './components/HomePage';
 import SingleProject from './components/SingleProject';
 import Login from './components/Login';
 import Register from './components/Register';
-import ProjectList from './components/ProjectList';
-import { Dashboard } from './components/Dashboard/Dashboard';
-import Profile from './components/Dashboard/Profile';
+import ProjectList from './components/ProjectsPage';
+import Profile from './Dashboard/Profile'
 import Sidebar from './components/Sidebar';
-import AddNewProject from './components/Dashboard/AddNewProject';
-import StudentList from './components/Dashboard/StudentList';
+import AddNewProject from './Dashboard/StudentsPages/AddNewProject';
+import AddNewEvents from './Dashboard/TeachersPages/AddNewEvents';
+import StudentList from './Dashboard/StudentList';
+import Dashoboard from './Dashboard/Dashoboard';
+import GradeProjectPage from './Dashboard/TeachersPages/GradeProjectPage';
 
 function App() {
   const location=useLocation();
@@ -34,10 +36,12 @@ function App() {
             </div>
           </>
         }>
-          <Route path='/Dashboard' element={<Dashboard />} />
+          <Route path='/Dashboard' element={<Dashoboard />} />
           <Route path='/Dashboard/AddNewProject' element={<AddNewProject />} />
+          <Route path='/Dashboard/AddNewEvent' element={<AddNewEvents />} />
           <Route path='/Dashboard/Peers' element={<StudentList />} />
           <Route path='/Dashboard/Profile' element={<Profile />} />
+          <Route path='/Dashboard/Project/:projectID' element={<GradeProjectPage/>}/>
         </Route>
       </Routes>
 

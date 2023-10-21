@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../styles/AddNewProject.css'
+import '../../styles/AddNewProject.css'
 import axios from 'axios'
 import { addNewProject } from '../../actions/projectActions'
 import { useDispatch, useSelector } from 'react-redux';

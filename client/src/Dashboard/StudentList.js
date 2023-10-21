@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { getUsersByCollage } from '../../actions/userActions'
+import { getUsersByCollage } from '../actions/userActions'
 
 const StudentList = () => {
   const dispatch = useDispatch();
@@ -53,7 +53,7 @@ const StudentList = () => {
         <div className="container py-4 py-xl-5">
           <div className="row mb-5" style={{ background: 'var(--bs-body-bg)', padding: '12px', boxShadow: '0px 4px 6px 1px rgba(43,49,54,0.35)', borderRadius: '5px' }}>
             <div className="col-sm-10 col-md-7 col-lg-8">
-              <h2>Your Collageus</h2>
+              <h2>Connect with Others</h2>
             </div>
           </div>
           <div className="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">

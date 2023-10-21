@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 import { getSingleProject, addComment } from '../actions/projectActions'
+import { toast } from 'react-toastify';
 
 
 const SingleProject = () => {
@@ -14,8 +15,12 @@ const SingleProject = () => {
   const [commentText, setCommentText] = useState('');
 
   const handleCommentSubmit = () => {
-    dispatch(addComment(singleProject._id, commentText, currentUser.token));
-    setCommentText('');
+    try {
+      dispatch(addComment(singleProject._id, commentText, currentUser.token));
+      setCommentText('');
+    } catch (error) {
+      toast.error(error.response ? error.response.data.message : "Failed to add Comment");
+    }
   };
 
   const getProperDate = (date) => {
@@ -29,10 +34,10 @@ const SingleProject = () => {
       hour12: true,
     };
     const formattedDateTime = inputDate.toLocaleDateString('en-US', options);
-  
+
     return formattedDateTime;
   };
-  
+
 
   useEffect(() => {
     dispatch(getSingleProject(projectID))

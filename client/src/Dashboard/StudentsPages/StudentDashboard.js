@@ -4,7 +4,7 @@ import { getUserProjects } from '../../actions/projectActions'
 import { Link } from 'react-router-dom';
 
 
-export const Dashboard = () => {
+export const StudentDashboard = () => {
     const dispatch = useDispatch();
     const userData = useSelector(state => state.userLoginReducer)
     const { currentUser } = userData;
@@ -60,7 +60,7 @@ export const Dashboard = () => {
                             <h2>Your Projects</h2>
                         </div>
                         <div className="col" style={{ textAlign: 'right' }}>
-                            <Link className="btn btn-primary fs-5 me-2 py-2 px-4" to={'/Dashboard/AddNewProject'} style={{ borderRadius: '0px' }}>
+                            <Link className="btn btn-primary fs-5 me-2 py-2 px-4" to={'/StudentDashboard/AddNewProject'} style={{ borderRadius: '0px' }}>
                                 Add New Project
                             </Link>
                         </div>
