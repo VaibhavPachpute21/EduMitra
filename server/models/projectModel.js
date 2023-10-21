@@ -53,7 +53,7 @@ const projectSchema = new mongoose.Schema({
                 type: mongoose.Schema.Types.ObjectId,
                 ref: 'User',
             },
-            name:String,
+            name: String,
             text: String,
             date: {
                 type: Date,
@@ -61,6 +61,24 @@ const projectSchema = new mongoose.Schema({
             },
         },
     ],
+    grades: {
+        CQ: {
+            type: String,
+            default: null
+        },
+        EC: {
+            type: String,
+            default: null
+        },
+        PC: {
+            type: String,
+            default: null
+        }
+    },
+    likes: {
+        type: Number,
+        default: 0
+    }
 },
     {
         timestamps: true,

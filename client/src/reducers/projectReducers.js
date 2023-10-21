@@ -2,6 +2,7 @@ const projectInitialState = {
   loading: false,
   projects: [],
   userProjects: [],
+  collageProjects: [],
   singleProject: null,
   error: null,
 };
@@ -70,6 +71,23 @@ export const projectReducer = (state = projectInitialState, action) => {
         singleProject: action.payload,
       };
     case "GET_SINGLE_PROJECT_ERROR":
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case "GET_PROJECTS_BY_COLLEGE_REQUEST":
+      return {
+        ...state,
+        loading: true,
+      };
+    case "GET_PROJECTS_BY_COLLEGE_SUCCESS":
+      return {
+        ...state,
+        loading: false,
+        collageProjects: action.payload,
+      };
+    case "GET_PROJECTS_BY_COLLEGE_ERROR":
       return {
         ...state,
         loading: false,

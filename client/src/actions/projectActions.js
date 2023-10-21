@@ -78,3 +78,22 @@ export const addComment = (projectId, commentText, userToken) => async (dispatch
     toast.error(error.response ? error.response.data.message : "Failed to add comment");
   }
 };
+
+// Action to get projects by college name
+export const getProjectsByCollegeName = (collegeName) => async (dispatch) => {
+  dispatch({ type: "GET_PROJECTS_BY_COLLEGE_REQUEST" });
+
+  try {
+    const response = await axios.get(`http://127.0.0.1:8080/api/project/collageProject/${collegeName}`);
+    
+    dispatch({
+      type: "GET_PROJECTS_BY_COLLEGE_SUCCESS",
+      payload: response.data.projects,
+    });
+  } catch (error) {
+    dispatch({
+      type: "GET_PROJECTS_BY_COLLEGE_ERROR",
+      payload: error.message,
+    });
+  }
+};
