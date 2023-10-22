@@ -40,7 +40,7 @@ function App() {
           <Route path='/Dashboard/AddNewProject' element={<AddNewProject />} />
           <Route path='/Dashboard/AddNewEvent' element={<AddNewEvents />} />
           <Route path='/Dashboard/Peers' element={<StudentList />} />
-          <Route path='/Dashboard/Profile' element={<Profile />} />
+          <Route path='/Dashboard/Profile/:userID' element={<Profile />} />
           <Route path='/Dashboard/Project/:projectID' element={<GradeProjectPage/>}/>
         </Route>
       </Routes>

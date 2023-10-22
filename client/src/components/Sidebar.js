@@ -53,7 +53,7 @@ function Sidebar() {
         <div className="dropdown-menu shadow text-small" data-popper-placement="top-start">
           <a className="dropdown-item" href="#">New project...</a>
           <a className="dropdown-item" href="#">Settings</a>
-          <a className="dropdown-item" href="#">Profile</a>
+          <Link className="dropdown-item" to={`/Dashboard/Profile/${currentUser.user._id}`}>Profile</Link>
           <div className="dropdown-divider"></div>
           <button className="dropdown-item" onClick={() => { dispatch(logoutUser) }}>Sign out</button>
         </div>

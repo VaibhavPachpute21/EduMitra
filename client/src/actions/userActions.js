@@ -59,5 +59,19 @@ export const getUsersByCollage = (collegeName) => async (dispatch) => {
         dispatch({ type: 'GET_ALL_COLLEAGUES_SUCCESS', payload: res.data.users });
     } catch (error) {
         dispatch({ type: 'GET_ALL_COLLEAGUES_FAIL', payload: error })
+        toast.error(error.response ? error.response.data.message : "Failed Load...");
+    }
+}
+
+// Action to Get User By ID
+export const getUserId = (userID) => async (dispatch) => {
+    dispatch({ type: "GET_USER_REQ" })
+    try {
+        const res = await axios.get(`http://127.0.0.1:8080/api/users/profile/${userID}`);
+        console.log(res.data)
+        dispatch({ type: 'GET_USER_SUCCESS', payload: res.data });
+    } catch (error) {
+        dispatch({ type: 'GET_USER_FAIL', payload: error })
+        toast.error(error.response ? error.response.data.message : "Failed to Load...");
     }
 }
