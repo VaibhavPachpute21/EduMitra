@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { getProjectsByCollegeName } from '../../actions/projectActions'
+import { getProjectsByCollegeName, } from '../../actions/projectActions'
+import { getUsersByCollage } from '../../actions/userActions'
 
 const TeachersDashboard = () => {
     const dispatch = useDispatch();
@@ -9,45 +10,50 @@ const TeachersDashboard = () => {
     const { currentUser } = userData;
     const projectsData = useSelector((state) => state.projectReducer);
     const { loading, collageProjects, error } = projectsData;
+    const collageusList = useSelector(state => state.getUsersByCollageReducer);
+    const { allColleagues } = collageusList;
     useEffect(() => {
         dispatch(getProjectsByCollegeName(currentUser.user.college))
         console.log(collageProjects)
+        dispatch(getUsersByCollage(currentUser.user.college))
+        console.log(allColleagues);
     }, [dispatch])
     return (
         <section>
-            <div className="container py-4 py-xl-5">
+            {allColleagues && <div className="container py-4 py-xl-5">
                 <div className="text-center text-white-50 bg-primary border rounded border-0 p-3">
-                    <div className="row row-cols-2 row-cols-md-4">
+                    <div className="row row-cols-2 row-cols-md-3">
                         <div className="col">
                             <div className="p-3">
-                                <h4 className="display-5 fw-bold text-white mb-0">123+</h4>
-                                <p className="mb-0">Profile Views</p>
+                                <h4 className="display-5 fw-bold text-white mb-0">{allColleagues.length.toString()}</h4>
+                                <p className="mb-0">Total Collage User</p>
                             </div>
                         </div>
                         <div className="col">
                             <div className="p-3">
-                                <h4 className="display-5 fw-bold text-white mb-0">5</h4>
+                                <h4 className="display-5 fw-bold text-white mb-0">{collageProjects.length.toString()}</h4>
                                 <p className="mb-0">Project Uploads</p>
                             </div>
                         </div>
                         <div className="col">
                             <div className="p-3">
-                                <h4 className="display-5 fw-bold text-white mb-0">67+</h4>
-                                <p className="mb-0">Total Likes</p>
+                                <h4 className="display-5 fw-bold text-white mb-0">{currentUser.user.college}</h4>
+                                <p className="mb-0">Collage</p>
                             </div>
                         </div>
-                        <div className="col">
+                        {/* <div className="col">
                             <div className="p-3">
                                 <h4 className="display-5 fw-bold text-white mb-0">89</h4>
                                 <p className="mb-0">Your Rank</p>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
-            </div>
+            </div>}
 
             <div className="container py-4 py-xl-5">
                 <h2>Hello {currentUser.user.name}!!</h2>
+
             </div>
 
             <div className="container py-4 py-xl-5">
@@ -69,7 +75,7 @@ const TeachersDashboard = () => {
                                         <p><span style={{ color: 'rgb(0, 0, 0)' }}>Submitted on <strong>{project.createdAt.split('T')[0]}</strong></span></p>
                                     </div>
                                     <Link className='btn btn-primary rounded-0' to={`/Dashboard/Project/${project._id}`}>Grade it!</Link>
-                                    <div>{project.grades.CQ && project.grades.EC && project.grades.PC != null?<span>Already Graded!</span>:""}</div>
+                                    <div>{project.grades.CQ && project.grades.EC && project.grades.PC != null ? <span>Already Graded!</span> : ""}</div>
                                 </div>
                             </Link>
                         </div>
