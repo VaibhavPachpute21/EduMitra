@@ -51,8 +51,10 @@ const TeachersDashboard = () => {
                 </div>
             </div>}
 
-            <div className="container py-1 py-xl-5">
-                <img src='assets/img/Dashboard.png' className='m-auto w-100 fit-cover' alt='Dashboard' width={'100%'} height={'100%'}/>
+            <div className="container py-1 py-xl-5 text-center">
+                <iframe title="EduMitra" width="1140" height="541.25" src="https://app.powerbi.com/reportEmbed?reportId=c2f6cf50-22e5-4b2e-88fe-f26c3307b09c&autoAuth=true&ctid=9f42fee1-9957-4b0e-8e94-b9b7d20f9113" frameborder="0" allowFullScreen="true"></iframe>
+                {/* <img src='assets/img/Dashboard.png' className='m-auto w-100 fit-cover' alt='Dashboard' width={'100%'} height={'100%'}/> */}
+                <a className='btn btn-success rounded-0' target='_blank' href='https://app.powerbi.com/reportEmbed?reportId=c2f6cf50-22e5-4b2e-88fe-f26c3307b09c&autoAuth=true&ctid=9f42fee1-9957-4b0e-8e94-b9b7d20f9113'>View Report</a>
             </div>
 
             <div className="container py-xl-5">
