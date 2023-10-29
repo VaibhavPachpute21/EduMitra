@@ -13,33 +13,7 @@ const ProjectList = () => {
       dispatch(getAllProjects())
       console.log(projects)
   },[dispatch])
-  // const projects = [
-  //   {
-  //     id: 1,
-  //     featureImg:'https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/002/255/061/datas/gallery.jpg',
-  //     title: 'empath.ly',
-  //     description:'empath.ly uses machine learning to analyze emotions during video calls or metaverse activities. We empower employers, marketers, developers, and the visually impaired to empathize remotely.'
-  //   },
-  //   {
-  //     id: 2,
-  //     featureImg:'https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/002/255/061/datas/gallery.jpg',
-  //     title: 'empath.ly',
-  //     description:'empath.ly uses machine learning to analyze emotions during video calls or metaverse activities. We empower employers, marketers, developers, and the visually impaired to empathize remotely.'
-  //   },
-  //   {
-  //     id: 3,
-  //     featureImg:'https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/002/255/061/datas/gallery.jpg',
-  //     title: 'empath.ly',
-  //     description:'empath.ly uses machine learning to analyze emotions during video calls or metaverse activities. We empower employers, marketers, developers, and the visually impaired to empathize remotely.'
-  //   },
-  //   {
-  //     id: 4,
-  //     featureImg:'https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/002/255/061/datas/gallery.jpg',
-  //     title: 'empath.ly',
-  //     description:'empath.ly uses machine learning to analyze emotions during video calls or metaverse activities. We empower employers, marketers, developers, and the visually impaired to empathize remotely.'
-  //   },
-  // ];
-
+  
   return (
     <div>
       <div className="container py-4 py-xl-5">

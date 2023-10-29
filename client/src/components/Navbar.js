@@ -19,7 +19,7 @@ const Navbar = () => {
           <div class="collapse navbar-collapse" id="navcol-2">
             <ul class="navbar-nav ms-auto">
               <li class="nav-item"><Link class="nav-link active" to="/Projects">Projects</Link></li>
-              <li class="nav-item"><Link class="nav-link active active" href="#">Events</Link></li>
+              <li class="nav-item"><Link class="nav-link active active" to="/Events">Events</Link></li>
               {currentUser!=null?<></>:<li class="nav-item"><Link class="nav-link active active" to="/Login">Log In</Link></li>}
             </ul>
             {currentUser!=null?<div className="dropdown p-3">

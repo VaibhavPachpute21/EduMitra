@@ -46,7 +46,7 @@ const projectSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    projectImages: [String], // Store image URLs as strings
+    projectImages: [String],
     comments: [
         {
             user: {

@@ -15,6 +15,7 @@ import AddNewEvents from './Dashboard/TeachersPages/AddNewEvents';
 import StudentList from './Dashboard/StudentList';
 import Dashoboard from './Dashboard/Dashoboard';
 import GradeProjectPage from './Dashboard/TeachersPages/GradeProjectPage';
+import EventList from './components/EventsPage';
 
 function App() {
   const location=useLocation();
@@ -27,6 +28,7 @@ function App() {
         <Route path='/Login' element={<Login />} />
         <Route path='/Register' element={<Register />} />
         <Route path='/Projects' element={<ProjectList />} />
+        <Route path='/Events' element={<EventList />} />
         <Route path='/Project/:projectID' element={<SingleProject />} />
         <Route path='/Dashboard' element={
           <>
