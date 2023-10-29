@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import {getUserId} from './userActions'
 
 // Action to add a new project
 export const addNewProject = (project, userToken) => async (dispatch) => {
@@ -99,7 +100,7 @@ export const getProjectsByCollegeName = (collegeName) => async (dispatch) => {
 };
 
 // Action to add grades to a project
-export const addGradesToProject = (projectId, grades, userToken) => async (dispatch) => {
+export const addGradesToProject = (projectId, grades, userToken,mailData) => async (dispatch) => {
   dispatch({ type: "ADD_GRADES_REQUEST" });
 
   try {
