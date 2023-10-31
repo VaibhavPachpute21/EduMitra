@@ -96,7 +96,7 @@ export const StudentDashboard = () => {
                     <div className="row gy-4 row-cols-1 row-cols-md-2">
                         {/* Repeat the following card section for each trending project */}
                         <div className="col">
-                            <a className="text-decoration-none text-black" href="SingleProject.html">
+                            <a className="text-decoration-none text-black" href="">
                                 <div className="d-flex flex-column flex-lg-row" data-bss-hover-animate="pulse" style={{ background: 'white', borderRadius: '10px', boxShadow: '2px 4px 7px 1px rgba(43,49,54,0.35)' }}>
                                     <div className="w-100">
                                         <img className="rounded img-fluid d-block w-100 fit-cover" style={{ height: '200px' }} src="https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/002/255/061/datas/gallery.jpg" alt="Trending Project" />

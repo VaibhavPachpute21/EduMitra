@@ -61,7 +61,7 @@ const StudentList = () => {
               if (collague._id != currentUser.user._id) {
                 return <>
                   <div className="col-xxl-3 text-center">
-                    <Link to={''} className="text-decoration-none text-black">
+                    <Link to={`/Dashboard/Profile/${collague._id}`} className="text-decoration-none text-black">
                       <div style={{ borderRadius: '5px', padding: '5px', background: 'var(--bs-body-bg)', boxShadow: '0px 0px 5px 2px var(--bs-dark-border-subtle)' }}>
                         <img className="rounded-circle img-fluid d-block m-auto" style={{ height: '250px' }} src={collague.profilePic} alt="Project" />
                         <div className="py-3">

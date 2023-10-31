@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserId } from '../actions/userActions';
-import { getUserProjects } from '../actions/projectActions'
+import { getUserProjects,getProjectsByUserId } from '../actions/projectActions'
 import { useParams } from 'react-router-dom';
 
 const Profile = () => {
@@ -15,7 +15,7 @@ const Profile = () => {
 
   useEffect(() => {
     dispatch(getUserId(userID));
-    dispatch(getUserProjects(currentUser.token))
+    dispatch(getProjectsByUserId(userID))
     console.log(user);
   }, [dispatch]);
 
@@ -218,6 +218,9 @@ const Profile = () => {
                           <div>
                             <h4>{project.pTitle}</h4>
                             <p className='mb-0' style={{ overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical' }}>{project.shortDescription}</p>
+                            <p className="text-start mb-0">{`${project.builtWith}`.split(',').map((item, index) => (
+                          <span className="m-1 badge text-bg-primary" key={index}>{item}</span>
+                        ))}</p>
                           </div>
                         </div>
                       </div>

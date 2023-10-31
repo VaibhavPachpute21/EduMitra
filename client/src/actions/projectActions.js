@@ -118,3 +118,14 @@ export const addGradesToProject = (projectId, grades, userToken,mailData) => asy
   }
 };
 
+// Function to fetch projects by user ID
+export const getProjectsByUserId = (userId) => async (dispatch) => {
+  dispatch({ type: "GET_USER_PROJECTS_REQUEST" });
+  try {
+    const res = await axios.get(`http://127.0.0.1:8080/api/users/userProject/${userId}`);
+    dispatch({ type: "GET_USER_PROJECTS_SUCCESS", payload: res.data.projects });
+  } catch (error) {
+    dispatch({ type: "GET_USER_PROJECTS_ERROR", payload: error });
+    console.error('Failed to fetch user projects:', error);
+  }
+};
