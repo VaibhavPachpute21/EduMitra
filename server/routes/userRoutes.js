@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const userModel = require('../models/userModel')
 const jwt = require('jsonwebtoken');
+const Project = require('../models/projectModel');
 
 const malePP = ["https://img.freepik.com/premium-vector/man-character_665280-46969.jpg", "https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg", "https://img.freepik.com/free-vector/isolated-young-handsome-man-different-poses-white-background-illustration_632498-859.jpg?size=626&ext=jpg", "https://img.freepik.com/free-vector/handsome-man_1308-85984.jpg", "https://img.freepik.com/free-psd/3d-illustration-human-avatar-profile_23-2150671116.jpg"]
 const femalePP = ["https://img.freepik.com/free-vector/3d-cartoon-young-woman-smiling-circle-frame-character-illustration-vector-design_40876-3100.jpg?size=626&ext=jpg", "https://img.freepik.com/free-vector/young-woman-white_25030-39552.jpg", "https://img.freepik.com/free-vector/young-woman-white_25030-39546.jpg", "https://img.freepik.com/premium-photo/cute-emoji-person-speaking-with-no-background-3_634278-1248.jpg", "https://img.freepik.com/free-vector/pop-art-fashion-beautiful-woman-cartoon_18591-52376.jpg"]
@@ -98,5 +99,15 @@ router.get('/profile/:userID', async (req, res) => {
   }
 });
 
+router.get('/userProject/:userId', async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    const projects = await Project.find({ creator: userId });
+
+    res.status(200).json({ projects });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 
 module.exports = router;

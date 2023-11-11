@@ -21,7 +21,8 @@ const HomePage = () => {
                 <div class="container-fluid" style={{ position: 'relative', height: '100%', width: '100%', padding: '0px', marginTop: '-24px', marginBottom: "-24px", filter: 'saturate(100%)', backdropFilter: 'blur(2px)' }}>
                     <div class="text-start p-4 p-lg-5" style={{ height: "400px" }}>
                         <p class="fw-bold text-primary mb-2" style={{ borderColor: "rgb(0,0,0)" }}><span style={{ color: "rgb(129, 91, 91)" }}>Proud to introduce</span></p>
-                        <h1 class="fw-bold mb-4" style={{ color: "rgb(0,0,0)" }}>The Platform for Geeks,<br />to Learn &amp; Grow</h1><button class="btn btn-primary fs-5 me-2 py-2 px-4" type="button" style={{ borderRadius: "0px" }}>Join The Community</button>
+                        <h1 class="fw-bold mb-4" style={{ color: "rgb(0,0,0)" }}>The Platform for Geeks,<br />to Learn &amp; Grow</h1>
+                        <Link class="btn btn-primary fs-5 me-2 py-2 px-4" type="button" style={{ borderRadius: "0px" }}to={'/Register'}>Join The Community</Link>
                     </div>
                 </div>
             </section>
@@ -44,19 +45,19 @@ const HomePage = () => {
                     {loading ? <>Loading</> : projects.slice(0, 3).map((project) => {
                         return <div class="col">
                             <Link to={`/Project/${project._id}`} className="text-decoration-none text-black">
-                            <div class="card"><img class="card-img-top w-100 d-block fit-cover" style={{ height: "200px" }} src={project.projectImages[0]} />
-                                <div class="card-body p-4">
-                                    {/* <p class="text-primary card-text mb-0">Entertainment</p> */}
-                                    <h4 class="card-title">{project.pTitle}</h4>
-                                    <p class="card-text">{project.shortDescription}</p>
-                                    <div class="d-flex"><img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50" height="50" src={project.creatorInfo.profilePic} />
-                                        <div>
-                                            <p class="fw-bold mb-0">{project.creatorInfo.name}</p>
-                                            <p class="text-muted mb-0">{project.creatorInfo.college}</p>
+                                <div class="card"><img class="card-img-top w-100 d-block fit-cover" style={{ height: "200px" }} src={project.projectImages[0]} />
+                                    <div class="card-body p-4">
+                                        {/* <p class="text-primary card-text mb-0">Entertainment</p> */}
+                                        <h4 class="card-title">{project.pTitle}</h4>
+                                        <p class="card-text">{project.shortDescription}</p>
+                                        <div class="d-flex"><img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50" height="50" src={project.creatorInfo.profilePic} />
+                                            <div>
+                                                <p class="fw-bold mb-0">{project.creatorInfo.name}</p>
+                                                <p class="text-muted mb-0">{project.creatorInfo.college}</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             </Link>
                         </div>
                     })}
