@@ -10,11 +10,15 @@
 - **Analytics and Reporting:** Provide analytics dashboards for tracking project progress and team contributions. Generate reports for academic assessment and performance evaluations.
 - **Mobile Accessibility:** Ensure the platform is mobile-responsive for access on smartphones and tablets.
 - **Single Page Application (SPA):** Offers a seamless and uninterrupted browsing experience through a single-page application design.
-- **User-Friendly Interface:** Enjoy a sleek and intuitive interface for browsing and ordering pizzas.
+- **User-Friendly Interface:** Enjoy a sleek and intuitive interface for browsing through projects.
 
 ## Screenshots
 
-![Screenshot 1](https://)
+![Screenshot 1](https://raw.githubusercontent.com/VaibhavPachpute21/EduMitra/main/outputs/home.png)
+![Screenshot 2](https://raw.githubusercontent.com/VaibhavPachpute21/EduMitra/main/outputs/login.png)
+![Screenshot 3](https://raw.githubusercontent.com/VaibhavPachpute21/EduMitra/main/outputs/peer.png)
+![Screenshot 4](https://raw.githubusercontent.com/VaibhavPachpute21/EduMitra/main/outputs/profile.png)
+![Screenshot 5](https://raw.githubusercontent.com/VaibhavPachpute21/EduMitra/main/outputs/dashboard.PNG)
 
 ## Development
 
