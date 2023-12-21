@@ -1,19 +1,19 @@
-import React,{useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
-import {increment,decrement} from '../actions/cartActions'
+import { increment, decrement } from '../actions/cartActions'
 import { getAllProjects } from '../actions/projectActions';
 
 const ProjectList = () => {
   const dispatch = useDispatch()
-  const projectsData=useSelector((state)=>state.projectReducer);
-  const{loading,projects,error}=projectsData;
-  
-  useEffect(()=>{
-      dispatch(getAllProjects())
-      console.log(projects)
-  },[dispatch])
-  
+  const projectsData = useSelector((state) => state.projectReducer);
+  const { loading, projects, error } = projectsData;
+
+  useEffect(() => {
+    dispatch(getAllProjects())
+    console.log(projects)
+  }, [dispatch])
+
   return (
     <div>
       <div className="container py-4 py-xl-5">
@@ -30,19 +30,19 @@ const ProjectList = () => {
         <div className="row gy-4 row-cols-1 row-cols-md-2">
           {projects.map((project) => (
             <div key={project._id} className="col">
-              <Link to={`/Project/${project._id}`} className="text-decoration-none text-black">
-                <div className="d-flex flex-column flex-lg-row" data-bss-hover-animate="pulse" style={{ background: 'white', borderRadius: '10px', boxShadow: '2px 4px 7px 1px rgba(43,49,54,0.35)' }}>
+              <Link to={`/Project/${project._id}`} className="text-decoration-none text-black" >
+                <div className="d-flex flex-column flex-lg-row" data-bss-hover-animate="pulse" style={{ background: 'white', borderRadius: '10px', boxShadow: '2px 4px 7px 1px rgba(43,49,54,0.35)', overflow: 'hidden', padding: '10px' }}>
                   <div className="w-100">
                     <img
                       className="rounded img-fluid d-block w-100 fit-contain"
-                      style={{ height: '200px', minWidth:'150px' }}
+                      style={{ height: '200px', minWidth: '150px' }}
                       src={project.projectImages[0]}
                       alt="Project Thumbnail"
                     />
                   </div>
                   <div className="py-4 py-lg-0 px-lg-4">
                     <h4>{project.pTitle}</h4>
-                    <p>{project.shortDescription}</p>
+                    <p style={{ overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 4, WebkitBoxOrient: 'vertical' }}>{project.shortDescription}</p>
                   </div>
                 </div>
               </Link>

@@ -63,6 +63,8 @@ function AddNewProject() {
     builtWith: '',
     difficultiesFaced: '',
     projectImages: [],
+    code: '',
+    video: ''
   });
   const [imgUploading, setImgUploading] = useState(false);
 
@@ -135,6 +137,7 @@ function AddNewProject() {
       return;
     }
     dispatch(addNewProject(project, currentUser.token))
+    console.log(project)
   };
 
   return (
@@ -154,7 +157,7 @@ function AddNewProject() {
             <label className="form-label font-monospace">Short Description<span className='text-danger'>*</span></label>
             <ReactQuill className="quill-form" theme="snow" modules={{
               toolbar: [
-                
+
                 ["bold", "italic", "underline", "strike", "blockquote"],
                 [
                   { list: "ordered" },
@@ -164,7 +167,7 @@ function AddNewProject() {
                 ],
                 ["clean"],
               ],
-            }}  formats={formats}
+            }} formats={formats}
               name="shortDescription" value={project.shortDescription} onChange={handleQuillChange('shortDescription')} />
           </div>
 
@@ -220,6 +223,20 @@ function AddNewProject() {
           </div>
 
           <div>
+            <label className="form-label font-monospace">Link to Code/Repository<span className='text-danger'>*</span></label>
+            <input className="form-control shadow-none"
+              type="text" name="code"
+              required
+              value={project.code} onChange={handleInputChange} />
+          </div>
+          <div>
+            <label className="form-label font-monospace">Video Link</label>
+            <input className="form-control shadow-none"
+              type="text" name="video"
+              value={project.video} onChange={handleInputChange} />
+          </div>
+
+          <div>
             <label className="form-label font-monospace" style={{ marginTop: '1.5rem' }}>Upload Project Images<span className='text-danger'>*</span></label>
             <input
               className="form-control border-0"
@@ -231,6 +248,7 @@ function AddNewProject() {
             />
             {imgUploading && <p>Uploading...</p>}
           </div>
+
 
           <button className="btn btn-primary mt-3" type="submit">Upload Project</button>
         </form>

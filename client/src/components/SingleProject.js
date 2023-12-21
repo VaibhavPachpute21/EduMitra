@@ -87,17 +87,20 @@ const SingleProject = () => {
                   </div>
                 </div>
                 <h1 className="text-start">Abstract</h1>
-                <div className="text-start"  dangerouslySetInnerHTML={{ __html: singleProject.longDescription }}></div>
+                <div className="text-start" dangerouslySetInnerHTML={{ __html: singleProject.longDescription }}></div>
 
                 <h1 className="text-start">Why We choose this Project</h1>
-                <div className="text-start" >{singleProject.whyChooseProject}</div>
+                <div className="text-start" dangerouslySetInnerHTML={{ __html: singleProject.whyChooseProject }}></div>
 
                 <h1 className="text-start">How it will make diffrence</h1>
-                <p className="text-start">{singleProject.howDiffProject}</p>
+                <div className="text-start" dangerouslySetInnerHTML={{ __html: singleProject.howDiffProject }}></div>
+
                 <h1 className="text-start">Challenges Faced</h1>
-                <p className="text-start">{singleProject.difficultiesFaced}</p>
+                <div className="text-start" dangerouslySetInnerHTML={{ __html: singleProject.difficultiesFaced }}></div>
+
                 <h1 className="text-start">Future Developments</h1>
-                <p className="text-start">{singleProject.futureEnhancement}</p>
+                <div className="text-start" dangerouslySetInnerHTML={{ __html: singleProject.futureEnhancement }}></div>
+
                 <h1 className="text-start">This is Build With</h1>
                 <p className="text-start">{singleProject.builtWith.split(',').map((item, index) => (
                   <span className="m-1 badge text-bg-primary" key={index}>{item}</span>
