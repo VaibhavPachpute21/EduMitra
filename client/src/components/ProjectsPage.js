@@ -34,8 +34,8 @@ const ProjectList = () => {
                 <div className="d-flex flex-column flex-lg-row" data-bss-hover-animate="pulse" style={{ background: 'white', borderRadius: '10px', boxShadow: '2px 4px 7px 1px rgba(43,49,54,0.35)' }}>
                   <div className="w-100">
                     <img
-                      className="rounded img-fluid d-block w-100 fit-cover"
-                      style={{ height: '200px' }}
+                      className="rounded img-fluid d-block w-100 fit-contain"
+                      style={{ height: '200px', minWidth:'150px' }}
                       src={project.projectImages[0]}
                       alt="Project Thumbnail"
                     />

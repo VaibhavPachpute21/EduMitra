@@ -3,6 +3,42 @@ import '../../styles/AddNewProject.css'
 import axios from 'axios'
 import { addNewProject } from '../../actions/projectActions'
 import { useDispatch, useSelector } from 'react-redux';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import { toast } from 'react-toastify'
+
+const modules = {
+  toolbar: [
+    [{ header: [1, 2, false] }],
+    ["bold", "italic", "underline", "strike", "blockquote"],
+    [
+      { list: "ordered" },
+      { list: "bullet" },
+      { indent: "-1" },
+      { indent: "+1" },
+    ],
+    ["link", "image"],
+    [{ align: [] }, { color: [] }, { background: [] }], // dropdown with defaults from theme
+    ["clean"],
+  ],
+};
+
+const formats = [
+  "header",
+  "bold",
+  "italic",
+  "underline",
+  "strike",
+  "blockquote",
+  "list",
+  "bullet",
+  "indent",
+  "link",
+  "image",
+  "align",
+  "color",
+  "background",
+];
 
 function AddNewProject() {
   const dispatch = useDispatch();
@@ -37,6 +73,14 @@ function AddNewProject() {
       [name]: value,
     });
   };
+
+  const handleQuillChange = (propertyName) => (value) => {
+    setProject({
+      ...project,
+      [propertyName]: value,
+    });
+  };
+
 
   const handleImageChange = (e) => {
     const images = Array.from(e.target.files);
@@ -84,6 +128,12 @@ function AddNewProject() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const isAnyFieldEmpty = Object.values(project).some(value => value === '');
+
+    if (isAnyFieldEmpty) {
+      toast.error("All fields are required");
+      return;
+    }
     dispatch(addNewProject(project, currentUser.token))
   };
 
@@ -92,91 +142,96 @@ function AddNewProject() {
       <div className="container p-3">
         <h1>Add New Project</h1>
         <form onSubmit={handleSubmit}>
-          <label className="form-label font-monospace">Project Title<span className='text-danger'>*</span></label>
-          <input
-            className="form-control shadow-none"
-            type="text"
-            name="pTitle"
-            autoFocus
-            required
-            minLength="3"
-            maxLength="255"
-            value={project.pTitle}
-            onChange={handleInputChange}
-          />
-          <label className="form-label font-monospace" style={{ marginTop: '1.5rem' }}>Short Description<span className='text-danger'>*</span></label>
-          <textarea
-            className="form-control shadow-none"
-            required
-            name="shortDescription"
-            rows="5"
-            value={project.shortDescription}
-            onChange={handleInputChange}
-          />
-          <label className="form-label font-monospace" style={{ marginTop: '1.5rem' }}>Long Description<span className='text-danger'>*</span></label>
-          <textarea
-            className="form-control shadow-none"
-            required
-            name="longDescription"
-            rows="5"
-            value={project.longDescription}
-            onChange={handleInputChange}
-          />
-          <label className="form-label font-monospace" style={{ marginTop: '1.5rem' }}>Why You Choose This Project<span className='text-danger'>*</span></label>
-          <textarea
-            className="form-control shadow-none"
-            required
-            name="whyChooseProject"
-            rows="5"
-            value={project.whyChooseProject}
-            onChange={handleInputChange}
-          />
-          <label className="form-label font-monospace" style={{ marginTop: '1.5rem' }}>How this Project gonna make difference?<span className='text-danger'>*</span></label>
-          <textarea
-            className="form-control shadow-none"
-            required
-            name="howDiffProject"
-            rows="5"
-            value={project.howDiffProject}
-            onChange={handleInputChange}
-          />
-          <label className="form-label font-monospace" style={{ marginTop: '1.5rem' }}>Describe Difficulties Faced<span className='text-danger'>*</span></label>
-          <textarea
-            className="form-control shadow-none"
-            required
-            name="difficultiesFaced"
-            rows="5"
-            value={project.difficultiesFaced}
-            onChange={handleInputChange}
-          />
-          <label className="form-label font-monospace" style={{ marginTop: '1.5rem' }}>Future Enhancements<span className='text-danger'>*</span></label>
-          <textarea
-            className="form-control shadow-none"
-            required
-            name="futureEnhancement"
-            rows="5"
-            value={project.futureEnhancement}
-            onChange={handleInputChange}
-          />
-          <label className="form-label font-monospace" style={{ marginTop: '1.5rem' }}>Built With<span className='text-danger'>*</span><br /><span>Add with comma-separation eg.VSCode,Javascript,MySQL</span></label>
-          <textarea
-            className="form-control shadow-none"
-            required
-            name="builtWith"
-            rows="2"
-            value={project.builtWith}
-            onChange={handleInputChange}
-          />
-          <label className="form-label font-monospace" style={{ marginTop: '1.5rem' }}>Upload Project Images<span className='text-danger'>*</span></label>
-          <input
-            className="form-control border-0"
-            required
-            type="file"
-            multiple
-            accept="image/*"
-            onChange={handleImageChange}
-          />
-          {imgUploading && <p>Uploading...</p>}
+          <div>
+            <label className="form-label font-monospace">Project Title<span className='text-danger'>*</span></label>
+            <input className="form-control shadow-none"
+              type="text" name="pTitle" autoFocus
+              required minLength="3" maxLength="255"
+              value={project.pTitle} onChange={handleInputChange} />
+          </div>
+
+          <div>
+            <label className="form-label font-monospace">Short Description<span className='text-danger'>*</span></label>
+            <ReactQuill className="quill-form" theme="snow" modules={{
+              toolbar: [
+                
+                ["bold", "italic", "underline", "strike", "blockquote"],
+                [
+                  { list: "ordered" },
+                  { list: "bullet" },
+                  { indent: "-1" },
+                  { indent: "+1" },
+                ],
+                ["clean"],
+              ],
+            }}  formats={formats}
+              name="shortDescription" value={project.shortDescription} onChange={handleQuillChange('shortDescription')} />
+          </div>
+
+          <div>
+            <label className="form-label font-monospace">Long Description<span className='text-danger'>*</span></label>
+            {/* <textarea className="form-control shadow-none" required name="longDescription"
+              rows="5" value={project.longDescription} onChange={handleInputChange}
+            /> */}
+            <ReactQuill className="quill-form" theme="snow" modules={modules} formats={formats}
+              name="longDescription" value={project.longDescription} onChange={handleQuillChange('longDescription')} />
+          </div>
+          <div>
+            <label className="form-label font-monospace">Why You Choose This Project<span className='text-danger'>*</span></label>
+            {/* <textarea className="form-control shadow-none"
+              required name="whyChooseProject"
+              rows="5" value={project.whyChooseProject} onChange={handleInputChange}/> */}
+            <ReactQuill className="quill-form" theme="snow" modules={modules} formats={formats}
+              name="whyChooseProject" value={project.whyChooseProject} onChange={handleQuillChange('whyChooseProject')} />
+          </div>
+
+          <div>
+            <label className="form-label font-monospace" style={{ marginTop: '1.5rem' }}>How this Project gonna make difference?<span className='text-danger'>*</span></label>
+            {/* <textarea className="form-control shadow-none"
+              required name="howDiffProject"
+              rows="5" value={project.howDiffProject} onChange={handleInputChange} /> */}
+            <ReactQuill className="quill-form" theme="snow" modules={modules} formats={formats}
+              name="howDiffProject" value={project.howDiffProject} onChange={handleQuillChange('howDiffProject')} />
+          </div>
+
+          <div>
+            <label className="form-label font-monospace">Describe Difficulties Faced<span className='text-danger'>*</span></label>
+            {/* <textarea className="form-control shadow-none"
+              required name="difficultiesFaced" rows="5"
+              value={project.difficultiesFaced} onChange={handleInputChange} /> */}
+            <ReactQuill className="quill-form" theme="snow" modules={modules} formats={formats}
+              name="difficultiesFaced" value={project.difficultiesFaced} onChange={handleQuillChange('difficultiesFaced')} />
+          </div>
+
+          <div>
+            <label className="form-label font-monospace" style={{ marginTop: '1.5rem' }}>Future Enhancements<span className='text-danger'>*</span></label>
+            {/* <textarea className="form-control shadow-none"
+              required name="futureEnhancement" rows="5"
+              value={project.futureEnhancement} onChange={handleInputChange} /> */}
+            <ReactQuill className="quill-form" theme="snow" modules={modules} formats={formats}
+              name="futureEnhancement" value={project.futureEnhancement} onChange={handleQuillChange('futureEnhancement')} />
+          </div>
+          <div>
+            <label className="form-label font-monospace" style={{ marginTop: '1.5rem' }}>Built With<span className='text-danger'>*</span><br /><span>Add with comma-separation eg.VSCode,Javascript,MySQL</span></label>
+            <textarea
+              className="form-control shadow-none"
+              required name="builtWith" rows="2" value={project.builtWith} onChange={handleInputChange}
+            />
+          </div>
+
+          <div>
+            <label className="form-label font-monospace" style={{ marginTop: '1.5rem' }}>Upload Project Images<span className='text-danger'>*</span></label>
+            <input
+              className="form-control border-0"
+              required
+              type="file"
+              multiple
+              accept="image/*"
+              onChange={handleImageChange}
+            />
+            {imgUploading && <p>Uploading...</p>}
+          </div>
+
           <button className="btn btn-primary mt-3" type="submit">Upload Project</button>
         </form>
       </div>

@@ -54,7 +54,7 @@ const SingleProject = () => {
             <div className="col-md-10 col-lg-10 col-xl-8 text-center justify-content-center align-items-center mx-auto justify-content-md-start align-items-md-center justify-content-xl-center">
               <div>
                 <h2 className="text-uppercase fw-bold mb-3">{singleProject.pTitle}</h2>
-                <p className="mb-4">{singleProject.shortDescription}</p>
+                <div className="mb-4" dangerouslySetInnerHTML={{ __html: singleProject.shortDescription }}></div>
                 <div className="carousel slide carousel-dark" data-bs-ride="false" data-bs-touch="false" id="carousel-1" style={{ height: '500px',width:'100%' }}>
                   <div className="carousel-inner" style={{ width: '100%', height: '100%' }}>
                     {singleProject.projectImages.map((image, index) => (
@@ -87,9 +87,11 @@ const SingleProject = () => {
                   </div>
                 </div>
                 <h1 className="text-start">Abstract</h1>
-                <p className="text-start">{singleProject.longDescription}</p>
+                <div className="text-start"  dangerouslySetInnerHTML={{ __html: singleProject.longDescription }}></div>
+
                 <h1 className="text-start">Why We choose this Project</h1>
-                <p className="text-start">{singleProject.whyChooseProject}</p>
+                <div className="text-start" >{singleProject.whyChooseProject}</div>
+
                 <h1 className="text-start">How it will make diffrence</h1>
                 <p className="text-start">{singleProject.howDiffProject}</p>
                 <h1 className="text-start">Challenges Faced</h1>
