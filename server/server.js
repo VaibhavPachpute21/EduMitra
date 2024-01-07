@@ -13,6 +13,7 @@ app.use(express.json());
 app.use('/api/users/', require('./routes/userRoutes'));
 app.use('/api/project/', require('./routes/projectRoutes'));
 app.use('/api/events/', require('./routes/eventRoutes'));
+app.use('/api/chats/', require('./routes/messagingRoutes'));
 
 
 const PORT = process.env.PORT
