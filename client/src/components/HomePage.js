@@ -16,8 +16,8 @@ const HomePage = () => {
     }, [dispatch])
 
     return (
-        <div>
-            <section class="py-4" style={{ background: 'url("https://q9k6x7m8.stackpathcdn.com/assets/home/homepage/header/desktop-illustration-night-8a30863e0990a34b55cf882b1ee789d5e27dbbb286d9b7f90705322c67fe44f8.png") right / cover no-repeat, rgba(255,255,255,0)', padding: '0px 0px' }}>
+        <div className=''>
+            <section class="py-4 bg-white" style={{ background: 'url("./assets/img/banner.png") right / contain no-repeat, rgba(255,255,255,0)', padding: '0px 0px' }}>
                 <div class="container-fluid" style={{ position: 'relative', height: '100%', width: '100%', padding: '0px', marginTop: '-24px', marginBottom: "-24px", filter: 'saturate(100%)', backdropFilter: 'blur(2px)' }}>
                     <div class="text-start p-4 p-lg-5" style={{ height: "400px" }}>
                         <p class="fw-bold text-primary mb-2" style={{ borderColor: "rgb(0,0,0)" }}><span style={{ color: "rgb(129, 91, 91)" }}>Proud to introduce</span></p>
@@ -28,9 +28,9 @@ const HomePage = () => {
             </section>
             <section class="newsletter-subscribe py-4 py-xl-5" style={{ padding: "0px 0px;" }}>
                 <div class="container">
-                    <form class="d-flex justify-content-center flex-wrap" method="post">
-                        <div class="d-flex d-sm-flex flex-row align-items-center align-items-sm-center mb-3" style={{ width: "50%", minWidth: "50%", borderRadius: '0px', display: "flex" }}><input class="form-control" type="email" name="email" placeholder="Search Projects" style={{ borderRadius: "0px" }} /></div>
-                        <div class="mb-3"><button class="btn btn-primary ms-2 " type="submit" style={{ borderRadius: 0 }}>Search Projects</button></div>
+                    <form class="d-flex justify-content-center flex-wrap">
+                        <div class="d-flex d-sm-flex flex-row align-items-center align-items-sm-center mb-3" style={{ width: "50%", minWidth: "50%", borderRadius: '0px', display: "flex" }}><input class="form-control" type="text" name="search" placeholder="Search Projects" style={{ borderRadius: "0px" }} /></div>
+                        <div class="mb-3"><button class="btn btn-primary ms-2 "  style={{ borderRadius: 0 }}>Search Projects</button></div>
                     </form>
                 </div>
             </section>
