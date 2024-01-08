@@ -4,6 +4,7 @@ import counterReducer from './reducers/cartReducers'
 import {userRegisterReducer,userLoginReducer,getAllUsersReducer,getUsersByCollageReducer,getUsersByIDReducer} from './reducers/userReducers'
 import {projectReducer} from './reducers/projectReducers'
 import {eventReducers} from './reducers/eventReducer'
+import {chatReducer,getChatsReducer} from './reducers/chatReducers'
 
 const rootReducer=combineReducers({
     counterReducer:counterReducer,
@@ -14,6 +15,8 @@ const rootReducer=combineReducers({
     getUsersByCollageReducer:getUsersByCollageReducer,
     getUsersByIDReducer:getUsersByIDReducer,
     eventReducers:eventReducers,
+    chatReducer:chatReducer,
+    getChatsReducer:getChatsReducer
 })
 
 const currentUser = localStorage.getItem('currentUser') ? JSON.parse(localStorage.getItem('currentUser')) : null
