@@ -63,7 +63,9 @@ const GradeProjectPage = () => {
         to_name: mailData.name,
         from_email: "EduMitra.in",
         to_email: mailData.email,
-        message: `Your work ${mailData.pTitle} just has been graded! Please login to check more details. `,
+        message: `Your project ${mailData.pTitle} just has been graded! Please login in to you dashboad to check more details. 
+Title: ${mailData.pTitle} 
+Description: ${singleProject.shortDescription}`,
         subject: "EduMitra Project Updates!!"
       }, process.env.REACT_APP_PUBLIC_KEY);
     } catch (error) {
