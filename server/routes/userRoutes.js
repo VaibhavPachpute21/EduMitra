@@ -59,10 +59,10 @@ router.post('/login', async (req, res) => {
 // API to get ALL Users
 router.get('/allUsers', async (req, res) => {
   try {
-      const users = await userModel.find({});
-      res.status(200).json({users}) 
+    const users = await userModel.find({});
+    res.status(200).json({ users })
   } catch (error) {
-    res.status(400).json({message:error.message})
+    res.status(400).json({ message: error.message })
   }
 });
 

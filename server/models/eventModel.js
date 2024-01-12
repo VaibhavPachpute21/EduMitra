@@ -23,8 +23,8 @@ const eventSchema = new mongoose.Schema({
         type: Date,
         required: true,
     },
-    contactEmail:{
-        type:String
+    contactEmail: {
+        type: String
     },
     location: {
         type: String,

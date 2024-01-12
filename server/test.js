@@ -19,4 +19,4 @@ async function migrateProjects() {
     }
 }
 
-module.exports= migrateProjects()
+module.exports = migrateProjects()

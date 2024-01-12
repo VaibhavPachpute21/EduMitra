@@ -3,25 +3,25 @@ const router = express.Router();
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
 dotenv.config();
-const Event = require('../models/eventModel'); 
+const Event = require('../models/eventModel');
 
 const verifyToken = (req, res, next) => {
-    const token = req.headers.authorization.split(' ')[1];
-  
-    if (!token) {
-      return res.status(401).json({ message: 'Unauthorized 1' });
+  const token = req.headers.authorization.split(' ')[1];
+
+  if (!token) {
+    return res.status(401).json({ message: 'Unauthorized 1' });
+  }
+  jwt.verify(token, `${process.env.JWT_SECRET_KEY}`, (err, decoded) => {
+    console.log(token)
+    console.log(process.env.JWT_SECRET_KEY)
+    if (err) {
+      return res.status(401).json({ message: err });
     }
-    jwt.verify(token, `${process.env.JWT_SECRET_KEY}`, (err, decoded) => {
-      console.log(token)
-      console.log(process.env.JWT_SECRET_KEY)
-      if (err) {
-        return res.status(401).json({ message: err });
-      }
-  
-      req.userId = decoded.userId;
-      next();
-    });
-  };
+
+    req.userId = decoded.userId;
+    next();
+  });
+};
 
 // API to add a new event
 router.post('/add', verifyToken, async (req, res) => {
@@ -33,8 +33,8 @@ router.post('/add', verifyToken, async (req, res) => {
       eventType: req.body.eventType,
       eventDate: req.body.eventDate,
       location: req.body.location,
-      eventImage:req.body.eventImage,
-      contactEmail:req.body.contactEmail,
+      eventImage: req.body.eventImage,
+      contactEmail: req.body.contactEmail,
       createdBy: req.userId,
       eventImage: req.body.eventImage,
     });
@@ -58,63 +58,63 @@ router.get('/allEvents', async (req, res) => {
 
 // API to add a comment to an event
 router.post('/addComment/:eventId', verifyToken, async (req, res) => {
-    try {
-      const eventId = req.params.eventId;
-      const event = await Event.findById(eventId);
-      if (!event) {
-        return res.status(404).json({ message: 'Event not found' });
-      }
-  
-      const newComment = {
-        userId: req.userId,
-        text: req.body.text,
-      };
-  
-      event.comments.push(newComment);
-      const updatedEvent = await event.save();
-  
-      res.status(200).json(updatedEvent);
-    } catch (error) {
-      res.status(400).json({ error: error.message });
+  try {
+    const eventId = req.params.eventId;
+    const event = await Event.findById(eventId);
+    if (!event) {
+      return res.status(404).json({ message: 'Event not found' });
     }
-  });
-  
-  // API to update an event
-  router.put('/update/:eventId', verifyToken, async (req, res) => {
-    try {
-      const eventId = req.params.eventId;
-      const event = await Event.findById(eventId);
-      if (!event) {
-        return res.status(404).json({ message: 'Event not found' });
-      }
-      event.eventName = req.body.eventName;
-      event.eventDescription = req.body.eventDescription;
-      event.eventType = req.body.eventType;
-      event.eventDate = req.body.eventDate;
-      event.location = req.body.location;
-  
-      const updatedEvent = await event.save();
-      res.status(200).json(updatedEvent);
-    } catch (error) {
-      res.status(400).json({ error: error.message });
+
+    const newComment = {
+      userId: req.userId,
+      text: req.body.text,
+    };
+
+    event.comments.push(newComment);
+    const updatedEvent = await event.save();
+
+    res.status(200).json(updatedEvent);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
+// API to update an event
+router.put('/update/:eventId', verifyToken, async (req, res) => {
+  try {
+    const eventId = req.params.eventId;
+    const event = await Event.findById(eventId);
+    if (!event) {
+      return res.status(404).json({ message: 'Event not found' });
     }
-  });
-  
-  // API to delete an event
-  router.delete('/delete/:eventId', verifyToken, async (req, res) => {
-    try {
-      const eventId = req.params.eventId;
-      const event = await Event.findById(eventId);
-      if (!event) {
-        return res.status(404).json({ message: 'Event not found' });
-      }
-  
-      await event.remove();
-      res.status(200).json({ message: 'Event deleted successfully' });
-    } catch (error) {
-      res.status(400).json({ error: error.message });
+    event.eventName = req.body.eventName;
+    event.eventDescription = req.body.eventDescription;
+    event.eventType = req.body.eventType;
+    event.eventDate = req.body.eventDate;
+    event.location = req.body.location;
+
+    const updatedEvent = await event.save();
+    res.status(200).json(updatedEvent);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
+// API to delete an event
+router.delete('/delete/:eventId', verifyToken, async (req, res) => {
+  try {
+    const eventId = req.params.eventId;
+    const event = await Event.findById(eventId);
+    if (!event) {
+      return res.status(404).json({ message: 'Event not found' });
     }
-  });
-  
-  module.exports = router;
-  
+
+    await event.remove();
+    res.status(200).json({ message: 'Event deleted successfully' });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
+module.exports = router;
+
