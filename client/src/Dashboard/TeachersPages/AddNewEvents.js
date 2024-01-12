@@ -34,7 +34,7 @@ const AddNewEvents = () => {
                                         <p><span style={{ color: 'rgb(0, 0, 0)' }}>Submitted on <strong>{project.createdAt.split('T')[0]}</strong></span></p>
                                     </div>
                                     <Link className='btn btn-primary rounded-0' to={`/Dashboard/Project/${project._id}`}>Grade it!</Link>
-                                    <div>{project.grades.CQ && project.grades.EC && project.grades.PC != null?<span>Already Graded!</span>:""}</div>
+                                    <div>{project.grades.CQ && project.grades.EC && project.grades.PC != null ? <span>Already Graded!</span> : ""}</div>
                                 </div>
                             </Link>
                         </div>

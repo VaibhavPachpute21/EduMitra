@@ -46,11 +46,11 @@ const GradeProjectPage = () => {
     return formattedDateTime;
   };
 
-  const handleSubmit=async ()=>{
+  const handleSubmit = async () => {
     setIsLoading(true)
     await dispatch(getUserId(singleProject.creator))
     dispatch(addGradesToProject(projectID, gradeData, currentUser.token));
-    sendNotification({"name":singleProject.creatorInfo.name,"email":user.email,"pTitle":singleProject.pTitle})
+    sendNotification({ "name": singleProject.creatorInfo.name, "email": user.email, "pTitle": singleProject.pTitle })
     setIsLoading(false)
 
   }

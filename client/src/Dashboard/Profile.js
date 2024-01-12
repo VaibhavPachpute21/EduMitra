@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserId } from '../actions/userActions';
-import { getUserProjects,getProjectsByUserId } from '../actions/projectActions'
+import { getUserProjects, getProjectsByUserId } from '../actions/projectActions'
 import { useParams } from 'react-router-dom';
 
 const Profile = () => {
@@ -49,9 +49,9 @@ const Profile = () => {
                     <h6 className="text-primary fw-bold m-0">Skills</h6>
                   </div>
                   <div className="card-body">
-                  <p className="text-start mb-0">{`Git,GitHub,React,MongoDB,Python,JavaScript,VSCode,HTML,CSS`.split(',').map((item, index) => (
-                          <span className="m-1 badge text-bg-primary" key={index}>{item}</span>
-                        ))}</p>
+                    <p className="text-start mb-0">{`Git,GitHub,React,MongoDB,Python,JavaScript,VSCode,HTML,CSS`.split(',').map((item, index) => (
+                      <span className="m-1 badge text-bg-primary" key={index}>{item}</span>
+                    ))}</p>
                   </div>
                 </div>
               </div>
@@ -219,8 +219,8 @@ const Profile = () => {
                             <h4>{project.pTitle}</h4>
                             <p className='mb-0' style={{ overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical' }}>{project.shortDescription}</p>
                             <p className="text-start mb-0">{`${project.builtWith}`.split(',').map((item, index) => (
-                          <span className="m-1 badge text-bg-primary" key={index}>{item}</span>
-                        ))}</p>
+                              <span className="m-1 badge text-bg-primary" key={index}>{item}</span>
+                            ))}</p>
                           </div>
                         </div>
                       </div>
