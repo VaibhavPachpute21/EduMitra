@@ -17,6 +17,7 @@ import Dashoboard from './Dashboard/Dashoboard';
 import GradeProjectPage from './Dashboard/TeachersPages/GradeProjectPage';
 import EventList from './components/EventsPage';
 import Messaging from './Dashboard/Messaging';
+import UserInfo from './Dashboard/UserInfo';
 
 function App() {
   const location=useLocation();
@@ -44,6 +45,7 @@ function App() {
           <Route path='/Dashboard/AddNewEvent' element={<AddNewEvents />} />
           <Route path='/Dashboard/Peers' element={<StudentList />} />
           <Route path='/Dashboard/Chats/:userID' element={<Messaging />} />
+          <Route path='/Dashboard/User/:userID' element={<UserInfo />} />
           <Route path='/Dashboard/Profile/:userID' element={<Profile />} />
           <Route path='/Dashboard/Project/:projectID' element={<GradeProjectPage/>}/>
         </Route>

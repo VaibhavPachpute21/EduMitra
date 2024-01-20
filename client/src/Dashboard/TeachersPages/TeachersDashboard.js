@@ -52,7 +52,7 @@ const TeachersDashboard = () => {
             </div>}
 
             <div className="container py-1 py-xl-5 text-center">
-                <iframe title="Report Section" width="100%" height="500" src="https://app.powerbi.com/view?r=eyJrIjoiMGIzMjZhMTItODkzOS00ODlhLTk4NDItMTgxNjFmMzgzNTJjIiwidCI6ImUzNzJhNzI2LTNiYzMtNDdiOS05MWU0LWE0M2E5ZmU2YzQ2YyJ9" frameborder="0" allowFullScreen="true"></iframe>
+                <iframe title="Report Section" width="100%" height="500" src="https://app.powerbi.com/view?r=eyJrIjoiZDVlOWM5MzctZWJjYS00OThjLWE4MTItY2EyM2NkZjhlMzQ2IiwidCI6ImUzNzJhNzI2LTNiYzMtNDdiOS05MWU0LWE0M2E5ZmU2YzQ2YyJ9" frameborder="0" allowFullScreen="true"></iframe>
                 {/* <iframe title="EduMitra" width="1140" height="541.25" src="https://app.powerbi.com/reportEmbed?reportId=c2f6cf50-22e5-4b2e-88fe-f26c3307b09c&autoAuth=true&ctid=9f42fee1-9957-4b0e-8e94-b9b7d20f9113" frameborder="0" allowFullScreen="true"></iframe>
                 <img src='assets/img/Dashboard.png' className='m-auto w-100 fit-cover' alt='Dashboard' width={'100%'} height={'100%'}/> */}
                 {/* <a className='btn btn-success rounded-0' target='_blank' href='https://app.powerbi.com/reportEmbed?reportId=c2f6cf50-22e5-4b2e-88fe-f26c3307b09c&autoAuth=true&ctid=9f42fee1-9957-4b0e-8e94-b9b7d20f9113'>View Report</a> */}

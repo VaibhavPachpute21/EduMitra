@@ -1,43 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserId } from '../actions/userActions';
 import { getUserProjects, getProjectsByUserId } from '../actions/projectActions'
 import { useParams } from 'react-router-dom';
 
-const Profile = () => {
+const UserInfo = () => {
   const dispatch = useDispatch();
   const { userID } = useParams();
+  const userData = useSelector((state) => state.getUsersByIDReducer);
   const projectsData = useSelector((state) => state.projectReducer)
   const currentUser = useSelector(state => state.userLoginReducer.currentUser)
   const { userProjects } = projectsData;
-  const { user } = currentUser;
-  const [editProfile,setEdit]=useState(false);
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    gender: '',
-    college: '',
-    city:'',
-    skills:[],
-    social_acc:{linkedin:'',github:'' }
-  });
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
+  const { loading, error, user } = userData;
+
   useEffect(() => {
-    console.log(":::"+currentUser.user.name);
+    dispatch(getUserId(userID));
     dispatch(getProjectsByUserId(userID))
     console.log(user);
   }, [dispatch]);
-
-  function initialDataLoad(){
-    
-  }
 
   return (
     <div>
@@ -57,12 +37,9 @@ const Profile = () => {
                       alt="Profile"
                     />
                     <div className="mb-3">
-                      {editProfile ? <button className="btn btn-primary btn-sm" type="button" onClick={()=>{setEdit(!editProfile)}}>
-                         Save
-                      </button>:<button className="btn btn-primary btn-sm" type="button" onClick={()=>{setEdit(!editProfile)}}>
-                        Edit Profile
-                      </button>}
-
+                      <button className="btn btn-primary btn-sm" type="button">
+                        Change Photo
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -70,17 +47,6 @@ const Profile = () => {
                 <div className="card shadow mb-4">
                   <div className="card-header py-3">
                     <h6 className="text-primary fw-bold m-0">Skills</h6>
-                  </div>
-                  <div className="card-body">
-                    <p className="text-start mb-0">{`Git,GitHub,React,MongoDB,Python,JavaScript,VSCode,HTML,CSS`.split(',').map((item, index) => (
-                      <span className="m-1 badge text-bg-primary" key={index}>{item}</span>
-                    ))}</p>
-                  </div>
-                </div>
-
-                <div className="card shadow mb-4">
-                  <div className="card-header py-3">
-                    <h6 className="text-primary fw-bold m-0">Social accounts</h6>
                   </div>
                   <div className="card-body">
                     <p className="text-start mb-0">{`Git,GitHub,React,MongoDB,Python,JavaScript,VSCode,HTML,CSS`.split(',').map((item, index) => (
@@ -105,9 +71,14 @@ const Profile = () => {
                                 <label className="form-label" htmlFor="username">
                                   <strong>Username</strong>
                                 </label>
-                                <input className="form-control shodow-0"
-                                  type="text" id="username" placeholder="user.name"
-                                  value={user.email} disabled={true} name="username"
+                                <input
+                                  className="form-control shodow-0"
+                                  type="text"
+                                  id="username"
+                                  placeholder="user.name"
+                                  value={user.email}
+                                  disabled={true}
+                                  name="username"
                                 />
                               </div>
                             </div>
@@ -116,9 +87,13 @@ const Profile = () => {
                                 <label className="form-label" htmlFor="email">
                                   <strong>Email Address</strong>
                                 </label>
-                                <input className="form-control"
-                                  type="email" id="email" placeholder="user@example.com"
-                                  name="email" value={user.email}
+                                <input
+                                  className="form-control"
+                                  type="email"
+                                  id="email"
+                                  placeholder="user@example.com"
+                                  name="email"
+                                  value={user.email}
                                 />
                               </div>
                             </div>
@@ -129,10 +104,13 @@ const Profile = () => {
                                 <label className="form-label" htmlFor="first_name">
                                   <strong>Name</strong>
                                 </label>
-                                <input className="form-control"
-                                  type="text" id="name"
-                                  placeholder="John" name="name"
-                                  value={user.name} onChange={handleInputChange}
+                                <input
+                                  className="form-control"
+                                  type="text"
+                                  id="first_name"
+                                  placeholder="John"
+                                  name="first_name"
+                                  value={user.name}
                                 />
                               </div>
                             </div>
@@ -259,4 +237,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default UserInfo;

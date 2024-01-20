@@ -61,14 +61,14 @@ const StudentList = () => {
               if (collague._id != currentUser.user._id) {
                 return <>
                   <div className="col-xxl-3 text-center">
-                    <Link to={`/Dashboard/Chats/${collague._id}`} className="text-decoration-none text-black">
+                    <Link to={`/Dashboard/User/${collague._id}`} className="text-decoration-none text-black">
                       <div style={{ borderRadius: '5px', padding: '5px', background: 'var(--bs-body-bg)', boxShadow: '0px 0px 5px 2px var(--bs-dark-border-subtle)' }}>
                         <img className="rounded-circle img-fluid d-block m-auto" style={{ height: '250px' }} src={collague.profilePic} alt="Project" />
                         <div className="py-3">
                           <h4><span style={{ color: 'rgb(0, 0, 0)' }}>{collague.name}</span></h4>
                           <p><span style={{ color: 'rgb(0, 0, 0)' }}>{collague.role == 0 ? "Student" : "Teacher"} at {collague.college}</span></p>
                           <p><span style={{ color: 'rgb(0, 0, 0)' }}>{collague.email} | {collague.phone}</span></p>
-                          <p className='d-flex justify-content-between'><button className='btn btn-outline-primary border-0'>Connect</button> <button className='btn btn-outline-danger border-0'><i class="bi bi-heart"></i></button></p>
+                          <p className='d-flex justify-content-between'><Link to={`/Dashboard/Chats/${collague._id}`} className='btn btn-outline-primary border-0'>Connect</Link> <button className='btn btn-outline-danger border-0'><i class="bi bi-heart"></i></button></p>
                         </div>
                       </div>
                     </Link>
