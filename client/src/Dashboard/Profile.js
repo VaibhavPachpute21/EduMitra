@@ -3,6 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getUserId } from '../actions/userActions';
 import { getUserProjects, getProjectsByUserId } from '../actions/projectActions'
 import { useParams } from 'react-router-dom';
+import Select from 'react-select';
+
+const options = [
+  { value: 'Python', label: 'Python' },
+  { value: 'Web Development', label: 'Web Development' },
+  { value: 'Software Engineering', label: 'Software Engineering' },
+];
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -12,6 +19,7 @@ const Profile = () => {
   const { userProjects } = projectsData;
   const { user } = currentUser;
   const [editProfile, setEdit] = useState(false);
+  const [selectedOption, setSelectedOption] = useState(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -82,8 +90,17 @@ const Profile = () => {
                     <h6 className="text-primary fw-bold m-0">Skills</h6>
                   </div>
                   <div className="card-body">
-                    <p className="text-start mb-0">{`Git,GitHub,React,MongoDB,Python,JavaScript,VSCode,HTML,CSS`.split(',').map((item, index) => (
-                      <span className="m-1 badge text-bg-primary" key={index}>{item}</span>
+                    
+                    <Select
+                      hideSelectedOptions={false}
+                      isMulti
+                      options={options}
+                      onChange={setSelectedOption}
+                      defaultValue={selectedOption}
+                    
+                    />
+                    <p className="text-start mb-0">{selectedOption && selectedOption.map((item) => (
+                      <span className="m-1 badge text-bg-primary">{item.label}</span>
                     ))}</p>
                   </div>
                 </div>
@@ -169,6 +186,38 @@ const Profile = () => {
                               </div>
                             </div>
                           </div>
+                          {/* <div className="mb-3">
+                            <button
+                              className="btn btn-primary btn-sm"
+                              type="submit"
+                            >
+                              Save Settings
+                            </button>
+                          </div> */}
+                        </form>
+                      </div>
+                    </div>
+                    <div className="card shadow mb-3">
+                      <div className="card-header py-3">
+                        <p className="text-primary m-0 fw-bold">Bio</p>
+                      </div>
+                      <div className="card-body">
+                        <form>
+                          <div className="row">
+                            <div className="col">
+                              <div className="mb-3">
+                                <label className="form-label" htmlFor="username">
+                                  <strong>Username</strong>
+                                </label>
+                                <input className="form-control shodow-0"
+                                  type="text" id="username" placeholder="user.name"
+                                  value={user.email} disabled={true} name="username"
+                                />
+                              </div>
+                            </div>
+                            
+                          </div>
+                         
                           {/* <div className="mb-3">
                             <button
                               className="btn btn-primary btn-sm"
