@@ -11,17 +11,18 @@ const Profile = () => {
   const currentUser = useSelector(state => state.userLoginReducer.currentUser)
   const { userProjects } = projectsData;
   const { user } = currentUser;
-  const [editProfile,setEdit]=useState(false);
+  const [editProfile, setEdit] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
     gender: '',
     college: '',
-    city:'',
-    skills:[],
-    social_acc:{linkedin:'',github:'' }
+    city: '',
+    skills: [],
+    social_acc: { linkedin: '', github: '' }
   });
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -29,14 +30,23 @@ const Profile = () => {
       [name]: value,
     });
   };
+
   useEffect(() => {
-    console.log(":::"+currentUser.user.name);
+    console.log(":::" + currentUser.user.name);
+    initialDataLoad()
     dispatch(getProjectsByUserId(userID))
     console.log(user);
   }, [dispatch]);
 
-  function initialDataLoad(){
-    
+  function initialDataLoad() {
+    setFormData({
+      ...formData,
+      name: user.name,
+      email: user.email,
+      phone: user.phone,
+      gender: user.gender,
+      college: user.college,
+    });
   }
 
   return (
@@ -57,9 +67,9 @@ const Profile = () => {
                       alt="Profile"
                     />
                     <div className="mb-3">
-                      {editProfile ? <button className="btn btn-primary btn-sm" type="button" onClick={()=>{setEdit(!editProfile)}}>
-                         Save
-                      </button>:<button className="btn btn-primary btn-sm" type="button" onClick={()=>{setEdit(!editProfile)}}>
+                      {editProfile ? <button className="btn btn-primary btn-sm" type="button" onClick={() => { setEdit(!editProfile) }}>
+                        Save
+                      </button> : <button className="btn btn-primary btn-sm" type="button" onClick={() => { setEdit(!editProfile) }}>
                         Edit Profile
                       </button>}
 
@@ -83,9 +93,16 @@ const Profile = () => {
                     <h6 className="text-primary fw-bold m-0">Social accounts</h6>
                   </div>
                   <div className="card-body">
-                    <p className="text-start mb-0">{`Git,GitHub,React,MongoDB,Python,JavaScript,VSCode,HTML,CSS`.split(',').map((item, index) => (
-                      <span className="m-1 badge text-bg-primary" key={index}>{item}</span>
-                    ))}</p>
+                    <div class="input-group mb-3">
+                      <span class="input-group-text"><i class="bi bi-github"></i></span>
+                      <input type="text" class="form-control" placeholder="Github profile" aria-label="github" id="github"
+                        value={formData.social_acc.github} name="github" />
+                    </div>
+                    <div class="input-group mb-3">
+                      <span class="input-group-text"><i class="bi bi-linkedin"></i></span>
+                      <input type="text" class="form-control" placeholder="Linkedin profile" aria-label="linkedin" id="linkedin"
+                        value={formData.social_acc.linkedin} name="linkedin" />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -95,7 +112,7 @@ const Profile = () => {
                   <div className="col">
                     <div className="card shadow mb-3">
                       <div className="card-header py-3">
-                        <p className="text-primary m-0 fw-bold">User Settings</p>
+                        <p className="text-primary m-0 fw-bold">User Info</p>
                       </div>
                       <div className="card-body">
                         <form>
@@ -118,7 +135,7 @@ const Profile = () => {
                                 </label>
                                 <input className="form-control"
                                   type="email" id="email" placeholder="user@example.com"
-                                  name="email" value={user.email}
+                                  name="email" value={formData.email}
                                 />
                               </div>
                             </div>
@@ -131,8 +148,8 @@ const Profile = () => {
                                 </label>
                                 <input className="form-control"
                                   type="text" id="name"
-                                  placeholder="John" name="name"
-                                  value={user.name} onChange={handleInputChange}
+                                  placeholder="Your name" name="name"
+                                  value={formData.name} onChange={handleInputChange}
                                 />
                               </div>
                             </div>
@@ -145,27 +162,27 @@ const Profile = () => {
                                   className="form-control"
                                   type="text"
                                   id="college"
-                                  placeholder="Collage"
+                                  placeholder="Collage Name"
                                   name="college"
-                                  value={user.college}
+                                  value={formData.college}
                                 />
                               </div>
                             </div>
                           </div>
-                          <div className="mb-3">
+                          {/* <div className="mb-3">
                             <button
                               className="btn btn-primary btn-sm"
                               type="submit"
                             >
                               Save Settings
                             </button>
-                          </div>
+                          </div> */}
                         </form>
                       </div>
                     </div>
                     <div className="card shadow">
                       <div className="card-header py-3">
-                        <p className="text-primary m-0 fw-bold">Contact Settings</p>
+                        <p className="text-primary m-0 fw-bold">Contact Details</p>
                       </div>
                       <div className="card-body">
                         <form>
@@ -176,48 +193,43 @@ const Profile = () => {
                             <input
                               className="form-control"
                               type="text"
-                              id="address"
-                              placeholder="Thane,MH"
-                              name="address"
+                              id="city"
+                              placeholder="City, State"
+                              name="city"
+                              value={formData.city}
                             />
                           </div>
                           <div className="row">
                             <div className="col">
                               <div className="mb-3">
                                 <label className="form-label" htmlFor="city">
-                                  <strong>City</strong>
+                                  <strong>Phone Number</strong>
                                 </label>
                                 <input
                                   className="form-control"
                                   type="text"
-                                  id="city"
-                                  placeholder="Bhiwandi"
-                                  name="city"
+                                  id="phone"
+                                  placeholder="1234567890"
+                                  name="phone"
+                                  value={formData.phone}
                                 />
                               </div>
                             </div>
                             <div className="col">
                               <div className="mb-3">
                                 <label className="form-label" htmlFor="country">
-                                  <strong>Country</strong>
+                                  <strong>Email</strong>
                                 </label>
                                 <input
                                   className="form-control"
                                   type="text"
-                                  id="country"
-                                  placeholder="INDIA"
-                                  name="country"
+                                  id="email"
+                                  placeholder="user@example.com"
+                                  name="email"
+                                  value={formData.email}
                                 />
                               </div>
                             </div>
-                          </div>
-                          <div className="mb-3">
-                            <button
-                              className="btn btn-primary btn-sm"
-                              type="submit"
-                            >
-                              Save Settings
-                            </button>
                           </div>
                         </form>
                       </div>
@@ -252,6 +264,7 @@ const Profile = () => {
                 </div>
               </div>
             </div>
+
           </div>
         </section>
       )}
