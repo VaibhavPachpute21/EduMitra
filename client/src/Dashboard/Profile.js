@@ -19,7 +19,7 @@ const Profile = () => {
   const { userProjects } = projectsData;
   const { user } = currentUser;
   const [editProfile, setEdit] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [skills, setSkills] = useState(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -27,16 +27,16 @@ const Profile = () => {
     gender: '',
     college: '',
     city: '',
-    skills: [],
-    social_acc: { linkedin: '', github: '' }
+    linkedin: '', 
+    github: ''
   });
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
+    if(editProfile){const { name, value } = e.target;
     setFormData({
       ...formData,
       [name]: value,
-    });
+    });}
   };
 
   useEffect(() => {
@@ -55,6 +55,12 @@ const Profile = () => {
       gender: user.gender,
       college: user.college,
     });
+    setSkills([{ value: 'Web Development', label: 'Web Development' },{ value: 'Web Development', label: 'Web Development' }])
+  }
+
+  async function handleSave(){
+    setEdit(!editProfile);
+    console.log({...formData,skills});
   }
 
   return (
@@ -75,8 +81,8 @@ const Profile = () => {
                       alt="Profile"
                     />
                     <div className="mb-3">
-                      {editProfile ? <button className="btn btn-primary btn-sm" type="button" onClick={() => { setEdit(!editProfile) }}>
-                        Save
+                      {editProfile ? <button className="btn btn-primary btn-sm" type="button" onClick={handleSave}>
+                        Save Changes
                       </button> : <button className="btn btn-primary btn-sm" type="button" onClick={() => { setEdit(!editProfile) }}>
                         Edit Profile
                       </button>}
@@ -90,16 +96,19 @@ const Profile = () => {
                     <h6 className="text-primary fw-bold m-0">Skills</h6>
                   </div>
                   <div className="card-body">
-                    
+
                     <Select
+                    isDisabled={!editProfile}
                       hideSelectedOptions={false}
                       isMulti
                       options={options}
-                      onChange={setSelectedOption}
-                      defaultValue={selectedOption}
-                    
+                      //value={selectedOption}
+                      // onChange={(e)=>{formData.skills.push(e)}}
+                      onChange={setSkills}
+                      //defaultValue={selectedOption}
+
                     />
-                    <p className="text-start mb-0">{selectedOption && selectedOption.map((item) => (
+                    <p className="text-start mb-0">{skills && skills.map((item) => (
                       <span className="m-1 badge text-bg-primary">{item.label}</span>
                     ))}</p>
                   </div>
@@ -113,12 +122,12 @@ const Profile = () => {
                     <div class="input-group mb-3">
                       <span class="input-group-text"><i class="bi bi-github"></i></span>
                       <input type="text" class="form-control" placeholder="Github profile" aria-label="github" id="github"
-                        value={formData.social_acc.github} name="github" />
+                       disabled={!editProfile} value={formData.github} onChange={handleInputChange} name="github" />
                     </div>
                     <div class="input-group mb-3">
                       <span class="input-group-text"><i class="bi bi-linkedin"></i></span>
                       <input type="text" class="form-control" placeholder="Linkedin profile" aria-label="linkedin" id="linkedin"
-                        value={formData.social_acc.linkedin} name="linkedin" />
+                      disabled={!editProfile}  value={formData.linkedin} name="linkedin" />
                     </div>
                   </div>
                 </div>
@@ -147,12 +156,14 @@ const Profile = () => {
                             </div>
                             <div className="col">
                               <div className="mb-3">
-                                <label className="form-label" htmlFor="email">
-                                  <strong>Email Address</strong>
+                                <label className="form-label" htmlFor="first_name">
+                                  <strong>Name</strong>
                                 </label>
                                 <input className="form-control"
-                                  type="email" id="email" placeholder="user@example.com"
-                                  name="email" value={formData.email}
+                                  type="text" id="name"
+                                  placeholder="Your name" name="name"
+                                  disabled={!editProfile}
+                                  value={formData.name} onChange={handleInputChange}
                                 />
                               </div>
                             </div>
@@ -161,13 +172,19 @@ const Profile = () => {
                             <div className="col">
                               <div className="mb-3">
                                 <label className="form-label" htmlFor="first_name">
-                                  <strong>Name</strong>
+                                  <strong>Gender</strong>
                                 </label>
-                                <input className="form-control"
-                                  type="text" id="name"
-                                  placeholder="Your name" name="name"
-                                  value={formData.name} onChange={handleInputChange}
-                                />
+                                <select
+                                  className="form-select shadow-none"
+                                  name="gender"
+                                  disabled={!editProfile}
+                                  value={formData.gender}
+                                  onChange={handleInputChange}
+                                >
+                                  <option>--Select Gender--</option>
+                                  <option value="Male">Male</option>
+                                  <option value="Female">Female</option>
+                                </select>
                               </div>
                             </div>
                             <div className="col">
@@ -177,10 +194,9 @@ const Profile = () => {
                                 </label>
                                 <input
                                   className="form-control"
-                                  type="text"
-                                  id="college"
+                                  type="text" id="college"
                                   placeholder="Collage Name"
-                                  name="college"
+                                  name="college" disabled={!editProfile}
                                   value={formData.college}
                                 />
                               </div>
@@ -207,17 +223,18 @@ const Profile = () => {
                             <div className="col">
                               <div className="mb-3">
                                 <label className="form-label" htmlFor="username">
-                                  <strong>Username</strong>
+                                  <strong>Add a bio</strong>
                                 </label>
                                 <input className="form-control shodow-0"
-                                  type="text" id="username" placeholder="user.name"
-                                  value={user.email} disabled={true} name="username"
+                                disabled={!editProfile}
+                                  type="text" id="bio" placeholder="Add a bio"
+                                  value={formData.bio} name="bio"
                                 />
                               </div>
                             </div>
-                            
+
                           </div>
-                         
+
                           {/* <div className="mb-3">
                             <button
                               className="btn btn-primary btn-sm"
@@ -241,10 +258,9 @@ const Profile = () => {
                             </label>
                             <input
                               className="form-control"
-                              type="text"
-                              id="city"
-                              placeholder="City, State"
-                              name="city"
+                              type="text" id="city"
+                              placeholder="City, State" name="city"
+                              disabled={!editProfile}
                               value={formData.city}
                             />
                           </div>
@@ -256,10 +272,9 @@ const Profile = () => {
                                 </label>
                                 <input
                                   className="form-control"
-                                  type="text"
-                                  id="phone"
-                                  placeholder="1234567890"
-                                  name="phone"
+                                  type="text" id="phone"
+                                  placeholder="1234567890" name="phone"
+                                  disabled={!editProfile}
                                   value={formData.phone}
                                 />
                               </div>
@@ -271,10 +286,9 @@ const Profile = () => {
                                 </label>
                                 <input
                                   className="form-control"
-                                  type="text"
-                                  id="email"
+                                  type="text" id="email"
                                   placeholder="user@example.com"
-                                  name="email"
+                                  name="email" disabled={!editProfile}
                                   value={formData.email}
                                 />
                               </div>
