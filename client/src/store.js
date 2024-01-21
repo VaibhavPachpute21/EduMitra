@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import counterReducer from './reducers/cartReducers'
-import {userRegisterReducer,userLoginReducer,getAllUsersReducer,getUsersByCollageReducer,getUsersByIDReducer} from './reducers/userReducers'
+import {userRegisterReducer,userLoginReducer,getAllUsersReducer,getUsersByCollageReducer,getUsersByIDReducer,updateUserReducer} from './reducers/userReducers'
 import {projectReducer} from './reducers/projectReducers'
 import {eventReducers} from './reducers/eventReducer'
 import {chatReducer,getChatsReducer} from './reducers/chatReducers'
@@ -16,7 +16,8 @@ const rootReducer=combineReducers({
     getUsersByIDReducer:getUsersByIDReducer,
     eventReducers:eventReducers,
     chatReducer:chatReducer,
-    getChatsReducer:getChatsReducer
+    getChatsReducer:getChatsReducer,
+    updateUserReducer:updateUserReducer
 })
 
 const currentUser = localStorage.getItem('currentUser') ? JSON.parse(localStorage.getItem('currentUser')) : null

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserId } from '../actions/userActions';
-import { getUserProjects, getProjectsByUserId } from '../actions/projectActions'
+import { getUserProjects } from '../actions/projectActions'
+import {updateUser} from '../actions/userActions'
 import { useParams } from 'react-router-dom';
 import Select from 'react-select';
 
@@ -27,22 +27,25 @@ const Profile = () => {
     gender: '',
     college: '',
     city: '',
-    linkedin: '', 
-    github: ''
+    linkedin: '',
+    github: '',
+    bio: ''
   });
 
   const handleInputChange = (e) => {
-    if(editProfile){const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });}
+    if (editProfile) {
+      const { name, value } = e.target;
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
+    }
   };
 
   useEffect(() => {
     console.log(":::" + currentUser.user.name);
     initialDataLoad()
-    dispatch(getProjectsByUserId(userID))
+    dispatch(getUserProjects(currentUser.token));
     console.log(user);
   }, [dispatch]);
 
@@ -54,13 +57,21 @@ const Profile = () => {
       phone: user.phone,
       gender: user.gender,
       college: user.college,
+      city: user.city,
+      linkedin: user.linkedin,
+      github: user.github,
+      bio: user.bio
     });
-    setSkills([{ value: 'Web Development', label: 'Web Development' },{ value: 'Web Development', label: 'Web Development' }])
+    setSkills(user.skills)
   }
 
-  async function handleSave(){
+  async function handleSave() {
     setEdit(!editProfile);
-    console.log({...formData,skills});
+    const id=currentUser.user._id;
+    const userData={ ...formData, "_id":id , skills };
+    dispatch(updateUser(userData,currentUser.token));
+
+    console.log(userData);
   }
 
   return (
@@ -98,14 +109,14 @@ const Profile = () => {
                   <div className="card-body">
 
                     <Select
-                    isDisabled={!editProfile}
+                      isDisabled={!editProfile}
                       hideSelectedOptions={false}
                       isMulti
                       options={options}
                       //value={selectedOption}
                       // onChange={(e)=>{formData.skills.push(e)}}
                       onChange={setSkills}
-                      //defaultValue={selectedOption}
+                    //defaultValue={selectedOption}
 
                     />
                     <p className="text-start mb-0">{skills && skills.map((item) => (
@@ -122,12 +133,12 @@ const Profile = () => {
                     <div class="input-group mb-3">
                       <span class="input-group-text"><i class="bi bi-github"></i></span>
                       <input type="text" class="form-control" placeholder="Github profile" aria-label="github" id="github"
-                       disabled={!editProfile} value={formData.github} onChange={handleInputChange} name="github" />
+                        disabled={!editProfile} value={formData.github} onChange={handleInputChange} name="github" />
                     </div>
                     <div class="input-group mb-3">
                       <span class="input-group-text"><i class="bi bi-linkedin"></i></span>
                       <input type="text" class="form-control" placeholder="Linkedin profile" aria-label="linkedin" id="linkedin"
-                      disabled={!editProfile}  value={formData.linkedin} name="linkedin" />
+                        disabled={!editProfile} value={formData.linkedin} onChange={handleInputChange} name="linkedin" />
                     </div>
                   </div>
                 </div>
@@ -197,7 +208,7 @@ const Profile = () => {
                                   type="text" id="college"
                                   placeholder="Collage Name"
                                   name="college" disabled={!editProfile}
-                                  value={formData.college}
+                                  value={formData.college} onChange={handleInputChange}
                                 />
                               </div>
                             </div>
@@ -226,7 +237,8 @@ const Profile = () => {
                                   <strong>Add a bio</strong>
                                 </label>
                                 <input className="form-control shodow-0"
-                                disabled={!editProfile}
+                                  disabled={!editProfile}
+                                  onChange={handleInputChange}
                                   type="text" id="bio" placeholder="Add a bio"
                                   value={formData.bio} name="bio"
                                 />
@@ -261,6 +273,7 @@ const Profile = () => {
                               type="text" id="city"
                               placeholder="City, State" name="city"
                               disabled={!editProfile}
+                              onChange={handleInputChange}
                               value={formData.city}
                             />
                           </div>
@@ -275,6 +288,7 @@ const Profile = () => {
                                   type="text" id="phone"
                                   placeholder="1234567890" name="phone"
                                   disabled={!editProfile}
+                                  onChange={handleInputChange}
                                   value={formData.phone}
                                 />
                               </div>
@@ -285,6 +299,7 @@ const Profile = () => {
                                   <strong>Email</strong>
                                 </label>
                                 <input
+                                onChange={handleInputChange}
                                   className="form-control"
                                   type="text" id="email"
                                   placeholder="user@example.com"

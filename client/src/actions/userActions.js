@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom';
+import {userLoginReducer} from '../reducers/userReducers'
 
 // Action to Regiter New User
 export const registerUser = (user) => async dispatch => {
@@ -74,4 +75,27 @@ export const getUserId = (userID) => async (dispatch) => {
         dispatch({ type: 'GET_USER_FAIL', payload: error })
         toast.error(error.response ? error.response.data.message : "Failed to Load...");
     }
+}
+
+//Action to update User
+export const updateUser = (userData,userToken) => async (dispatch) => {
+    dispatch({ type: "UPDATE_USER_REQ" })
+    try {
+        const res=await axios.post(`http://127.0.0.1:8080/api/users/update`,userData,{
+            headers: {
+                Authorization: `Bearer ${userToken}`,
+              }
+        });
+        dispatch({ type: "UPDATE_USER_SUCCESS",payload: res.data.updatedUser })
+        const currentUser= JSON.parse(localStorage.getItem('currentUser'));
+        currentUser.user=res.data.updatedUser;
+        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+        dispatch({ type: "USER_LOGIN_SUCCESS", payload: currentUser });
+        toast.success("Profile updated successfully!");
+
+    } catch (error) {
+        dispatch({ type: "UPDATE_USER_FAIL" , payload: error })
+        toast.error(error.response ? error.response.data.message : "Failed updated profile!");
+    }
+
 }
