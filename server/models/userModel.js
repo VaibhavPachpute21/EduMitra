@@ -34,6 +34,31 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    city: {
+        type: String,
+        default: null,
+    },
+    linkedin: {
+        type: String,
+        default: null,
+    },
+    github: {
+        type: String,
+        default: null,
+    },
+    skills: {
+        type: [
+            {
+                value: { type: String, required: true },
+                label: { type: String, required: true },
+            },
+        ],
+        default: null,
+    },
+    bio: {
+        type: String,
+        default: null,
+    },
 },
     {
         timestamps: true,

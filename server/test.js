@@ -1,16 +1,16 @@
-const Project = require('./models/projectModel');
+const User = require('./models/userModel');
 async function migrateProjects() {
     try {
-        const projects = await Project.find({});
-        for (const project of projects) {
+        const users = await User.find({});
+        for (const user of users) {
             if (1 == 1) {
-                project.grades = {
-                    CQ: null,
-                    EC: null,
-                    PC: null
-                }
-                await project.save();
-                console.log(project)
+                user.city=null;
+                user.linkedin=null;
+                user.github=null;
+                user.skills=null;
+                user.bio= null;
+                await user.save();
+                console.log(user)
             }
         }
         console.log('Migration completed.');
@@ -20,3 +20,4 @@ async function migrateProjects() {
 }
 
 module.exports = migrateProjects()
+
