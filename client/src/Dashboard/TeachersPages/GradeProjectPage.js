@@ -100,7 +100,7 @@ Description: ${singleProject.shortDescription}`,
               <div className="col-md-10 col-lg-10 col-xl-8 text-center d-flex d-sm-flex d-md-flex justify-content-center align-items-center mx-auto justify-content-md-start align-items-md-center justify-content-xl-center">
                 <div>
                   <h2 className="text-uppercase fw-bold mb-3">{singleProject.pTitle}</h2>
-                  <p className="mb-4">{singleProject.shortDescription}</p>
+                  <p className="mb-4" dangerouslySetInnerHTML={{ __html: singleProject.shortDescription }}></p>
                   <div className="carousel slide carousel-dark" data-bs-ride="false" data-bs-touch="false" id="carousel-1" style={{ height: '500px', width: '700px' }}>
                     <div className="carousel-inner" style={{ width: '100%', height: '100%' }}>
                       {singleProject.projectImages.map((image, index) => (
@@ -133,15 +133,15 @@ Description: ${singleProject.shortDescription}`,
                     </div>
                   </div>
                   <h1 className="text-start">Abstract</h1>
-                  <p className="text-start">{singleProject.longDescription}</p>
+                  <p className="text-start" dangerouslySetInnerHTML={{ __html: singleProject.longDescription }}></p>
                   <h1 className="text-start">Why We choose this Project</h1>
-                  <p className="text-start">{singleProject.whyChooseProject}</p>
+                  <p className="text-start" dangerouslySetInnerHTML={{ __html: singleProject.whyChooseProject }}></p>
                   <h1 className="text-start">How it will make diffrence</h1>
-                  <p className="text-start">{singleProject.howDiffProject}</p>
+                  <p className="text-start" dangerouslySetInnerHTML={{ __html: singleProject.howDiffProject }}></p>
                   <h1 className="text-start">Challenges Faced</h1>
-                  <p className="text-start">{singleProject.difficultiesFaced}</p>
+                  <p className="text-start" dangerouslySetInnerHTML={{__html:singleProject.difficultiesFaced}}></p>
                   <h1 className="text-start">Future Developments</h1>
-                  <p className="text-start">{singleProject.futureEnhancement}</p>
+                  <p className="text-start" dangerouslySetInnerHTML={{__html:singleProject.futureEnhancement}}></p>
                   <h1 className="text-start">This is Build With</h1>
                   <p className="text-start">{singleProject.builtWith.split(',').map((item, index) => (
                     <span className="m-1 badge text-bg-primary" key={index}>{item}</span>

@@ -42,7 +42,7 @@ const ProjectList = () => {
                   </div>
                   <div className="py-4 py-lg-0 px-lg-4">
                     <h4>{project.pTitle}</h4>
-                    <p style={{ overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 4, WebkitBoxOrient: 'vertical' }}>{project.shortDescription}</p>
+                    <p style={{ }} dangerouslySetInnerHTML={{ __html: project.shortDescription }}></p>
                   </div>
                 </div>
               </Link>

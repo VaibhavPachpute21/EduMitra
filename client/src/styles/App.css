@@ -1,38 +1,47 @@
-.App {
-  text-align: center;
+/* Project Title / Section Title */
+.heading1 {}
+
+/* Card Titles/ InnerTitles */
+.heading2 {
+  font-size: 22px;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 700;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* small HEading */
+.heading3 {}
+
+/* Card Text */
+.textStyle1 {
+  --max-lines: 3;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: var(--max-lines);
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 16px;
+  word-spacing: -5px;
+  font-family: 'Courier New', Courier, monospace;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Short caption collge name on card */
+.textStyle2 {}
+
+/* Projects paragrapps */
+.textStyle3 {}
+
+figure{
+  overflow: hidden;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+.cardStyle {
+  border-radius: 5px;
+  padding: 5px;
+  background: var(--bs-body-bg);
+  box-shadow: 0px 0px 5px 2px var(--bs-dark-border-subtle);
+  height: 100%;
+  &:hover img{
+    scale: 1.1;
   }
 }

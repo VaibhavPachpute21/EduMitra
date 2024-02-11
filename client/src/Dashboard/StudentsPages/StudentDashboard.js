@@ -69,11 +69,13 @@ export const StudentDashboard = () => {
                         {userProjects.map((project) => {
                             return <div className="col-xxl-3">
                                 <Link to={`/Project/${project._id}`} className="text-decoration-none text-black">
-                                    <div style={{ borderRadius: '5px', padding: '5px', background: 'var(--bs-body-bg)', boxShadow: '0px 0px 5px 2px var(--bs-dark-border-subtle)', height: '100%', }}>
-                                        <img className="rounded img-fluid d-block w-100 fit-cover" style={{ height: '200px' }} src={project.projectImages[0]} alt="Project" />
-                                        <div>
-                                            <h4>{project.pTitle}</h4>
-                                            <p className='mb-0' style={{ overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical' }}>{project.shortDescription}</p>
+                                    <div className='cardStyle'>
+                                        <figure>
+                                            <img className="rounded img-fluid d-block w-100 fit-cover" style={{ height: '200px' }} src={project.projectImages[0]} alt="Project" />
+                                        </figure>
+                                        <div className='mt-2 px-2'>
+                                            <h4 className='heading2'>{project.pTitle}</h4>
+                                            <p className='mb-0 textStyle1' dangerouslySetInnerHTML={{ __html: project.shortDescription }}></p>
                                             <p>{project.grades.CQ && project.grades.EC && project.grades.PC != null ? <><strong>Grades:<br /></strong> Content: {project.grades.CQ} | Creativity: {project.grades.EC} | Presentation: {project.grades.PC}</> : ""}</p>
                                         </div>
                                     </div>
