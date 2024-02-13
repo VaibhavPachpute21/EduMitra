@@ -78,6 +78,18 @@ const projectSchema = new mongoose.Schema({
     likes: {
         type: Number,
         default: 0
+    },
+    domain: {
+        type: String,
+        required: true,
+    },
+    codeLink: {
+        type: String,
+        default: null
+    },
+    demoLink: {
+        type: String,
+        default: null
     }
 },
     {

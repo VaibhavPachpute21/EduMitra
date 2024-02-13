@@ -32,30 +32,29 @@ const EventList = () => {
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">{openE==null?'':events[openE].eventName}</h1>
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">{openE == null ? '' : events[openE].eventName}</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <div className="d-flex flex-column flex-lg-row" data-bss-hover-animate="pulse" style={{ background: 'white', borderRadius: '10px', boxShadow: '2px 4px 7px 1px rgba(43,49,54,0.35)' }}>
-                                    <div className="w-100">
-                                        <img
-                                            className="rounded img-fluid d-block w-100 fit-cover"
-                                            style={{ height: '200px' }}
-                                            src={openE==null?'':events[openE].eventImage[0].toString()}
-                                            alt="Project Thumbnail"
-                                        />
-                                    </div>
-                                    <div className="py-4 py-lg-0 px-lg-4">
-                                        <h4>{openE==null?'':events[openE].eventName}</h4>
-                                        <p>{openE==null?'':events[openE].eventDescription}</p>
-                                        <p>Orgnised By: {openE==null?'':events[openE].organizer}</p>
-                                        <p>Location: {openE==null?'':events[openE].location}</p>
-                                    </div>
+                                <figure><img
+                                    className="rounded img-fluid d-block w-100 fit-cover"
+                                    style={{ height: '250px' }}
+                                    src={openE == null ? '' : events[openE].eventImage[0].toString()}
+                                    alt="Project Thumbnail"
+                                /></figure>
+                                <div className="py-4 py-lg-0 px-lg-4">
+                                    <p>{openE == null ? '' : events[openE].eventType}</p>
+                                    <h4>{openE == null ? '' : events[openE].eventName}</h4>
+                                    <p className=''>{openE == null ? '' : events[openE].eventDescription}</p>
+                                    <p>Orgnised By: {openE == null ? '' : events[openE].organizer}</p>
+                                    <p>Date: {openE == null ? '' : events[openE].eventDate.split('T')[0]}</p>
+                                    <p className='textStyle1'>Cotact: <a className='text-decoration-none text-black' href={`mailto:${openE? events[openE].contactEmail:''}`}>{openE == null ? '' : events[openE].contactEmail}</a></p>
+                                    <p>Location: {openE == null ? '' : events[openE].location}</p>
                                 </div>
                             </div>
-                            <div class="modal-footer">
+                            {/* <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>
@@ -75,7 +74,7 @@ const EventList = () => {
                                     </div>
                                     <div className="py-4 py-lg-0 px-lg-4">
                                         <h4>{event.eventName}</h4>
-                                        <p>{event.eventDescription}</p>
+                                        <p className='textStyle1'>{event.eventDescription}</p>
                                         <p>Orgnised By: {event.organizer}</p>
                                         <p>Location: {event.location}</p>
                                     </div>

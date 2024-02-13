@@ -55,7 +55,7 @@ const SingleProject = () => {
               <div>
                 <h2 className="text-uppercase fw-bold mb-3">{singleProject.pTitle}</h2>
                 <div className="mb-4" dangerouslySetInnerHTML={{ __html: singleProject.shortDescription }}></div>
-                <div className="carousel slide carousel-dark" data-bs-ride="false" data-bs-touch="false" id="carousel-1" style={{ height: '500px',width:'100%' }}>
+                <div className="carousel slide carousel-dark" data-bs-ride="false" data-bs-touch="false" id="carousel-1" style={{ height: '500px', width: '100%' }}>
                   <div className="carousel-inner" style={{ width: '100%', height: '100%' }}>
                     {singleProject.projectImages.map((image, index) => (
                       <div className={`carousel-item ${index === 0 ? 'active' : ''}`} key={index} style={{ width: '100%', height: '100%', objectFit: 'contain', alignItems: 'center', }}>
@@ -106,14 +106,16 @@ const SingleProject = () => {
                   <span className="m-1 badge text-bg-primary" key={index}>{item}</span>
                 ))}</p>
 
-                <h1 className="text-start">Source Code</h1>
-                <p className="text-start">
-                  <i className="fab fa-github"></i>
-                  <a className="text-start text-decoration-none text-black" href="#">View Source Code</a>
+                {singleProject.codeLink !== null || singleProject.codeLink !== null ? <h1 className="text-start">Links</h1>:"" }
+                <div className="text-start">
+                  {singleProject.codeLink == null ? '' : <><i className="fab fa-github"></i>
+                    <a className="text-start text-decoration-none text-black" target='_blank' href={singleProject.codeLink}>Source Code</a></>}
                   <br />
+                  {singleProject.demoLink == null ? '' :<>
                   <i className="fab fa-youtube"></i>&nbsp;
-                  <a className="text-decoration-none text-black" href="#">View Demo</a>
-                </p>
+                  <a className="text-decoration-none text-black" target='_blank' href={singleProject.demoLink}>View Demo</a>
+                  </>}
+                </div>
                 <div>
                   <h1 className="text-start">Created By</h1>
                   <div className="row gy-4 row-cols-2 row-cols-md-4 d-xl-flex justify-content-xl-center" style={{ marginTop: '0px' }}>

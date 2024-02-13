@@ -1,16 +1,14 @@
 const User = require('./models/userModel');
+const Project =require('./models/projectModel')
 async function migrateProjects() {
     try {
-        const users = await User.find({});
-        for (const user of users) {
+        const projects = await Project.find({});
+        for (const pro of projects) {
             if (1 == 1) {
-                user.city=null;
-                user.linkedin=null;
-                user.github=null;
-                user.skills=null;
-                user.bio= null;
-                await user.save();
-                console.log(user)
+                pro.demoLink=null;
+                pro.codeLink=null
+                await pro.save();
+                console.log(pro)
             }
         }
         console.log('Migration completed.');

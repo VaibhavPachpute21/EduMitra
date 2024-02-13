@@ -55,6 +55,7 @@ function AddNewProject() {
       college: currentUser.user.college,
     },
     pTitle: '',
+    domain: '',
     shortDescription: '',
     longDescription: '',
     whyChooseProject: '',
@@ -63,8 +64,8 @@ function AddNewProject() {
     builtWith: '',
     difficultiesFaced: '',
     projectImages: [],
-    code: '',
-    video: ''
+    codeLink: '',
+    demoLink: ''
   });
   const [imgUploading, setImgUploading] = useState(false);
 
@@ -132,10 +133,10 @@ function AddNewProject() {
     e.preventDefault();
     const isAnyFieldEmpty = Object.values(project).some(value => value === '');
 
-    if (isAnyFieldEmpty) {
-      toast.error("All fields are required");
-      return;
-    }
+    // if (isAnyFieldEmpty) {
+    //   toast.error("All fields are required");
+    //   return;
+    // }
     dispatch(addNewProject(project, currentUser.token))
     console.log(project)
   };
@@ -151,6 +152,24 @@ function AddNewProject() {
               type="text" name="pTitle" autoFocus
               required minLength="3" maxLength="255"
               value={project.pTitle} onChange={handleInputChange} />
+          </div>
+
+          <div>
+            <label className="form-label font-monospace">Project Domain<span className='text-danger'>*</span></label>
+            <select
+              className="form-select form-control shadow-none"
+              name="domain"
+              value={project.domain}
+              onChange={handleInputChange}
+            >
+              <option>--Select Domain--</option>
+              <option value="Transportation">Transportation</option>
+              <option value="Fintech">Fintech</option>
+              <option value="EduTech">EduTech</option>
+              <option value="AI\ML">AI\ML</option>
+              <option value="Blockchain">Blockchain</option>
+              <option value="Visualisation">Visualisation</option>
+            </select>
           </div>
 
           <div>
@@ -225,15 +244,15 @@ function AddNewProject() {
           <div>
             <label className="form-label font-monospace">Link to Code/Repository<span className='text-danger'>*</span></label>
             <input className="form-control shadow-none"
-              type="text" name="code"
+              type="text" name="codeLink"
               required
-              value={project.code} onChange={handleInputChange} />
+              value={project.codeLink} onChange={handleInputChange} />
           </div>
           <div>
             <label className="form-label font-monospace">Video Link</label>
             <input className="form-control shadow-none"
-              type="text" name="video"
-              value={project.video} onChange={handleInputChange} />
+              type="text" name="demoLink"
+              value={project.demoLink} onChange={handleInputChange} />
           </div>
 
           <div>

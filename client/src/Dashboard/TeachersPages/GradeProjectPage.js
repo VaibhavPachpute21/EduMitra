@@ -139,20 +139,22 @@ Description: ${singleProject.shortDescription}`,
                   <h1 className="text-start">How it will make diffrence</h1>
                   <p className="text-start" dangerouslySetInnerHTML={{ __html: singleProject.howDiffProject }}></p>
                   <h1 className="text-start">Challenges Faced</h1>
-                  <p className="text-start" dangerouslySetInnerHTML={{__html:singleProject.difficultiesFaced}}></p>
+                  <p className="text-start" dangerouslySetInnerHTML={{ __html: singleProject.difficultiesFaced }}></p>
                   <h1 className="text-start">Future Developments</h1>
-                  <p className="text-start" dangerouslySetInnerHTML={{__html:singleProject.futureEnhancement}}></p>
+                  <p className="text-start" dangerouslySetInnerHTML={{ __html: singleProject.futureEnhancement }}></p>
                   <h1 className="text-start">This is Build With</h1>
                   <p className="text-start">{singleProject.builtWith.split(',').map((item, index) => (
                     <span className="m-1 badge text-bg-primary" key={index}>{item}</span>
                   ))}</p>
-                  <h1 className="text-start">Source Code</h1>
+                  {singleProject.codeLink !== null || singleProject.codeLink !== null ? <h1 className="text-start">Links</h1> : ""}
                   <p className="text-start">
-                    <i className="fab fa-github"></i>
-                    <a className="text-start text-decoration-none text-black" href="#">View Source Code</a>
+                    {singleProject.codeLink == null ? '' : <><i className="fab fa-github"></i>
+                      <a className="text-start text-decoration-none text-black" target="_blank" href={singleProject.codeLink}>Source Code</a></>}
                     <br />
-                    <i className="fab fa-youtube"></i>&nbsp;
-                    <a className="text-decoration-none text-black" href="#">View Demo</a>
+                    {singleProject.demoLink == null ? '' : <>
+                      <i className="fab fa-youtube"></i>&nbsp;
+                      <a className="text-decoration-none text-black" target="_blank" href={singleProject.demoLink}>View Demo</a>
+                    </>}
                   </p>
                   <div>
                     <h1 className="text-start">Submitted By</h1>
