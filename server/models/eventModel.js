@@ -42,27 +42,7 @@ const eventSchema = new mongoose.Schema({
     updatedAt: {
         type: Date,
         default: Date.now,
-    },
-    participants: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'User',
-        },
-    ],
-    comments: [
-        {
-            user: {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: 'User',
-            },
-            name: String,
-            text: String,
-            date: {
-                type: Date,
-                default: Date.now,
-            },
-        },
-    ],
+    }
 }, {
     timestamps: true,
 });

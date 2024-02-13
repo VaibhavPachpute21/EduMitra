@@ -159,17 +159,21 @@ function AddNewProject() {
             <select
               className="form-select form-control shadow-none"
               name="domain"
+              required={true}
               value={project.domain}
               onChange={handleInputChange}
             >
               <option>--Select Domain--</option>
-              <option value="Transportation">Transportation</option>
-              <option value="Fintech">Fintech</option>
-              <option value="EduTech">EduTech</option>
               <option value="AI\ML">AI\ML</option>
               <option value="Blockchain">Blockchain</option>
-              <option value="Visualisation">Visualisation</option>
-            </select>
+              <option value="Cybersec">Cybersec</option>
+              <option value="Data Science">Data Science</option>
+              <option value="EduTech">EduTech</option>
+              <option value="Fintech">Fintech</option>
+              <option value="Gamedev">Gamedev</option>
+              <option value="Health">Health</option>
+              <option value="Logistics">Logistics</option>
+              </select>
           </div>
 
           <div>
