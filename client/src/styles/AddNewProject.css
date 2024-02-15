@@ -1,20 +1,43 @@
-AddNewProject.css
-.AddNewProject .form-label {
-  margin: 0;
+.AddNewProject{
+  padding: 30px;
 }
 
-.AddNewProject .form-control,.quill-form {
+.AddNewProject .container{
+  background-color: var(--APRICOT);
+  border-radius: 15px;
+}
+
+.AddNewProject .form-label {
+  margin:2px 0;
+}
+
+.AddNewProject .form-control,.quill-form, .ql-container {
   border-radius: 0;
   width: 90%;
   border-width: 1px;
   margin-bottom: .4rem;
-  background-color: aliceblue;
+  background-color: transparent;
+  border: 2px solid var(--MARMALADE);
+  color: var(--TERRACOTTA) !important;
+  font-size: 18px !important;
+  font-weight: 400;
+  font-family: 'Montserrat' !important;
+}
+
+.AddNewProject input::file-selector-button{
+  background-color: var(--TERRACOTTA) !important;
+  color: #fff !important;
 }
 
 .ql-editor{
   min-height: 80px;
 }
-
+.ql-snow{
+  border: none !important;
+}
+.ql-toolbar{
+  border-bottom: 2px solid var(--MARMALADE) !important;
+}
 .AddNewProject .form-control:focus {
   box-shadow: 1px 1px black;
 }

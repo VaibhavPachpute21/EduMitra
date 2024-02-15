@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { increment, decrement } from '../actions/cartActions'
 import { getAllProjects } from '../actions/projectActions'
 import { Link } from 'react-router-dom'
+import '../styles/Home.css'
+import '../styles/App.css'
 
 const HomePage = () => {
     const dispatch = useDispatch()
@@ -16,46 +17,58 @@ const HomePage = () => {
     }, [dispatch])
 
     return (
-        <div className=''>
-            <section class="py-4 bg-white" style={{ background: 'url("./assets/img/banner.png") right / contain no-repeat, rgba(255,255,255,0)', padding: '0px 0px' }}>
-                <div class="container-fluid" style={{ position: 'relative', height: '100%', width: '100%', padding: '0px', marginTop: '-24px', marginBottom: "-24px", filter: 'saturate(100%)', backdropFilter: 'blur(2px)' }}>
-                    <div class="text-start p-4 p-lg-5" style={{ height: "400px" }}>
-                        <p class="fw-bold text-primary mb-2" style={{ borderColor: "rgb(0,0,0)" }}><span style={{ color: "rgb(129, 91, 91)" }}>Proud to introduce</span></p>
-                        <h1 class="fw-bold mb-4" style={{ color: "rgb(0,0,0)" }}>The Platform for Geeks,<br />to Learn &amp; Grow</h1>
-                        <Link class="btn btn-primary fs-5 me-2 py-2 px-4" type="button" style={{ borderRadius: "0px" }}to={'/Register'}>Join The Community</Link>
+        <div className='home'>
+            <section class="py-2 hero">
+                <div class="container">
+                    <div class="text-start py-5 py-lg-5 mt-5">
+                        <p class="fw-bold mb-2 textStyle2"><span style={{ color: "#fff" }}>Proud to Introduce</span></p>
+                        <h1 class="fw-bold mb-4 heading1" style={{ color: "#fff" }}>The Platform for Geeks,<br />to Learn &amp; Grow!!</h1>
+                        <Link class="btn button1 me-2 py-2 px-4" type="button" to={'/Register'}>Join The Community</Link>
                     </div>
                 </div>
             </section>
-            <section class="newsletter-subscribe py-4 py-xl-5" style={{ padding: "0px 0px;" }}>
+            <section class="newsletter-subscribe py-4 py-xl-5" style={{ padding: "0px 0px;", backgroundColor: '#F6BC8C' }}>
                 <div class="container">
                     <form class="d-flex justify-content-center flex-wrap">
                         <div class="d-flex d-sm-flex flex-row align-items-center align-items-sm-center mb-3" style={{ width: "50%", minWidth: "50%", borderRadius: '0px', display: "flex" }}><input class="form-control" type="text" name="search" placeholder="Search Projects" style={{ borderRadius: "0px" }} /></div>
-                        <div class="mb-3"><button class="btn btn-primary ms-2 "  style={{ borderRadius: 0 }}>Search Projects</button></div>
+                        <div class="mb-3"><button class="btn button1 ms-2 " style={{ borderRadius: 0 }}>Search Projects</button></div>
                     </form>
                 </div>
             </section>
 
             <div class="container py-4 py-xl-5">
                 <div class="row mb-5">
-                    <div class="col-md-8 col-xl-6 text-center mx-auto">
-                        <h2>Latest Projects</h2>
+                    <div class="text-center mx-auto">
+                        <h2 className='heading2'>Latest Projects</h2>
                     </div>
                 </div>
-                <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
+                <div className=" cards">
                     {loading ? <>Loading</> : projects.slice(0, 3).map((project) => {
-                        return <div class="col">
-                            <Link to={`/Project/${project._id}`} className="text-decoration-none text-black">
-                                <div class="card"><img class="card-img-top w-100 d-block fit-cover" style={{ height: "200px" }} src={project.projectImages[0]} />
-                                    <div class="card-body p-4">
-                                        {/* <p class="text-primary card-text mb-0">Entertainment</p> */}
-                                        <h4 class="card-title">{project.pTitle}</h4>
-                                        <p class="card-text">{project.shortDescription}</p>
-                                        <div class="d-flex"><img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50" height="50" src={project.creatorInfo.profilePic} />
-                                            <div>
-                                                <p class="fw-bold mb-0">{project.creatorInfo.name}</p>
-                                                <p class="text-muted mb-0">{project.creatorInfo.college}</p>
+                        return <div className="col card">
+                            <Link to={`/Project/${project._id}`}>
+                                <figure>
+                                    <img src={project.projectImages[0]} class="card__image fit-contain" alt="IMG" />
+                                </figure>
+                                <div class="card__overlay">
+                                    <div class="card__header">
+                                        <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>
+                                        <div className="row">
+                                            <div class="col d-flex pe-0">
+                                                <img class="card__thumb  rounded-circle flex-shrink-0 me-3 fit-cover" width="30" height="30" src={project.creatorInfo.profilePic} />
+                                                <div >
+                                                    <p class="mb-0 heading3">{project.creatorInfo.name}</p>
+                                                    <p class="mb-0 textStyle2">{project.creatorInfo.college}</p>
+                                                </div>
+                                            </div>
+                                            <div className='col'>
+                                                <p class="mb-0 textStyle2">Entertainment</p>
+                                                <h4 class="heading3">{project.pTitle}</h4>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div className='p-3'>
+                                        <div className='card__description'></div>
+                                        <p class="textStyle3" style={{textAlign:'justify'}}>{project.shortDescription}</p>
                                     </div>
                                 </div>
                             </Link>
@@ -63,7 +76,7 @@ const HomePage = () => {
                     })}
                 </div>
                 <div class="row text-center">
-                    <div class="col" style={{ padding: "12px" }}><Link class="btn btn-primary fs-5 me-2 py-2 px-4 rounded-0" type="button" to={'/Projects'}>View More</Link></div>
+                    <div class="col" style={{ padding: "12px" }}><Link class="btn button2 fs-5 me-2 py-2 px-4 rounded-0" type="button" to={'/Projects'}>View More</Link></div>
                 </div>
             </div>
         </div>

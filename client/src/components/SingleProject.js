@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getSingleProject, addComment } from '../actions/projectActions'
 import { toast } from 'react-toastify';
 import StarRating from '../components/Common/StarRating'
+import '../styles/SingleProject.css'
 
 
 const SingleProject = () => {
@@ -48,14 +49,14 @@ const SingleProject = () => {
 
   return (
     <div>
-      {singleProject && <section className="py-4 py-xl-5" style={{ backgroundColor: '#f8f8f8' }}>
-        <div className="container h-100" style={{ background: '#fff', paddingTop: '15px', paddingBottom: '15px' }}>
+      {singleProject && <section className="py-4 py-xl-5 singleProject">
+        <div className="container h-100">
           <div className="w-100">
             <div className="col-md-10 col-lg-10 col-xl-8 text-center justify-content-center align-items-center mx-auto justify-content-md-start align-items-md-center justify-content-xl-center">
               <div>
-                <h2 className="text-uppercase fw-bold mb-3">{singleProject.pTitle}</h2>
-                <div className="mb-4" dangerouslySetInnerHTML={{ __html: singleProject.shortDescription }}></div>
-                <div className="carousel slide carousel-dark" data-bs-ride="false" data-bs-touch="false" id="carousel-1" style={{ height: '500px', width: '100%' }}>
+                <h2 className="text-uppercase heading2 mb-3">{singleProject.pTitle}</h2>
+                <div className="mb-4 textStyle3 fw-bold text-black " dangerouslySetInnerHTML={{ __html: singleProject.shortDescription }}></div>
+                <div className="carousel slide carousel-dark mb-4" data-bs-ride="false" data-bs-touch="false" id="carousel-1" style={{ height: '500px', width: '100%' }}>
                   <div className="carousel-inner" style={{ width: '100%', height: '100%' }}>
                     {singleProject.projectImages.map((image, index) => (
                       <div className={`carousel-item ${index === 0 ? 'active' : ''}`} key={index} style={{ width: '100%', height: '100%', objectFit: 'contain', alignItems: 'center', }}>
@@ -86,45 +87,45 @@ const SingleProject = () => {
                     ))}
                   </div>
                 </div>
-                <h1 className="text-start">Abstract</h1>
-                <div className="text-start" dangerouslySetInnerHTML={{ __html: singleProject.longDescription }}></div>
+                <h1 className="text-start textStyle2 text-black fw-bold fs-4 mb-1">Abstract</h1>
+                <div className="text-start textStyle2 text-black mb-3" dangerouslySetInnerHTML={{ __html: singleProject.longDescription }}></div>
 
-                <h1 className="text-start">Why We choose this Project</h1>
-                <div className="text-start" dangerouslySetInnerHTML={{ __html: singleProject.whyChooseProject }}></div>
+                <h1 className="text-start textStyle2 text-black fw-bold fs-4 mb-1">Why We choose this Project</h1>
+                <div className="text-start textStyle2 text-black mb-3" dangerouslySetInnerHTML={{ __html: singleProject.whyChooseProject }}></div>
 
-                <h1 className="text-start">How it will make diffrence</h1>
-                <div className="text-start" dangerouslySetInnerHTML={{ __html: singleProject.howDiffProject }}></div>
+                <h1 className="text-start textStyle2 text-black fw-bold fs-4 mb-1">How it will make diffrence</h1>
+                <div className="text-start textStyle2 text-black mb-3" dangerouslySetInnerHTML={{ __html: singleProject.howDiffProject }}></div>
 
-                <h1 className="text-start">Challenges Faced</h1>
-                <div className="text-start" dangerouslySetInnerHTML={{ __html: singleProject.difficultiesFaced }}></div>
+                <h1 className="text-start textStyle2 text-black fw-bold fs-4 mb-1">Challenges Faced</h1>
+                <div className="text-start textStyle2 text-black mb-3" dangerouslySetInnerHTML={{ __html: singleProject.difficultiesFaced }}></div>
 
-                <h1 className="text-start">Future Developments</h1>
-                <div className="text-start" dangerouslySetInnerHTML={{ __html: singleProject.futureEnhancement }}></div>
+                <h1 className="text-start textStyle2 text-black fw-bold fs-4 mb-1">Future Developments</h1>
+                <div className="text-start textStyle2 text-black mb-3" dangerouslySetInnerHTML={{ __html: singleProject.futureEnhancement }}></div>
 
-                <h1 className="text-start">This is Build With</h1>
-                <p className="text-start">{singleProject.builtWith.split(',').map((item, index) => (
-                  <span className="m-1 badge text-bg-primary" key={index}>{item}</span>
+                <h1 className="text-start textStyle2 text-black fw-bold fs-4 mb-1">This is Build With</h1>
+                <p className="text-start textStyle2 text-black">{singleProject.builtWith.split(',').map((item, index) => (
+                  <span className="m-1 badge textStyle2" style={{ backgroundColor: 'var(--TERRACOTTA)' }} key={index}>{item}</span>
                 ))}</p>
 
-                {singleProject.codeLink !== null || singleProject.codeLink !== null ? <h1 className="text-start">Links</h1>:"" }
+                {singleProject.codeLink !== null || singleProject.codeLink !== null ? <h1 className="text-start textStyle2 text-black fw-bold fs-4 mb-1">Links</h1> : ""}
                 <div className="text-start">
-                  {singleProject.codeLink == null ? '' : <><i className="fab fa-github"></i>
-                    <a className="text-start text-decoration-none text-black" target='_blank' href={singleProject.codeLink}>Source Code</a></>}
-                  <br />
-                  {singleProject.demoLink == null ? '' :<>
-                  <i className="fab fa-youtube"></i>&nbsp;
-                  <a className="text-decoration-none text-black" target='_blank' href={singleProject.demoLink}>View Demo</a>
+                  {singleProject.codeLink == null ? '' : <><i className="fab fa-github"></i>&nbsp;&nbsp;
+                    <a className="text-start text-decoration-none textStyle2 text-black mb-3 text-black" target='_blank' href={singleProject.codeLink}>Source Code</a><br /></>}
+                  {singleProject.demoLink == null ? '' : <>
+                    <i className="fab fa-youtube"></i>&nbsp;&nbsp;
+                    <a className="text-decoration-none textStyle2 text-black mb-3 text-black" target='_blank' href={singleProject.demoLink}>View Demo</a>
                   </>}
                 </div>
+                <hr />
                 <div>
-                  <h1 className="text-start">Created By</h1>
+                  <h1 className="text-start textStyle2 text-black fw-bold fs-4 mb-3">Created By</h1>
                   <div className="row gy-4 row-cols-2 row-cols-md-4 d-xl-flex justify-content-xl-center" style={{ marginTop: '0px' }}>
-                    <div className="col" style={{ marginTop: '0px' }}>
-                      <div className="card border-0 shadow-none">
-                        <div className="card-body text-center d-flex flex-column align-items-center p-0">
-                          <img className="rounded-circle mb-3 fit-cover" width="130" height="130" src={singleProject.creatorInfo.profilePic} alt="Image" />
-                          <h5 className="fw-bold text-primary card-title mb-0"><strong>{singleProject.creatorInfo.name}</strong></h5>
-                          <p className="text-muted card-text mb-2">{singleProject.creatorInfo.college}</p>
+                    <div className="col p-2 rounded-5" style={{ marginTop: '0px', backgroundColor: 'var(--MARMALADE)' }}>
+                      <div className="border-0 shadow-none">
+                        <div className=" text-center d-flex flex-column align-items-center p-0">
+                          <img className="rounded-circle mb-3 fit-cover rounded-circle" width="130" height="130" src={singleProject.creatorInfo.profilePic} alt="Image" />
+                          <h5 className="heading2 text-black fs-4 mb-0"><strong>{singleProject.creatorInfo.name}</strong></h5>
+                          <p className="ttextStyle2 text-muted card-text mb-2">{singleProject.creatorInfo.college}</p>
                         </div>
                       </div>
                     </div>
@@ -133,16 +134,18 @@ const SingleProject = () => {
                 <div className='input-group mt-3 mb-3'>
                   <input className='form-control' type="text" placeholder="Add a comment..."
                     value={commentText} onChange={(e) => setCommentText(e.target.value)} />
-                  <button className='btn btn-outline-primary' onClick={handleCommentSubmit}>Submit Comment</button>
+                  <button className='btn button1' onClick={handleCommentSubmit}>Submit Comment</button>
                 </div>
+
                 {singleProject.comments.map((comment) => {
                   const date = getProperDate(new Date(comment.date));
                   return (
-                    <div className='text-start p-1 m-1 bg-light border border-secondary-subtle rounded-2' key={comment._id}>
-                      <div className='container'>
-                        <p className='p-0 mb-0'><strong>{comment.name}</strong></p>
-                        <p className='p-0 mb-0 ps-2'>{comment.text}</p>
-                        <p className='p-0 mb-0 ps-2'>{date}</p>
+                    <div className='text-start' key={comment._id}>
+                      <hr />
+                      <div className='container pt-0'>
+                        <p className='p-0 mb-0 textStyle2 text-black'><strong>{comment.name}</strong></p>
+                        <p className='p-0 mb-0 ps-2 textStyle3 text-black'>{comment.text}</p>
+                        <p className='p-0 mb-0 ps-2 textStyle2 text-black fw-bold'>{date}</p>
                       </div>
                     </div>
                   );

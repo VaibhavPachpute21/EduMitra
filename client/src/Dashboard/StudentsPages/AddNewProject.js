@@ -144,10 +144,10 @@ function AddNewProject() {
   return (
     <section className='AddNewProject'>
       <div className="container p-3">
-        <h1>Add New Project</h1>
+        <h1 className='heading2'>Add New Project</h1>
         <form onSubmit={handleSubmit}>
           <div>
-            <label className="form-label font-monospace">Project Title<span className='text-danger'>*</span></label>
+            <label className="form-label heading2 fs-6">Project Title<span className='text-danger'>*</span></label>
             <input className="form-control shadow-none"
               type="text" name="pTitle" autoFocus
               required minLength="3" maxLength="255"
@@ -155,7 +155,7 @@ function AddNewProject() {
           </div>
 
           <div>
-            <label className="form-label font-monospace">Project Domain<span className='text-danger'>*</span></label>
+            <label className="form-label heading2 fs-6">Project Domain<span className='text-danger'>*</span></label>
             <select
               className="form-select form-control shadow-none"
               name="domain"
@@ -177,8 +177,11 @@ function AddNewProject() {
           </div>
 
           <div>
-            <label className="form-label font-monospace">Short Description<span className='text-danger'>*</span></label>
-            <ReactQuill className="quill-form" theme="snow" modules={{
+            <label className="form-label heading2 fs-6">Short Description<span className='text-danger'>*</span></label>
+            <textarea className="form-control shadow-none" required name="shortDescription"
+              rows="5" value={project.shortDescription} onChange={handleInputChange}
+            /> 
+            {/* <ReactQuill className="quill-form" theme="snow" modules={{
               toolbar: [
 
                 ["bold", "italic", "underline", "strike", "blockquote"],
@@ -191,11 +194,11 @@ function AddNewProject() {
                 ["clean"],
               ],
             }} formats={formats}
-              name="shortDescription" value={project.shortDescription} onChange={handleQuillChange('shortDescription')} />
+              name="shortDescription" value={project.shortDescription} onChange={handleQuillChange('shortDescription')} /> */}
           </div>
 
           <div>
-            <label className="form-label font-monospace">Long Description<span className='text-danger'>*</span></label>
+            <label className="form-label heading2 fs-6">Long Description<span className='text-danger'>*</span></label>
             {/* <textarea className="form-control shadow-none" required name="longDescription"
               rows="5" value={project.longDescription} onChange={handleInputChange}
             /> */}
@@ -203,7 +206,7 @@ function AddNewProject() {
               name="longDescription" value={project.longDescription} onChange={handleQuillChange('longDescription')} />
           </div>
           <div>
-            <label className="form-label font-monospace">Why You Choose This Project<span className='text-danger'>*</span></label>
+            <label className="form-label heading2 fs-6">Why You Choose This Project<span className='text-danger'>*</span></label>
             {/* <textarea className="form-control shadow-none"
               required name="whyChooseProject"
               rows="5" value={project.whyChooseProject} onChange={handleInputChange}/> */}
@@ -212,7 +215,7 @@ function AddNewProject() {
           </div>
 
           <div>
-            <label className="form-label font-monospace" style={{ marginTop: '1.5rem' }}>How this Project gonna make difference?<span className='text-danger'>*</span></label>
+            <label className="form-label heading2 fs-6" style={{ marginTop: '1.5rem' }}>How this Project gonna make difference?<span className='text-danger'>*</span></label>
             {/* <textarea className="form-control shadow-none"
               required name="howDiffProject"
               rows="5" value={project.howDiffProject} onChange={handleInputChange} /> */}
@@ -221,7 +224,7 @@ function AddNewProject() {
           </div>
 
           <div>
-            <label className="form-label font-monospace">Describe Difficulties Faced<span className='text-danger'>*</span></label>
+            <label className="form-label heading2 fs-6">Describe Difficulties Faced<span className='text-danger'>*</span></label>
             {/* <textarea className="form-control shadow-none"
               required name="difficultiesFaced" rows="5"
               value={project.difficultiesFaced} onChange={handleInputChange} /> */}
@@ -230,7 +233,7 @@ function AddNewProject() {
           </div>
 
           <div>
-            <label className="form-label font-monospace" style={{ marginTop: '1.5rem' }}>Future Enhancements<span className='text-danger'>*</span></label>
+            <label className="form-label heading2 fs-6" style={{ marginTop: '1.5rem' }}>Future Enhancements<span className='text-danger'>*</span></label>
             {/* <textarea className="form-control shadow-none"
               required name="futureEnhancement" rows="5"
               value={project.futureEnhancement} onChange={handleInputChange} /> */}
@@ -238,7 +241,7 @@ function AddNewProject() {
               name="futureEnhancement" value={project.futureEnhancement} onChange={handleQuillChange('futureEnhancement')} />
           </div>
           <div>
-            <label className="form-label font-monospace" style={{ marginTop: '1.5rem' }}>Built With<span className='text-danger'>*</span><br /><span>Add with comma-separation eg.VSCode,Javascript,MySQL</span></label>
+            <label className="form-label heading2 fs-6" style={{ marginTop: '1.5rem' }}>Built With<span className='text-danger'>*</span><br /><span className='fw-light'>Add with comma-separation eg.VSCode,Javascript,MySQL</span></label>
             <textarea
               className="form-control shadow-none"
               required name="builtWith" rows="2" value={project.builtWith} onChange={handleInputChange}
@@ -246,34 +249,30 @@ function AddNewProject() {
           </div>
 
           <div>
-            <label className="form-label font-monospace">Link to Code/Repository<span className='text-danger'>*</span></label>
+            <label className="form-label heading2 fs-6">Link to Code/Repository<span className='text-danger'>*</span></label>
             <input className="form-control shadow-none"
               type="text" name="codeLink"
               required
               value={project.codeLink} onChange={handleInputChange} />
           </div>
           <div>
-            <label className="form-label font-monospace">Video Link</label>
+            <label className="form-label heading2 fs-6">Video Link</label>
             <input className="form-control shadow-none"
               type="text" name="demoLink"
               value={project.demoLink} onChange={handleInputChange} />
           </div>
 
           <div>
-            <label className="form-label font-monospace" style={{ marginTop: '1.5rem' }}>Upload Project Images<span className='text-danger'>*</span></label>
+            <label className="form-label heading2 fs-6" style={{ marginTop: '1.5rem' }}>Upload Project Images<span className='text-danger'>*</span></label>
             <input
-              className="form-control border-0"
-              required
-              type="file"
-              multiple
-              accept="image/*"
-              onChange={handleImageChange}
+              className="form-control" required type="file"
+              multiple accept="image/*" onChange={handleImageChange}
             />
             {imgUploading && <p>Uploading...</p>}
           </div>
 
 
-          <button className="btn btn-primary mt-3" type="submit">Upload Project</button>
+          <button className="btn button2 mt-3" type="submit">Upload Project</button>
         </form>
       </div>
     </section>

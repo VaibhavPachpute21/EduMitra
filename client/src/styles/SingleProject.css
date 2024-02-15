@@ -1,0 +1,35 @@
+.singleProject .container {
+    background-color: var(--APRICOT);
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 15px;
+}
+
+.singleProject input {
+
+    border-radius: 0px;
+    border: 2px solid var(--MARMALADE);
+    font-size: 18px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    color: var(--TERRACOTTA);
+    background-color: transparent;
+    box-shadow: none;
+
+    &::placeholder {
+        color: var(--TERRACOTTA);
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    &:hover {
+        border:2px solid var(--MARMALADE);
+        box-shadow: none;
+    }
+
+    &:focus {
+        box-shadow: none;
+        color: var(--TERRACOTTA);
+        background-color: transparent;
+
+    }
+}

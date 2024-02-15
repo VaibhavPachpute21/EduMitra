@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserProjects } from '../actions/projectActions'
-import {updateUser} from '../actions/userActions'
+import { updateUser } from '../actions/userActions'
 import { useParams } from 'react-router-dom';
 import Select from 'react-select';
+import '../styles/Profile.css'
 
 const options = [
   { value: 'Python', label: 'Python' },
@@ -67,9 +68,9 @@ const Profile = () => {
 
   async function handleSave() {
     setEdit(!editProfile);
-    const id=currentUser.user._id;
-    const userData={ ...formData, "_id":id , skills };
-    dispatch(updateUser(userData,currentUser.token));
+    const id = currentUser.user._id;
+    const userData = { ...formData, "_id": id, skills };
+    dispatch(updateUser(userData, currentUser.token));
 
     console.log(userData);
   }
@@ -77,7 +78,7 @@ const Profile = () => {
   return (
     <div>
       {user && (
-        <section>
+        <section className='profile'>
           <div className="container">
             <h3 className="text-dark mb-4">Profile</h3>
             <div className="row mb-3">
@@ -92,9 +93,9 @@ const Profile = () => {
                       alt="Profile"
                     />
                     <div className="mb-3">
-                      {editProfile ? <button className="btn btn-primary btn-sm" type="button" onClick={handleSave}>
+                      {editProfile ? <button className="btn button2 btn-sm" type="button" onClick={handleSave}>
                         Save Changes
-                      </button> : <button className="btn btn-primary btn-sm" type="button" onClick={() => { setEdit(!editProfile) }}>
+                      </button> : <button className="btn button2 btn-sm" type="button" onClick={() => { setEdit(!editProfile) }}>
                         Edit Profile
                       </button>}
 
@@ -104,7 +105,7 @@ const Profile = () => {
 
                 <div className="card shadow mb-4">
                   <div className="card-header py-3">
-                    <h6 className="text-primary fw-bold m-0">Skills</h6>
+                    <h6 className="heading3 text-white m-0">Skills</h6>
                   </div>
                   <div className="card-body">
 
@@ -120,14 +121,14 @@ const Profile = () => {
 
                     />
                     <p className="text-start mb-0">{skills && skills.map((item) => (
-                      <span className="m-1 badge text-bg-primary">{item.label}</span>
+                      <span className="m-1 badge textStyle2" style={{ backgroundColor: 'var(--TERRACOTTA)' }} >{item.label}</span>
                     ))}</p>
                   </div>
                 </div>
 
                 <div className="card shadow mb-4">
                   <div className="card-header py-3">
-                    <h6 className="text-primary fw-bold m-0">Social accounts</h6>
+                    <h6 className="heading3 text-white m-0">Social accounts</h6>
                   </div>
                   <div className="card-body">
                     <div class="input-group mb-3">
@@ -149,7 +150,7 @@ const Profile = () => {
                   <div className="col">
                     <div className="card shadow mb-3">
                       <div className="card-header py-3">
-                        <p className="text-primary m-0 fw-bold">User Info</p>
+                        <p className="heading3 text-white m-0">User Info</p>
                       </div>
                       <div className="card-body">
                         <form>
@@ -226,7 +227,7 @@ const Profile = () => {
                     </div>
                     <div className="card shadow mb-3">
                       <div className="card-header py-3">
-                        <p className="text-primary m-0 fw-bold">Bio</p>
+                        <p className="heading3 text-white m-0">Bio</p>
                       </div>
                       <div className="card-body">
                         <form>
@@ -260,7 +261,7 @@ const Profile = () => {
                     </div>
                     <div className="card shadow">
                       <div className="card-header py-3">
-                        <p className="text-primary m-0 fw-bold">Contact Details</p>
+                        <p className="heading3 text-white m-0">Contact Details</p>
                       </div>
                       <div className="card-body">
                         <form>
@@ -299,7 +300,7 @@ const Profile = () => {
                                   <strong>Email</strong>
                                 </label>
                                 <input
-                                onChange={handleInputChange}
+                                  onChange={handleInputChange}
                                   className="form-control"
                                   type="text" id="email"
                                   placeholder="user@example.com"
@@ -319,20 +320,22 @@ const Profile = () => {
 
             <div className="card shadow mb-5">
               <div className="card-header py-3">
-                <p className="text-primary m-0 fw-bold">Projects Submitted</p>
+                <p className="heading3 text-white m-0">Projects Submitted</p>
               </div>
               <div className="card-body">
                 <div className="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
                   {userProjects && userProjects.map((project) => {
                     return <div className="col-xxl-3">
-                      <div className="text-decoration-none text-black" >
-                        <div style={{ borderRadius: '5px', padding: '5px', background: 'var(--bs-body-bg)', boxShadow: '0px 0px 5px 2px var(--bs-dark-border-subtle)', height: '100%', }}>
-                          <img className="rounded img-fluid d-block w-100 fit-cover" style={{ height: '200px' }} src={project.projectImages[0]} alt="Project" />
-                          <div>
-                            <h4>{project.pTitle}</h4>
-                            <p className='mb-0' style={{ overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical' }}>{project.shortDescription}</p>
-                            <p className="text-start mb-0">{`${project.builtWith}`.split(',').map((item, index) => (
-                              <span className="m-1 badge text-bg-primary" key={index}>{item}</span>
+                      <div className="text-decoration-none text-black myCard" >
+                        <div>
+                          <figure>
+                            <img className="rounded img-fluid d-block w-100 fit-cover" style={{ height: '200px' }} src={project.projectImages[0]} alt="Project" />
+                          </figure>
+                          <div className='mt-3 px-2'>
+                            <h4 className='heading3 text-black'>{project.pTitle}</h4>
+                            <p className='mb-0 textStyle1' >{project.shortDescription}</p>
+                            <p className="text-start mb-0 textStyle2">{`${project.builtWith}`.split(',').map((item, index) => (
+                              <span className="m-1 badge textStyle2" style={{ backgroundColor: 'var(--TERRACOTTA)' }} key={index}>{item}</span>
                             ))}</p>
                           </div>
                         </div>

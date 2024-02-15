@@ -1,0 +1,106 @@
+.profile .card-body {
+    background-color: var(--APRICOT) !important;
+    border: 2px solid var(--TERRACOTTA);
+}
+
+.profile .card-header {
+    background-color: var(--TERRACOTTA) !important;
+}
+
+.profile .card-body input,
+.profile .card-body select {
+    background-color: transparent;
+    border: 2px solid var(--TERRACOTTA);
+    color: #000;
+    box-shadow: none;
+    font-family: 'Montserrat';
+}
+
+.css-16xfy0z-control,
+.css-13cymwt-control {
+    --currentColor: #000 !important;
+    background-color: transparent !important;
+    border: 2px solid var(--TERRACOTTA) !important;
+    border-color: var(--TERRACOTTA) !important;
+    color: #000 !important;
+
+    &::placeholder {
+        color: #000 !important;
+    }
+}
+
+.css-tj5bde-Svg,
+.css-1jqq78o-placeholder {
+    fill: #000 !important;
+    color: #000 !important;
+}
+
+.profile .card-body label {
+    font-family: 'Roboto', sans-serif;
+    color: #000;
+    font-weight: 600;
+}
+
+.profile .input-group-text {
+    background-color: var(--TERRACOTTA);
+    border: none;
+    color: #fff;
+}
+
+.myCard {
+    border-radius: 5px;
+    padding: 5px;
+    background: var(--CHAMPAGNE);
+    border: 2px solid var(--TERRACOTTA);
+    height: '100%';
+
+    &:hover{
+        cursor: pointer;
+        scale: 1.05;
+        background-color: var(--MARMALADE);
+    }
+}
+
+/* Messaging */
+.cs-message-list,
+.cs-main-container {
+    background-color: var(--MARMALADE) !important;
+    border: none !important;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.cs-message--outgoing .cs-message__content,
+.cs-message--incoming .cs-message__content {
+    background-color: var(--TERRACOTTA) !important;
+    color: #fff !important;
+    font-family: 'Montserrat';
+    font-size: 15px;
+}
+
+.cs-chat-container .cs-message-input {
+    border-color: var(--TERRACOTTA) !important;
+    background-color: var(--MARMALADE) !important;
+    padding: 15px !important;
+    color: var(--TERRACOTTA) !important;
+    font-size: 20px;
+}
+
+.cs-message-input__content-editor-wrapper {
+    background-color: var(--APRICOT) !important;
+    padding: 10px;
+}
+
+.cs-message-input__content-editor-wrapper,
+.cs-message-input__content-editor {
+    background-color: var(--APRICOT) !important;
+    color: #000;
+    font-family: 'Montserrat';
+}
+
+.cs-button--send {
+    color: #fff !important;
+}
+
+.cs-message-input__tools .cs-button--attachment {
+    display: none;
+}

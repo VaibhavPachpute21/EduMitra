@@ -20,7 +20,7 @@ const StudentList = () => {
     <div>
       <section>
         <div className="container py-4 py-xl-5">
-          <div className="text-center text-white-50 bg-primary border rounded border-0 p-3">
+          <div className="text-center text-white-50 border rounded border-0 p-3" style={{ backgroundColor: '#B0522A' }}>
             <div className="row row-cols-2 row-cols-md-4">
               <div className="col">
                 <div className="p-3">
@@ -51,9 +51,9 @@ const StudentList = () => {
         </div>
 
         <div className="container py-4 py-xl-5">
-          <div className="row mb-5" style={{ background: 'var(--bs-body-bg)', padding: '12px', boxShadow: '0px 4px 6px 1px rgba(43,49,54,0.35)', borderRadius: '5px' }}>
+          <div className="row mb-5" style={{ backgroundColor: '#F6BC8C', padding: '12px', border: '2px solid #B0522A' }}>
             <div className="col-sm-10 col-md-7 col-lg-8">
-              <h2>Connect with Others</h2>
+              <h2 className='heading2'>Connect with Others</h2>
             </div>
           </div>
           <div className="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
@@ -62,13 +62,13 @@ const StudentList = () => {
                 return <>
                   <div className="col-xxl-3 text-center">
                     <Link to={`/Dashboard/User/${collague._id}`} className="text-decoration-none text-black">
-                      <div style={{ borderRadius: '5px', padding: '5px', background: 'var(--bs-body-bg)', boxShadow: '0px 0px 5px 2px var(--bs-dark-border-subtle)' }}>
+                      <div className='cardStyle1'>
                         <img className="rounded-circle img-fluid d-block m-auto" style={{ height: '250px' }} src={collague.profilePic} alt="Project" />
                         <div className="py-3">
-                          <h4><span style={{ color: 'rgb(0, 0, 0)' }}>{collague.name}</span></h4>
-                          <p><span style={{ color: 'rgb(0, 0, 0)' }}>{collague.role == 0 ? "Student" : "Teacher"} at {collague.college}</span></p>
-                          <p><span style={{ color: 'rgb(0, 0, 0)' }}>{collague.email} | {collague.phone}</span></p>
-                          <p className='d-flex justify-content-between'><Link to={`/Dashboard/Chats/${collague._id}`} className='btn btn-outline-primary border-0'>Connect</Link> <button className='btn btn-outline-danger border-0'><i class="bi bi-heart"></i></button></p>
+                          <h4 className='heading3 text-black'><span>{collague.name}</span></h4>
+                          <p  className='textStyle2 text-black'><span>{collague.role == 0 ? "Student" : "Teacher"} at {collague.college}</span></p>
+                          <p className='textStyle1'><span>{collague.email} | {collague.phone}</span></p>
+                          <p className='d-flex justify-content-between mt-4 '><Link to={`/Dashboard/Chats/${collague._id}`} className='btn button2 border-0 rounded-pill'>Connect</Link> <button className='btn btn-outline-danger border-0'><i class="bi bi-heart"></i></button></p>
                         </div>
                       </div>
                     </Link>

@@ -5,6 +5,7 @@ import { getUserId } from '../actions/userActions'
 import { sendMessage, getMessages } from '../actions/chatActions'
 import styles from "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
 import { MainContainer, ChatContainer, MessageList, Message, MessageInput, } from "@chatscope/chat-ui-kit-react";
+import '../styles/Profile.css'
 
 const Messaging = () => {
     const { userID } = useParams();
@@ -30,12 +31,12 @@ const Messaging = () => {
     }
     return (
         <div>
-            <section>
-                <div className="container py-4 py-xl-5">
-                    <h5><img className="rounded-circle m-2"
+            <section className='py-4 py-xl-5'>
+                <div className="container py-4 py-xl-3" style={{backgroundColor:'var(--APRICOT)',borderRadius:'15px'}}>
+                    <h5 className='heading2 fs-5 '><img className="rounded-circle m-2"
                         src={receiverData.user && receiverData.user.profilePic}
                         width="50" height="50" alt="Profile" />{receiverData.user && receiverData.user.name} </h5>
-                    <div style={{ position: "relative", height: "500px" }}>
+                    <div style={{ position: "relative", height: "500px"}}>
 
                         <MainContainer>
                             <ChatContainer>

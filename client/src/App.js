@@ -1,3 +1,4 @@
+import React,{ useEffect } from 'react';
 import './styles/App.css';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -21,6 +22,9 @@ import UserInfo from './Dashboard/UserInfo';
 
 function App() {
   const location=useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
   return (
     <>
       {location.pathname.startsWith('/Dashboard')?<></>:<Navbar />}
