@@ -5,7 +5,7 @@ export const sendMessage = (messageData) => async (dispatch) => {
     dispatch({ type: "SEND_MSG_REQUEST" });
     try {
         console.log("sending")
-        const res = await axios.post('http://127.0.0.1:8080/api/chats/send', messageData);
+        const res = await axios.post(`${process.env.REACT_APP_SERVER}/api/chats/send`, messageData);
         dispatch({ type: "SEND_MSG_SUCCESS" });
         // toast.success("Message Sent!");
     } catch (error) {
@@ -17,7 +17,7 @@ export const sendMessage = (messageData) => async (dispatch) => {
 export const getMessages = (sender, receiver) => async (dispatch) => {
     dispatch({ type: "GET_MSG_REQUEST" });
     try {
-        const res = await axios.get(`http://127.0.0.1:8080/api/chats/conversation/${sender}/${receiver}`);
+        const res = await axios.get(`${process.env.REACT_APP_SERVER}/api/chats/conversation/${sender}/${receiver}`);
         dispatch({ type: "GET_MSG_SUCCESS", payload: res.data });
     } catch (error) {
         dispatch({ type: "GET_MSG_ERROR", payload: error });

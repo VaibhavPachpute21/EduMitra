@@ -8,7 +8,7 @@ export const addNewProject = (project, userToken) => async (dispatch) => {
   console.log(userToken)
   dispatch({ type: "ADD_PROJECT_REQUEST" });
   try {
-    const res = await axios.post('http://127.0.0.1:8080/api/project/add', project, {
+    const res = await axios.post(`${process.env.REACT_APP_SERVER}/api/project/add`, project, {
       headers: {
         Authorization: `Bearer ${userToken}`,
       },
@@ -26,7 +26,7 @@ export const addNewProject = (project, userToken) => async (dispatch) => {
 export const getAllProjects = () => async (dispatch) => {
   dispatch({ type: "GET_ALL_PROJECTS_REQUEST" });
   try {
-    const res = await axios.get('http://127.0.0.1:8080/api/project/allProject');
+    const res = await axios.get(`${process.env.REACT_APP_SERVER}/api/project/allProject`);
     console.log(res.data.projects)
     dispatch({ type: "GET_ALL_PROJECTS_SUCCESS", payload: res.data.projects });
   } catch (error) {
@@ -39,7 +39,7 @@ export const getAllProjects = () => async (dispatch) => {
 export const getUserProjects = (userToken) => async (dispatch) => {
   dispatch({ type: "GET_USER_PROJECTS_REQUEST" });
   try {
-    const res = await axios.get('http://127.0.0.1:8080/api/project/userProject', {
+    const res = await axios.get(`${process.env.REACT_APP_SERVER}/api/project/userProject`, {
       headers: {
         Authorization: `Bearer ${userToken}`,
       },
@@ -55,7 +55,7 @@ export const getUserProjects = (userToken) => async (dispatch) => {
 export const getSingleProject = (projectId) => async (dispatch) => {
   dispatch({ type: "GET_SINGLE_PROJECT_REQUEST" });
   try {
-    const res = await axios.get(`http://127.0.0.1:8080/api/project/${projectId}`);
+    const res = await axios.get(`${process.env.REACT_APP_SERVER}/api/project/${projectId}`);
     dispatch({ type: "GET_SINGLE_PROJECT_SUCCESS", payload: res.data });
   } catch (error) {
     dispatch({ type: "GET_SINGLE_PROJECT_ERROR", payload: error });
@@ -66,7 +66,7 @@ export const getSingleProject = (projectId) => async (dispatch) => {
 
 export const addComment = (projectId, commentText, userToken) => async (dispatch) => {
   try {
-    const res = await axios.post(`http://127.0.0.1:8080/api/project/addComment/${projectId}`, { text: commentText }, {
+    const res = await axios.post(`${process.env.REACT_APP_SERVER}/api/project/addComment/${projectId}`, { text: commentText }, {
       headers: {
         Authorization: `Bearer ${userToken}`,
       },
@@ -85,7 +85,7 @@ export const getProjectsByCollegeName = (collegeName) => async (dispatch) => {
   dispatch({ type: "GET_PROJECTS_BY_COLLEGE_REQUEST" });
 
   try {
-    const response = await axios.get(`http://127.0.0.1:8080/api/project/collageProject/${collegeName}`);
+    const response = await axios.get(`${process.env.REACT_APP_SERVER}/api/project/collageProject/${collegeName}`);
 
     dispatch({
       type: "GET_PROJECTS_BY_COLLEGE_SUCCESS",
@@ -104,7 +104,7 @@ export const addGradesToProject = (projectId, grades, userToken,mailData) => asy
   dispatch({ type: "ADD_GRADES_REQUEST" });
 
   try {
-    const res = await axios.post(`http://127.0.0.1:8080/api/project/addGrades/${projectId}`, grades, {
+    const res = await axios.post(`${process.env.REACT_APP_SERVER}/api/project/addGrades/${projectId}`, grades, {
       headers: {
         Authorization: `Bearer ${userToken}`,
       },
@@ -122,7 +122,7 @@ export const addGradesToProject = (projectId, grades, userToken,mailData) => asy
 export const getProjectsByUserId = (userId) => async (dispatch) => {
   dispatch({ type: "GET_USER_PROJECTS_REQUEST" });
   try {
-    const res = await axios.get(`http://127.0.0.1:8080/api/users/userProject/${userId}`);
+    const res = await axios.get(`${process.env.REACT_APP_SERVER}/api/users/userProject/${userId}`);
     dispatch({ type: "GET_USER_PROJECTS_SUCCESS", payload: res.data.projects });
   } catch (error) {
     dispatch({ type: "GET_USER_PROJECTS_ERROR", payload: error });

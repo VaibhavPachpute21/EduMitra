@@ -90,17 +90,17 @@ Description: ${singleProject.shortDescription}`,
   return (
     <div>
       {isLoading ? (
-        <section className="py-4 py-xl-5" style={{ backgroundColor: '#f8f8f8' }}>
-          <div className="container h-100" style={{ background: '#fff', paddingTop: '15px', paddingBottom: '15px' }}>
+        <section className="py-4 py-xl-5 singleProject">
+          <div className="container h-100">
             <div className="row h-100"><h1>Loading...</h1></div>
           </div>
-        </section>) : singleProject ? <section className="py-4 py-xl-5" style={{ backgroundColor: '#f8f8f8' }}>
-          <div className="container h-100" style={{ background: '#fff', paddingTop: '15px', paddingBottom: '15px' }}>
+        </section>) : singleProject ? <section className="py-4 py-xl-5 singleProject">
+          <div className="container h-100">
             <div className="row h-100">
               <div className="col-md-10 col-lg-10 col-xl-8 text-center d-flex d-sm-flex d-md-flex justify-content-center align-items-center mx-auto justify-content-md-start align-items-md-center justify-content-xl-center">
                 <div>
-                  <h2 className="text-uppercase fw-bold mb-3">{singleProject.pTitle}</h2>
-                  <p className="mb-4" dangerouslySetInnerHTML={{ __html: singleProject.shortDescription }}></p>
+                  <h2 className="text-uppercase heading2 mb-3">{singleProject.pTitle}</h2>
+                  <p className="mb-4 textStyle3 fw-bold text-black" dangerouslySetInnerHTML={{ __html: singleProject.shortDescription }}></p>
                   <div className="carousel slide carousel-dark" data-bs-ride="false" data-bs-touch="false" id="carousel-1" style={{ height: '500px', width: '700px' }}>
                     <div className="carousel-inner" style={{ width: '100%', height: '100%' }}>
                       {singleProject.projectImages.map((image, index) => (
@@ -132,35 +132,37 @@ Description: ${singleProject.shortDescription}`,
                       ))}
                     </div>
                   </div>
-                  <h1 className="text-start">Abstract</h1>
-                  <p className="text-start" dangerouslySetInnerHTML={{ __html: singleProject.longDescription }}></p>
-                  <h1 className="text-start">Why We choose this Project</h1>
-                  <p className="text-start" dangerouslySetInnerHTML={{ __html: singleProject.whyChooseProject }}></p>
-                  <h1 className="text-start">How it will make diffrence</h1>
-                  <p className="text-start" dangerouslySetInnerHTML={{ __html: singleProject.howDiffProject }}></p>
-                  <h1 className="text-start">Challenges Faced</h1>
-                  <p className="text-start" dangerouslySetInnerHTML={{ __html: singleProject.difficultiesFaced }}></p>
-                  <h1 className="text-start">Future Developments</h1>
-                  <p className="text-start" dangerouslySetInnerHTML={{ __html: singleProject.futureEnhancement }}></p>
-                  <h1 className="text-start">This is Build With</h1>
-                  <p className="text-start">{singleProject.builtWith.split(',').map((item, index) => (
-                    <span className="m-1 badge text-bg-primary" key={index}>{item}</span>
+                  <hr/>
+                  <h1 className="text-start textStyle2 text-black fw-bold fs-4 mb-1">Abstract</h1>
+                  <p className="text-start textStyle2 text-black mb-3" dangerouslySetInnerHTML={{ __html: singleProject.longDescription }}></p>
+                  <h1 className="text-start textStyle2 text-black fw-bold fs-4 mb-1">Why We choose this Project</h1>
+                  <p className="text-start textStyle2 text-black mb-3" dangerouslySetInnerHTML={{ __html: singleProject.whyChooseProject }}></p>
+                  <h1 className="text-start textStyle2 text-black fw-bold fs-4 mb-1">How it will make diffrence</h1>
+                  <p className="text-start textStyle2 text-black mb-3" dangerouslySetInnerHTML={{ __html: singleProject.howDiffProject }}></p>
+                  <h1 className="text-start textStyle2 text-black fw-bold fs-4 mb-1">Challenges Faced</h1>
+                  <p className="text-start textStyle2 text-black mb-3" dangerouslySetInnerHTML={{ __html: singleProject.difficultiesFaced }}></p>
+                  <h1 className="text-start textStyle2 text-black fw-bold fs-4 mb-1">Future Developments</h1>
+                  <p className="text-start textStyle2 text-black mb-3" dangerouslySetInnerHTML={{ __html: singleProject.futureEnhancement }}></p>
+                  <h1 className="text-start textStyle2 text-black fw-bold fs-4 mb-1">This is Build With</h1>
+                  <p className="text-start textStyle2 text-black">{singleProject.builtWith.split(',').map((item, index) => (
+                    <span className="m-1 badge textStyle2" style={{ backgroundColor: 'var(--TERRACOTTA)' }} key={index}>{item}</span>
                   ))}</p>
-                  {singleProject.codeLink !== null || singleProject.codeLink !== null ? <h1 className="text-start">Links</h1> : ""}
-                  <p className="text-start">
-                    {singleProject.codeLink == null ? '' : <><i className="fab fa-github"></i>
-                      <a className="text-start text-decoration-none text-black" target="_blank" href={singleProject.codeLink}>Source Code</a></>}
-                    <br />
+                  {singleProject.codeLink !== null || singleProject.codeLink !== null ? <h1 className="text-start textStyle2 text-black fw-bold fs-4 mb-1">Links</h1> : ""}
+                  {singleProject.codeLink !== null || singleProject.codeLink !== null ? <h1 className="text-start textStyle2 text-black fw-bold fs-4 mb-1">Links</h1> : ""}
+                  <div className="text-start">
+                    {singleProject.codeLink == null ? '' : <><i className="fab fa-github"></i>&nbsp;&nbsp;
+                      <a className="text-start text-decoration-none textStyle2 text-black mb-3 text-black" target='_blank' href={singleProject.codeLink}>Source Code</a><br /></>}
                     {singleProject.demoLink == null ? '' : <>
-                      <i className="fab fa-youtube"></i>&nbsp;
-                      <a className="text-decoration-none text-black" target="_blank" href={singleProject.demoLink}>View Demo</a>
+                      <i className="fab fa-youtube"></i>&nbsp;&nbsp;
+                      <a className="text-decoration-none textStyle2 text-black mb-3 text-black" target='_blank' href={singleProject.demoLink}>View Demo</a>
                     </>}
-                  </p>
+                  </div>
+                  <hr />
                   <div>
-                    <h1 className="text-start">Submitted By</h1>
-                    <div className="text-start" style={{ marginTop: '0px' }}>
-                      <h5 className="fw-bold text-primary card-title mb-0"><strong>{singleProject.creatorInfo.name}</strong></h5>
-                      <p className="text-muted card-text mb-2">{singleProject.creatorInfo.college}</p>
+                    <h1 className="text-start textStyle2 text-black fw-bold fs-4 mb-3">Submitted By</h1>
+                    <div className="text-start">
+                      <h5 className="heading2 text-black fs-5 mb-0"><strong>{singleProject.creatorInfo.name}</strong></h5>
+                      <p className="textStyle2 text-muted card-text mb-2">{singleProject.creatorInfo.college}</p>
                     </div>
                   </div>
                   {singleProject.comments.map((comment) => {

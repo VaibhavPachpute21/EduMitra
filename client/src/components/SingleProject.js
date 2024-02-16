@@ -44,7 +44,8 @@ const SingleProject = () => {
   useEffect(() => {
     dispatch(getSingleProject(projectID))
     console.log(projectID)
-    console.log(singleProject)
+    console.log(process.env.REACT_APP_SERVER);
+    
   }, [dispatch])
 
   return (
@@ -109,9 +110,9 @@ const SingleProject = () => {
 
                 {singleProject.codeLink !== null || singleProject.codeLink !== null ? <h1 className="text-start textStyle2 text-black fw-bold fs-4 mb-1">Links</h1> : ""}
                 <div className="text-start">
-                  {singleProject.codeLink == null ? '' : <><i className="fab fa-github"></i>&nbsp;&nbsp;
+                  {singleProject.codeLink == null || singleProject.codeLink=='' ? '' : <><i className="fab fa-github"></i>&nbsp;&nbsp;
                     <a className="text-start text-decoration-none textStyle2 text-black mb-3 text-black" target='_blank' href={singleProject.codeLink}>Source Code</a><br /></>}
-                  {singleProject.demoLink == null ? '' : <>
+                  {singleProject.demoLink == null || singleProject.demoLink=='' ? '' : <>
                     <i className="fab fa-youtube"></i>&nbsp;&nbsp;
                     <a className="text-decoration-none textStyle2 text-black mb-3 text-black" target='_blank' href={singleProject.demoLink}>View Demo</a>
                   </>}
@@ -125,7 +126,7 @@ const SingleProject = () => {
                         <div className=" text-center d-flex flex-column align-items-center p-0">
                           <img className="rounded-circle mb-3 fit-cover rounded-circle" width="130" height="130" src={singleProject.creatorInfo.profilePic} alt="Image" />
                           <h5 className="heading2 text-black fs-4 mb-0"><strong>{singleProject.creatorInfo.name}</strong></h5>
-                          <p className="ttextStyle2 text-muted card-text mb-2">{singleProject.creatorInfo.college}</p>
+                          <p className="textStyle2 text-muted card-text mb-2">{singleProject.creatorInfo.college}</p>
                         </div>
                       </div>
                     </div>

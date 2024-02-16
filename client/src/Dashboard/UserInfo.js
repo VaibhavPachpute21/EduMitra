@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserId } from '../actions/userActions';
-import { getUserProjects, getProjectsByUserId } from '../actions/projectActions'
+import { getProjectsByUserId } from '../actions/projectActions'
 import { useParams } from 'react-router-dom';
 
 const UserInfo = () => {

@@ -1,13 +1,11 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
-import counterReducer from './reducers/cartReducers'
 import {userRegisterReducer,userLoginReducer,getAllUsersReducer,getUsersByCollageReducer,getUsersByIDReducer,updateUserReducer} from './reducers/userReducers'
 import {projectReducer} from './reducers/projectReducers'
 import {eventReducers} from './reducers/eventReducer'
 import {chatReducer,getChatsReducer} from './reducers/chatReducers'
 
 const rootReducer=combineReducers({
-    counterReducer:counterReducer,
     userRegisterReducer:userRegisterReducer,
     userLoginReducer:userLoginReducer,
     getAllUsersReducer:getAllUsersReducer,

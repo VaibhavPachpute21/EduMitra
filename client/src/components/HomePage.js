@@ -7,7 +7,6 @@ import '../styles/App.css'
 
 const HomePage = () => {
     const dispatch = useDispatch()
-    const currentval = useSelector((state) => state.counterReducer.count);
     const projectsData = useSelector((state) => state.projectReducer);
     const { loading, projects, error } = projectsData;
 

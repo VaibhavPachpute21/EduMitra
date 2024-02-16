@@ -60,7 +60,7 @@ export const StudentDashboard = () => {
                             <h2 className='heading2'>Your Projects</h2>
                         </div>
                         <div className="col" style={{ textAlign: 'right' }}>
-                            <Link className="btn button1 fs-5 me-2 py-2 px-4" to={'/StudentDashboard/AddNewProject'} style={{ borderRadius: '0px' }}>
+                            <Link className="btn button1 fs-5 me-2 py-2 px-4" to={'/Dashboard/AddNewProject'} style={{ borderRadius: '0px' }}>
                                 Add New Project
                             </Link>
                         </div>
@@ -69,7 +69,7 @@ export const StudentDashboard = () => {
                         {userProjects.map((project) => {
                             return <div className="col-xxl-3">
                                 <Link to={`/Project/${project._id}`} className="text-decoration-none text-black">
-                                    <div className='cardStyle2 spinning'>
+                                    <div className='cardStyle2'>
                                         <figure>
                                             <img className="rounded img-fluid d-block w-100 fit-cover" style={{ height: '200px' }} src={project.projectImages[0]} alt="Project" />
                                         </figure>

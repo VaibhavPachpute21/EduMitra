@@ -5,7 +5,6 @@ import { addNewProject } from '../../actions/projectActions'
 import { useDispatch, useSelector } from 'react-redux';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import { toast } from 'react-toastify'
 
 const modules = {
   toolbar: [

@@ -7,7 +7,7 @@ import {userLoginReducer} from '../reducers/userReducers'
 export const registerUser = (user) => async dispatch => {
     dispatch({ type: "REGISTER_USER_REQUEST" })
     try {
-        const res = await axios.post(`http://127.0.0.1:8080/api/users/register`, user)
+        const res = await axios.post(`${process.env.REACT_APP_SERVER}/api/users/register`, user)
         dispatch({ type: "REGISTER_USER_SUCCESS" })
         toast.success("User Registered!!")
         setTimeout(() => {
@@ -24,7 +24,7 @@ export const registerUser = (user) => async dispatch => {
 export const loginUser = (user) => async (dispatch) => {
     dispatch({ type: "USER_LOGIN_REQUEST" });
     try {
-        const res = await axios.post(`http://127.0.0.1:8080/api/users/login`, user);
+        const res = await axios.post(`${process.env.REACT_APP_SERVER}/api/users/login`, user);
         dispatch({ type: "USER_LOGIN_SUCCESS", payload: res.data });
         localStorage.setItem("currentUser", JSON.stringify(res.data));
         toast.success("Logged In!!");
@@ -44,7 +44,7 @@ export const logoutUser = (dispatch) => {
 export const getAllUsers = () => async (dispatch) => {
     dispatch({ type: 'GET_ALL_USERS_REQ' })
     try {
-        const res = await axios.get('http://127.0.0.1:8080/api/users/allUsers');
+        const res = await axios.get(`${process.env.REACT_APP_SERVER}/api/users/allUsers`);
         console.log(res.data)
         dispatch({ type: 'GET_ALL_USERS_SUCCESS', payload: res.data });
     } catch (error) {
@@ -55,7 +55,7 @@ export const getAllUsers = () => async (dispatch) => {
 export const getUsersByCollage = (collegeName) => async (dispatch) => {
     dispatch({ type: "GET_ALL_COLLEAGUES_REQ" })
     try {
-        const res = await axios.get(`http://127.0.0.1:8080/api/users/collageUsers/${collegeName}`);
+        const res = await axios.get(`${process.env.REACT_APP_SERVER}/api/users/collageUsers/${collegeName}`);
         console.log(res.data)
         dispatch({ type: 'GET_ALL_COLLEAGUES_SUCCESS', payload: res.data.users });
     } catch (error) {
@@ -68,7 +68,7 @@ export const getUsersByCollage = (collegeName) => async (dispatch) => {
 export const getUserId = (userID) => async (dispatch) => {
     dispatch({ type: "GET_USER_REQ" })
     try {
-        const res = await axios.get(`http://127.0.0.1:8080/api/users/profile/${userID}`);
+        const res = await axios.get(`${process.env.REACT_APP_SERVER}/api/users/profile/${userID}`);
         console.log(res.data)
         dispatch({ type: 'GET_USER_SUCCESS', payload: res.data });
     } catch (error) {
@@ -81,7 +81,7 @@ export const getUserId = (userID) => async (dispatch) => {
 export const updateUser = (userData,userToken) => async (dispatch) => {
     dispatch({ type: "UPDATE_USER_REQ" })
     try {
-        const res=await axios.post(`http://127.0.0.1:8080/api/users/update`,userData,{
+        const res=await axios.post(`${process.env.REACT_APP_SERVER}/api/users/update`,userData,{
             headers: {
                 Authorization: `Bearer ${userToken}`,
               }

@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 import { addNewEvent } from '../../actions/eventActions'
 import { toast } from 'react-toastify'
+import '../../styles/AddNewProject.css'
 
 const AddNewEvents = () => {
     const dispatch=useDispatch()
@@ -82,10 +83,10 @@ const AddNewEvents = () => {
     return (
         <section className='AddNewProject'>
             <div className="container p-3">
-                <h1>Add New Event</h1>
+                <h1 className='heading2'>Add New Event</h1>
                 <form onSubmit={handleSubmit}>
                     <div>
-                        <label className="form-label font-monospace">Event Title<span className='text-danger'>*</span></label>
+                        <label className="form-label heading2 fs-6">Event Title<span className='text-danger'>*</span></label>
                         <input className="form-control shadow-none"
                             type="text" name="eventName" autoFocus
                             required minLength="3" maxLength="255"
@@ -93,7 +94,7 @@ const AddNewEvents = () => {
                     </div>
 
                     <div>
-                        <label className="form-label font-monospace">Event Type<span className='text-danger'>*</span></label>
+                        <label className="form-label heading2 fs-6">Event Type<span className='text-danger'>*</span></label>
                         <select
                             className="form-select form-control shadow-none"
                             name="eventType"
@@ -113,7 +114,7 @@ const AddNewEvents = () => {
                     </div>
 
                     <div>
-                        <label className="form-label font-monospace">Who is the organizer<span className='text-danger'>*</span></label>
+                        <label className="form-label heading2 fs-6">Who is the organizer<span className='text-danger'>*</span></label>
                         <input className="form-control shadow-none"
                             type="text" name="organizer"
                             required minLength="3" maxLength="255"
@@ -121,36 +122,36 @@ const AddNewEvents = () => {
                     </div>
 
                     <div>
-                        <label className="form-label font-monospace">Event Description<span className='text-danger'>*</span></label>
+                        <label className="form-label heading2 fs-6">Event Description<span className='text-danger'>*</span></label>
                         <textarea className="form-control shadow-none" required name="eventDescription"
                             rows="5" value={event.eventDescription} onChange={handleInputChange}
                         />
 
                     </div>
                     <div>
-                        <label className="form-label font-monospace">Location<span className='text-danger'>*</span></label>
+                        <label className="form-label heading2 fs-6">Location<span className='text-danger'>*</span></label>
                         <textarea className="form-control shadow-none"
                             required name="location"
                             rows="5" value={event.location} onChange={handleInputChange} />
                     </div>
 
                     <div>
-                        <label className="form-label font-monospace" style={{ marginTop: '1.5rem' }}>Date<span className='text-danger'>*</span></label>
+                        <label className="form-label heading2 fs-6" style={{ marginTop: '1.5rem' }}>Date<span className='text-danger'>*</span></label>
                         <input className="form-control shadow-none" type={'date'}
                             required name="eventDate" value={event.eventDate} onChange={handleInputChange} />
                     </div>
 
                     <div>
-                        <label className="form-label font-monospace">Mail<span className='text-danger'>*</span></label>
+                        <label className="form-label heading2 fs-6">Mail<span className='text-danger'>*</span></label>
                         <input className="form-control shadow-none" type={'email'}
                             required name="contactEmail"
                             value={event.contactEmail} onChange={handleInputChange} />
                     </div>
 
                     <div>
-                        <label className="form-label font-monospace" style={{ marginTop: '1.5rem' }}>Upload Event Images<span className='text-danger'>*</span></label>
+                        <label className="form-label heading2 fs-6" style={{ marginTop: '1.5rem' }}>Upload Event Images<span className='text-danger'>*</span></label>
                         <input
-                            className="form-control border-0"
+                            className="form-control"
                             required
                             type="file"
                             accept="image/*"

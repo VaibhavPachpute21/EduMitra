@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 export const addNewEvent = (event, userToken) => async (dispatch) => {
   dispatch({ type: "ADD_EVENT_REQUEST" });
   try {
-    const res = await axios.post('http://127.0.0.1:8080/api/events/add', event, {
+    const res = await axios.post(`${process.env.REACT_APP_SERVER}/api/events/add`, event, {
       headers: {
         Authorization: `Bearer ${userToken}`,
       },
@@ -22,7 +22,7 @@ export const addNewEvent = (event, userToken) => async (dispatch) => {
 export const getAllEvents = () => async (dispatch) => {
   dispatch({ type: "GET_ALL_EVENTS_REQUEST" });
   try {
-    const res = await axios.get('http://127.0.0.1:8080/api/events/allEvents');
+    const res = await axios.get(`${process.env.REACT_APP_SERVER}/api/events/allEvents`);
     dispatch({ type: "GET_ALL_EVENTS_SUCCESS", payload: res.data.events });
   } catch (error) {
     dispatch({ type: "GET_ALL_EVENTS_ERROR", payload: error });
