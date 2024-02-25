@@ -7,9 +7,32 @@ import Select from 'react-select';
 import '../styles/Profile.css'
 
 const options = [
+  { value: 'Database Management Systems', label: 'Database Management Systems' },
+  { value: 'PHP', label: 'PHP' },
+  { value: 'JavaScript', label: 'JavaScript' },
   { value: 'Python', label: 'Python' },
+  { value: 'Artificial Intelligence', label: 'Artificial Intelligence' },
+  { value: 'Cyber Security', label: 'Cyber Security' },
+  { value: 'Computer Vision', label: 'Computer Vision' },
+  { value: 'DevOps', label: 'DevOps' },
+  { value: 'Full Stack Developer', label: 'Full Stack Developer' },
   { value: 'Web Development', label: 'Web Development' },
-  { value: 'Software Engineering', label: 'Software Engineering' },
+  { value: 'Backend Development', label: 'Backend Development' },
+  { value: 'Data Analytics', label: 'Data Analytics' },
+  { value: 'Blockchain', label: 'Blockchain' },
+  { value: 'Natural Language Processing', label: 'Natural Language Processing' },
+  { value: 'Mobile App Development', label: 'Mobile App Development' },
+  { value: 'C++', label: 'C++' },
+  { value: 'Cloud Computing', label: 'Cloud Computing' },
+  { value: 'Ruby', label: 'Ruby' },
+  { value: 'Frontend Development', label: 'Frontend Development' },
+  { value: 'R', label: 'R' },
+  { value: 'Data Science', label: 'Data Science' },
+  { value: 'Robotics', label: 'Robotics' },
+  { value: 'Java', label: 'Java' },
+  { value: 'Machine Learning', label: 'Machine Learning' },
+  { value: 'Game Development', label: 'Game Development' },
+  { value: 'Software Engineering', label: 'Software Engineering' }
 ];
 
 const Profile = () => {

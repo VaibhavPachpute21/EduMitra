@@ -1,7 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUserProjects } from '../../actions/projectActions'
-import { Link } from 'react-router-dom';
+import { Link, json } from 'react-router-dom';
+import axios from 'axios';
+const malePP = ["https://img.freepik.com/premium-vector/man-character_665280-46969.jpg", "https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg", "https://img.freepik.com/free-vector/isolated-young-handsome-man-different-poses-white-background-illustration_632498-859.jpg?size=626&ext=jpg", "https://img.freepik.com/free-vector/handsome-man_1308-85984.jpg", "https://img.freepik.com/free-psd/3d-illustration-human-avatar-profile_23-2150671116.jpg"]
+const femalePP = ["https://img.freepik.com/free-vector/3d-cartoon-young-woman-smiling-circle-frame-character-illustration-vector-design_40876-3100.jpg?size=626&ext=jpg", "https://img.freepik.com/free-vector/young-woman-white_25030-39552.jpg", "https://img.freepik.com/free-vector/young-woman-white_25030-39546.jpg", "https://img.freepik.com/premium-photo/cute-emoji-person-speaking-with-no-background-3_634278-1248.jpg", "https://img.freepik.com/free-vector/pop-art-fashion-beautiful-woman-cartoon_18591-52376.jpg"]
 
 
 export const StudentDashboard = () => {
@@ -10,11 +13,26 @@ export const StudentDashboard = () => {
     const { currentUser } = userData;
     const projectsData = useSelector((state) => state.projectReducer);
     const { loading, userProjects, error } = projectsData;
+    const [recommend_users, setRecommendUsers] = useState(null);
     useEffect(() => {
         dispatch(getUserProjects(currentUser.token))
         console.log(userProjects)
+        getRecomandedUsers();
     }, [dispatch])
 
+    async function getRecomandedUsers() {
+        fetch('http://127.0.0.1:5000/recommend_users', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                'selected_skill': currentUser.user.skills ? currentUser.user.skills[0].value : "PHP"
+            }),
+        })
+            .then(response => response.json()).then(data => setRecommendUsers(data))
+            .catch(error => console.error('Error fetching data:', error));
+    }
 
     return (
         <div>
@@ -84,6 +102,49 @@ export const StudentDashboard = () => {
                         })}
                     </div>
                 </div>
+
+                <div className="container py-4 py-xl-5">
+                    <div className="row mb-5" style={{ backgroundColor: '#F6BC8C', padding: '12px', border: '2px solid #B0522A' }}>
+                        <div className="col-sm-10 col-md-7 col-lg-8">
+                            <h2 className='heading2'>Recommend Users</h2>
+                        </div>
+                        <div className="col" style={{ textAlign: 'right' }}>
+                            <Link className="btn button1 fs-5 me-2 py-2 px-4" to={'/Dashboard/Peers'}>
+                                Explore more
+                            </Link>
+                        </div>
+                    </div>
+                    <div className="row gy-4 row-cols-1 row-cols-md-2">
+                        {recommend_users && recommend_users.map((user) => {
+                            return <>
+                                <div className="col">
+                                    <a className="text-decoration-none text-black">
+                                        <div className="d-flex flex-column flex-lg-row cardStyle1 ">
+                                            <div className="col-4">
+                                                <figure>
+                                                    <img className="d-block w-100 bg-light" style={{ height: '100%', width: '50%', objectFit: 'contain' }}
+                                                        src={user.gender == "Male" ? malePP[Math.floor(Math.random() * malePP.length)] : user.gender == "Female" ? femalePP[Math.floor(Math.random() * femalePP.length)] : "https://cdn-icons-png.flaticon.com/512/3106/3106773.png"} alt="User" />
+                                                </figure>
+                                            </div>
+                                            <div className="py-4 py-lg-0 px-lg-4 d-flex align-items-center">
+                                                <div>
+                                                    <h4 className='heading2 fs-5 mb-0'>Name: {user.name}</h4>
+                                                    <p className='textStyle2 text-black mb-0'>Mail: {user.email}</p>
+                                                    <p className='textStyle2 text-black mb-0'>Phone:{user.phone}</p>
+                                                    <p className='textStyle2 text-black mb-0'>College: {user.college}</p>
+                                                    <p className='textStyle2 text-black mb-0'>City: {user.city}</p>
+                                                    <p className='textStyle2 text-black'>Gender:{user.gender}</p>
+                                                    <button className='button1'>Connect</button>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </>
+                        })}
+                    </div>
+                </div>
                 <div className="container py-4 py-xl-5">
                     <div className="row mb-5" style={{ backgroundColor: '#F6BC8C', padding: '12px', border: '2px solid #B0522A' }}>
                         <div className="col-sm-10 col-md-7 col-lg-8">
@@ -114,6 +175,7 @@ export const StudentDashboard = () => {
                         {/* Repeat this card section for each trending project */}
                     </div>
                 </div>
+
             </section>
         </div>
     )
