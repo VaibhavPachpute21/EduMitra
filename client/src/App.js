@@ -1,4 +1,4 @@
-import React,{ useEffect } from 'react';
+import React,{ useEffect,useState } from 'react';
 import './styles/App.css';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -19,15 +19,19 @@ import GradeProjectPage from './Dashboard/TeachersPages/GradeProjectPage';
 import EventList from './components/EventsPage';
 import Messaging from './Dashboard/Messaging';
 import UserInfo from './Dashboard/UserInfo';
+import ChatBot from './components/ChatBot';
 
 function App() {
   const location=useLocation();
+  const [showChatBot, setShowChatBot] = useState(false);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
   return (
     <>
       {location.pathname.startsWith('/Dashboard')?<></>:<Navbar />}
+
+
       <ToastContainer position='top-center'/>
       <Routes>
         <Route path='/' element={<HomePage />} />
@@ -54,6 +58,9 @@ function App() {
           <Route path='/Dashboard/Project/:projectID' element={<GradeProjectPage/>}/>
         </Route>
       </Routes>
+      <div>
+       {location.pathname.startsWith('/Dashboard') && <ChatBot />}
+      </div>
 
     </>
   );

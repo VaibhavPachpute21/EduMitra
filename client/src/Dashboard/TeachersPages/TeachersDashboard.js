@@ -52,7 +52,7 @@ const TeachersDashboard = () => {
             </div>}
 
             <div className="container py-1 py-xl-5 text-center">
-                <iframe title="Report Section" width="100%" height="500" src="https://app.powerbi.com/view?r=eyJrIjoiZDVlOWM5MzctZWJjYS00OThjLWE4MTItY2EyM2NkZjhlMzQ2IiwidCI6ImUzNzJhNzI2LTNiYzMtNDdiOS05MWU0LWE0M2E5ZmU2YzQ2YyJ9" frameborder="0" allowFullScreen="true"></iframe>
+                <iframe title="EduMitra" width="100%" height="700" src="https://app.powerbi.com/view?r=eyJrIjoiZDVlOWM5MzctZWJjYS00OThjLWE4MTItY2EyM2NkZjhlMzQ2IiwidCI6ImUzNzJhNzI2LTNiYzMtNDdiOS05MWU0LWE0M2E5ZmU2YzQ2YyJ9&pageName=ReportSection" frameborder="0" allowFullScreen="true"></iframe>
             </div>
 
             <div className="container py-xl-5">
