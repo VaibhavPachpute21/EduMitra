@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { registerUser } from '../actions/userActions'
 
 const Register = () => {
-  const collageList = ['UCoE', 'Thakur', 'COEP'];
+  const collageList = ['Universal College of Engineering', 'Thakur College of Engineering ', 'Collage Of Engieering Pune'];
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -114,7 +114,7 @@ const Register = () => {
               >
                 <option>--Select Role--</option>
                 <option value="0">Student</option>
-                <option value="1">Teacher</option>
+                <option value="1">Mentor</option>
                 {/* <option value="2">University</option> */}
               </select>
             </div>

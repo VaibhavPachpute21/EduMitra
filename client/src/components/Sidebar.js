@@ -58,8 +58,8 @@ function Sidebar() {
           <img className="rounded-circle" alt="" width="32" height="32" src={currentUser ? `${currentUser.user.profilePic}` : "https://cdn.bootstrapstudio.io/placeholders/1400x800.png"} style={{ objectFit: 'cover' }} />
         </a>
         <div className="dropdown-menu shadow text-small" data-popper-placement="top-start">
-          <a className="dropdown-item" href="#">New project...</a>
-          <a className="dropdown-item" href="#">Settings</a>
+          {/* <Link className="dropdown-item" href="#">New project...</Link> */}
+          <Link className="dropdown-item" to={`/Dashboard/Profile/${currentUser.user._id}`}>Settings</Link>
           <Link className="dropdown-item" to={`/Dashboard/Profile/${currentUser.user._id}`}>Profile</Link>
           <div className="dropdown-divider"></div>
           <button className="dropdown-item" onClick={() => { dispatch(logoutUser) }}>Sign out</button>

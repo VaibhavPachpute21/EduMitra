@@ -159,7 +159,7 @@ const AddNewEvents = () => {
                         />
                         {imgUploading && <p>Uploading...</p>}
                     </div>
-                    <button className="btn btn-primary mt-3" type="submit">Add Event</button>
+                    <button className="btn button2 mt-3" type="submit">Add Event</button>
                 </form>
             </div>
         </section>

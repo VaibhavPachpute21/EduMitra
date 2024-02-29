@@ -147,7 +147,7 @@ Description: ${singleProject.shortDescription}`,
                   <p className="text-start textStyle2 text-black">{singleProject.builtWith.split(',').map((item, index) => (
                     <span className="m-1 badge textStyle2" style={{ backgroundColor: 'var(--TERRACOTTA)' }} key={index}>{item}</span>
                   ))}</p>
-                  {singleProject.codeLink !== null || singleProject.codeLink !== null ? <h1 className="text-start textStyle2 text-black fw-bold fs-4 mb-1">Links</h1> : ""}
+                  {/* {singleProject.codeLink !== null || singleProject.codeLink !== null ? <h1 className="text-start textStyle2 text-black fw-bold fs-4 mb-1">Links</h1> : ""} */}
                   {singleProject.codeLink !== null || singleProject.codeLink !== null ? <h1 className="text-start textStyle2 text-black fw-bold fs-4 mb-1">Links</h1> : ""}
                   <div className="text-start">
                     {singleProject.codeLink == null ? '' : <><i className="fab fa-github"></i>&nbsp;&nbsp;

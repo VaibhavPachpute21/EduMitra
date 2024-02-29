@@ -5,6 +5,7 @@ import { addNewProject } from '../../actions/projectActions'
 import { useDispatch, useSelector } from 'react-redux';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import { toast } from 'react-toastify';
 
 const modules = {
   toolbar: [
@@ -114,6 +115,7 @@ function AddNewProject() {
             projectImages: [...imageUrls],
           }));
           console.log(`Image ${index + 1} uploaded successfully.`);
+          toast.success("Images Uploaded!!")
         } else {
           console.error(`Image ${index + 1} upload failed:`, response.data);
         }

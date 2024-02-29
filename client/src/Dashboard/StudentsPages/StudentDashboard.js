@@ -134,7 +134,7 @@ export const StudentDashboard = () => {
                                                     <p className='textStyle2 text-black mb-0'>College: {user.college}</p>
                                                     <p className='textStyle2 text-black mb-0'>City: {user.city}</p>
                                                     <p className='textStyle2 text-black'>Gender:{user.gender}</p>
-                                                    <button className='button1'>Connect</button>
+                                                    <Link to={'/Dashboard/Peers'} className='btn button1'>Connect</Link>
                                                 </div>
 
                                             </div>

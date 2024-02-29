@@ -50,7 +50,7 @@ const Login = () => {
                 onChange={handleInputChange}>
                 <optgroup label="Select Role">
                   <option value="0">Student</option>
-                  <option value="1">Teacher</option>
+                  <option value="1">Mentor</option>
                   {/* <option value="2">University</option> */}
                 </optgroup>
               </select>
