@@ -21,7 +21,7 @@ export const StudentDashboard = () => {
     }, [dispatch])
 
     async function getRecomandedUsers() {
-        fetch('http://vpachpute21.pythonanywhere.com/recommend_users', {
+        fetch('https://vpachpute21.pythonanywhere.com/recommend_users', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

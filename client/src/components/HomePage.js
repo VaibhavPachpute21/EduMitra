@@ -42,7 +42,9 @@ const HomePage = () => {
                     </div>
                 </div>
                 <div className=" cards">
-                    {loading ? <>Loading</> : projects.slice(0, 3).map((project) => {
+                    {loading ? <><div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div></> : projects.slice(0, 3).map((project) => {
                         return <div className="col card">
                             <Link to={`/Project/${project._id}`}>
                                 <figure>
@@ -67,7 +69,7 @@ const HomePage = () => {
                                     </div>
                                     <div className='p-3'>
                                         <div className='card__description'></div>
-                                        <p class="textStyle3" style={{textAlign:'justify'}}>{project.shortDescription}</p>
+                                        <p class="textStyle3" style={{ textAlign: 'justify' }}>{project.shortDescription}</p>
                                     </div>
                                 </div>
                             </Link>
