@@ -4,8 +4,8 @@ import {getUserId} from './userActions'
 
 // Action to add a new project
 export const addNewProject = (project, userToken) => async (dispatch) => {
-  console.log(project)
-  console.log(userToken)
+  // console.log(project)
+  // console.log(userToken)
   dispatch({ type: "ADD_PROJECT_REQUEST" });
   try {
     const res = await axios.post(`${process.env.REACT_APP_SERVER}/api/project/add`, project, {
@@ -27,7 +27,7 @@ export const getAllProjects = () => async (dispatch) => {
   dispatch({ type: "GET_ALL_PROJECTS_REQUEST" });
   try {
     const res = await axios.get(`${process.env.REACT_APP_SERVER}/api/project/allProject`);
-    console.log(res.data.projects)
+    // console.log(res.data.projects)
     dispatch({ type: "GET_ALL_PROJECTS_SUCCESS", payload: res.data.projects });
   } catch (error) {
     dispatch({ type: "GET_ALL_PROJECTS_ERROR", payload: error });

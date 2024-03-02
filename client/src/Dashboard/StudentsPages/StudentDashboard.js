@@ -21,13 +21,13 @@ export const StudentDashboard = () => {
     }, [dispatch])
 
     async function getRecomandedUsers() {
-        fetch('https://vpachpute21.pythonanywhere.com/recommend_users', {
+        fetch(`${process.env.REACT_APP_FLASK_SERVER}/recommend_users`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                'selected_skill': currentUser.user.skills ? currentUser.user.skills[0].value : "PHP"
+                'selected_skill': currentUser.user.skills[0].value ? currentUser.user.skills[0].value : "PHP"
             }),
         })
             .then(response => response.json()).then(data => setRecommendUsers(data))
@@ -158,7 +158,7 @@ export const StudentDashboard = () => {
                     </div>
                     <div className="row gy-4 row-cols-1 row-cols-md-2">
                         <div className="col">
-                            <a className="text-decoration-none text-black" href="">
+                            <Link className="text-decoration-none text-black" to={'/Projects'}>
                                 <div className="d-flex flex-column flex-lg-row cardStyle1 ">
                                     <div className="w-100">
                                         <figure>
@@ -170,9 +170,8 @@ export const StudentDashboard = () => {
                                         <p>empath.ly uses machine learning to analyze emotions during video calls or metaverse activities. We empower employers, marketers, developers, and the visually impaired to empathize remotely.</p>
                                     </div>
                                 </div>
-                            </a>
+                            </Link>
                         </div>
-                        {/* Repeat this card section for each trending project */}
                     </div>
                 </div>
 

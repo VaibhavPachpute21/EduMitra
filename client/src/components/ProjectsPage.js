@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllProjects } from '../actions/projectActions';
+import Loading from './Common/Loading';
 
 const ProjectList = () => {
   const dispatch = useDispatch()
@@ -10,7 +11,7 @@ const ProjectList = () => {
 
   useEffect(() => {
     dispatch(getAllProjects())
-    console.log(projects)
+    // console.log(projects)
   }, [dispatch])
 
   return (
@@ -29,7 +30,7 @@ const ProjectList = () => {
           </div>
         </div>
         <div className="row gy-4 row-cols-1 row-cols-md-2">
-          {projects.reverse().map((project) => (
+          {loading ? <><Loading/> </> :projects.reverse().map((project) => (
             <div key={project._id} className="col">
               <Link to={`/Project/${project._id}`} className="text-decoration-none text-black">
                 <div className="d-flex flex-column flex-lg-row cardStyle1">

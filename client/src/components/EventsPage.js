@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllEvents } from '../actions/eventActions';
+import Loading from './Common/Loading';
 
 const EventList = () => {
     const dispatch = useDispatch()
@@ -11,7 +12,7 @@ const EventList = () => {
 
     useEffect(() => {
         dispatch(getAllEvents())
-        console.log(events)
+        // console.log(events)
     }, [dispatch])
 
     return (
@@ -61,7 +62,7 @@ const EventList = () => {
                 </div>
                 {/* Modal */}
                 <div className="row gy-4 row-cols-1 row-cols-md-2">
-                    {events.map((event, index) => (
+                    {loading ? <><Loading/> </> : events.map((event, index) => (
                         <div key={event._id} className="col">
                             <a className="text-decoration-none text-black cardStyle1" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => { setOE(index) }}>
                                 <div className="d-flex flex-column flex-lg-row">

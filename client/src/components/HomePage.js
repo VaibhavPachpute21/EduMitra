@@ -4,6 +4,7 @@ import { getAllProjects } from '../actions/projectActions'
 import { Link } from 'react-router-dom'
 import '../styles/Home.css'
 import '../styles/App.css'
+import Loading from './Common/Loading'
 
 const HomePage = () => {
     const dispatch = useDispatch()
@@ -12,7 +13,7 @@ const HomePage = () => {
 
     useEffect(() => {
         dispatch(getAllProjects())
-        console.log(projects)
+        // console.log(projects)
     }, [dispatch])
 
     return (
@@ -41,10 +42,8 @@ const HomePage = () => {
                         <h2 className='heading2'>Latest Projects</h2>
                     </div>
                 </div>
-                <div className=" cards">
-                    {loading ? <><div class="spinner-border text-primary" role="status">
-                        <span class="visually-hidden">Loading...</span>
-                    </div></> : projects.slice(0, 3).map((project) => {
+                <div className="cards">
+                    {loading ? <><Loading/> </> : projects.slice(0, 3).map((project) => {
                         return <div className="col card">
                             <Link to={`/Project/${project._id}`}>
                                 <figure>
