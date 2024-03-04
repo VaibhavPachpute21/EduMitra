@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getSingleProject, addGradesToProject } from '../../actions/projectActions'
 import { getUserId } from '../../actions/userActions';
 import emailjs from 'emailjs-com'
+import Loading from '../../components/Common/Loading'
+import axios from 'axios';
 
 
 const GradeProjectPage = () => {
@@ -21,6 +23,17 @@ const GradeProjectPage = () => {
     EC: 1,
     PC: 1
   })
+  const [pres, setPRes] = useState(null)
+
+  const checkPlagiarism=async ()=>{
+    setIsLoading(true)
+    console.log(process.env.REACT_APP_PLAGIARISM)
+    const res=await axios.post(`${process.env.REACT_APP_SERVER}/api/project/checkSentence`,{
+      query:singleProject.shortDescription
+    });
+    setPRes(res.data)
+    setIsLoading(false)
+  }
 
   const handleGradeChange = (e) => {
     const { name, value } = e.target;
@@ -92,7 +105,7 @@ Description: ${singleProject.shortDescription}`,
       {isLoading ? (
         <section className="py-4 py-xl-5 singleProject">
           <div className="container h-100">
-            <div className="row h-100"><h1>Loading...</h1></div>
+            <Loading />
           </div>
         </section>) : singleProject ? <section className="py-4 py-xl-5 singleProject">
           <div className="container h-100">
@@ -132,7 +145,7 @@ Description: ${singleProject.shortDescription}`,
                       ))}
                     </div>
                   </div>
-                  <hr/>
+                  <hr />
                   <h1 className="text-start textStyle2 text-black fw-bold fs-4 mb-1">Abstract</h1>
                   <p className="text-start textStyle2 text-black mb-3" dangerouslySetInnerHTML={{ __html: singleProject.longDescription }}></p>
                   <h1 className="text-start textStyle2 text-black fw-bold fs-4 mb-1">Why We choose this Project</h1>
@@ -192,7 +205,18 @@ Description: ${singleProject.shortDescription}`,
                   <div><input type="range" name="EC" id="EC" min="1" max="10" step="1" value={gradeData.EC} onChange={handleGradeChange} /> {gradeData.EC}</div>
                   <p class="card-text mb-0">Presentation and Communication</p>
                   <div> <input type="range" name="PC" id="PC" min="1" max="10" step="1" value={gradeData.PC} onChange={handleGradeChange} /> {gradeData.PC}</div>
-                  <button href="#" class="btn btn-primary mt-2 rounded-0" onClick={handleSubmit}>Add Grade</button>
+                  <button href="#" class="btn btn-primary mt-2 rounded-0 m-1" onClick={handleSubmit}>Add Grade</button>
+                  <button href="#" class="btn btn-primary mt-2 rounded-0 m-1" onClick={checkPlagiarism}>Check Plagiarism</button>
+                  <div style={{maxHeight:'150px',overflowY:'scroll'}}>
+                    {pres && <><p> {pres.unique ? "This Project is Unique":"There are Projects similar to this"} </p> </>}
+                    {pres && pres.webs.map((w)=>{
+                        return <><details>
+                        <summary>{w.title}</summary>
+                        <p><a href={w.url} target='_blank'>{w.url}</a> </p>
+                      </details></>
+                    })}
+                  </div>
+
                 </div>
               </div>
             </div>

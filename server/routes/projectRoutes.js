@@ -140,4 +140,30 @@ router.post('/addGrades/:projectId', verifyToken, async (req, res) => {
   }
 });
 
+router.post('/checkSentence', async (req, res) => {
+  try {
+    const apiUrl = 'https://www.prepostseo.com/apis/checkSentence';
+    const response = await fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        key:`${process.env.PLAGIARISM}`,
+        query:req.body.query
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error('Internal Server Error');
+    }
+
+    const data = await response.json();
+    res.json(data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 module.exports = router;
