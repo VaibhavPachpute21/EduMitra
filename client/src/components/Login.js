@@ -51,7 +51,7 @@ const Login = () => {
                 <optgroup label="Select Role">
                   <option value="0">Student</option>
                   <option value="1">Mentor</option>
-                  {/* <option value="2">University</option> */}
+                  <option value="2">Professional</option>
                 </optgroup>
               </select>
             </div>

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getProjectsByCollegeName, } from '../../actions/projectActions'
 import { getUsersByCollage } from '../../actions/userActions'
 
-const TeachersDashboard = () => {
+const ProfessionalDashboard = () => {
     const dispatch = useDispatch();
     const userData = useSelector(state => state.userLoginReducer)
     const { currentUser } = userData;
@@ -26,19 +26,19 @@ const TeachersDashboard = () => {
                         <div className="col">
                             <div className="p-3">
                                 <h4 className="display-5 fw-bold text-white mb-0">{allColleagues.length.toString()}</h4>
-                                <p className="mb-0">Total Collage User</p>
+                                <p className="mb-0">No of Users</p>
                             </div>
                         </div>
                         <div className="col">
                             <div className="p-3">
-                                <h4 className="display-5 fw-bold text-white mb-0">{collageProjects.length.toString()}</h4>
+                                <h4 className="display-5 fw-bold text-white mb-0">8{/*collageProjects.length.toString()*/}</h4>
                                 <p className="mb-0">Project Uploads</p>
                             </div>
                         </div>
                         <div className="col">
                             <div className="p-3">
-                                <h4 className="display-5 fw-bold text-white mb-0 fs-3">{currentUser.user.college}</h4>
-                                <p className="mb-0">Collage</p>
+                                <h4 className="display-5 fw-bold text-white mb-0 fs-3">4 {/*currentUser.user.college*/}</h4>
+                                <p className="mb-0">No of Colleges</p>
                             </div>
                         </div>
                         {/* <div className="col">
@@ -88,4 +88,4 @@ const TeachersDashboard = () => {
     )
 }
 
-export default TeachersDashboard
+export default ProfessionalDashboard

@@ -1,25 +1,25 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { getUsersByCollage } from '../actions/userActions'
+import { getAllUsers } from '../actions/userActions'
 
-const StudentList = () => {
+const AllUsersList = () => {
   const dispatch = useDispatch();
   const userData = useSelector(state => state.userLoginReducer)
   const { currentUser } = userData;
-  const collageusList = useSelector(state => state.getUsersByCollageReducer);
-  const { loading, allColleagues } = collageusList;
+  const collageusList = useSelector(state => state.getAllUsersReducer);
+  const { loading, allUsers } = collageusList;
 
   useEffect(() => {
-    dispatch(getUsersByCollage(currentUser.user.college))
-    console.log(allColleagues);
+    dispatch(getAllUsers())
+    console.log(allUsers);
   }, [dispatch])
 
 
   return (
     <div>
       <section>
-        <div className="container py-4 py-xl-5">
+        {/* <div className="container py-4 py-xl-5">
           <div className="text-center text-white-50 border rounded border-0 p-3" style={{ backgroundColor: '#B0522A' }}>
             <div className="row row-cols-2 row-cols-md-4">
               <div className="col">
@@ -48,21 +48,21 @@ const StudentList = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div className="container py-4 py-xl-5">
           <div className="row mb-5" style={{ backgroundColor: '#F6BC8C', padding: '12px', border: '2px solid #B0522A' }}>
             <div className="col-sm-10 col-md-7 col-lg-8">
               <h2 className='heading2'>Connect with Others</h2>
             </div>
-            <div className="col" style={{ textAlign: 'right' }}>
+            {/* <div className="col" style={{ textAlign: 'right' }}>
               <Link className="btn button1 fs-5 me-2 py-2 px-4" to={'/Dashboard/Connections'} style={{ borderRadius: '0px' }}>
                 View All
               </Link>
-            </div>
+            </div> */}
           </div>
           <div className="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
-            {allColleagues && allColleagues.map((collague) => {
+            {allUsers && allUsers.map((collague) => {
               if (collague._id != currentUser.user._id) {
                 return <>
                   <div className="col-xxl-3 text-center">
@@ -88,4 +88,4 @@ const StudentList = () => {
   )
 }
 
-export default StudentList
+export default AllUsersList

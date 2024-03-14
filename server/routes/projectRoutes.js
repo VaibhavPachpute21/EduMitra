@@ -69,7 +69,8 @@ router.get('/userProject', verifyToken, async (req, res) => {
 router.get('/:projectId', async (req, res) => {
   try {
     const project = await Project.findById(req.params.projectId);
-
+    project.views=project.views+1;
+    await project.save();
     if (!project) {
       return res.status(404).json({ message: 'Project not found' });
     }

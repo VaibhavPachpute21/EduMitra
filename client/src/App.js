@@ -21,6 +21,8 @@ import Messaging from './Dashboard/Messaging';
 import UserInfo from './Dashboard/UserInfo';
 import ChatBot from './components/ChatBot';
 import { useDispatch, useSelector } from 'react-redux'
+import PostJob from './Dashboard/ProfessionalPages/PostJob';
+import AllUsersList from './Dashboard/AllUsersList';
 
 function App() {
   const location = useLocation();
@@ -106,7 +108,9 @@ function App() {
             <Route path='/Dashboard' element={<Dashoboard />} />
             <Route path='/Dashboard/AddNewProject' element={<AddNewProject />} />
             <Route path='/Dashboard/AddNewEvent' element={<AddNewEvents />} />
+            <Route path='/Dashboard/AddNewJobPosting' element={<PostJob />} />
             <Route path='/Dashboard/Peers' element={<StudentList />} />
+            <Route path='/Dashboard/Connections' element={<AllUsersList />} />
             <Route path='/Dashboard/Chats/:userID' element={<Messaging />} />
             <Route path='/Dashboard/User/:userID' element={<UserInfo />} />
             <Route path='/Dashboard/Profile/:userID' element={<Profile />} />

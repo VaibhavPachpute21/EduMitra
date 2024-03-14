@@ -2,11 +2,10 @@ const User = require('./models/userModel');
 const Project =require('./models/projectModel')
 async function migrateProjects() {
     try {
-        const projects = await Project.find({});
+        const projects = await User.find({});
         for (const pro of projects) {
             if (1 == 1) {
-                pro.demoLink=null;
-                pro.codeLink=null
+                pro.uViews=1;
                 await pro.save();
                 console.log(pro)
             }

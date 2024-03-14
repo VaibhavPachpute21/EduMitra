@@ -75,6 +75,10 @@ const projectSchema = new mongoose.Schema({
             default: null
         }
     },
+    views: {
+        type: Number,
+        default: 0
+    },
     likes: {
         type: Number,
         default: 0

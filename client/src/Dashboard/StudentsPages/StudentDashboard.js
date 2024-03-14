@@ -27,7 +27,7 @@ export const StudentDashboard = () => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                'selected_skill': currentUser.user.skills[0].value ? currentUser.user.skills[0].value : "PHP"
+                'selected_skill': currentUser.user.skills[0] ? currentUser.user.skills[0].value : "PHP"
             }),
         })
             .then(response => response.json()).then(data => setRecommendUsers(data))
