@@ -14,6 +14,7 @@ app.use('/api/users/', require('./routes/userRoutes'));
 app.use('/api/project/', require('./routes/projectRoutes'));
 app.use('/api/events/', require('./routes/eventRoutes'));
 app.use('/api/chats/', require('./routes/messagingRoutes'));
+app.use('/api/jobs/', require('./routes/jobsRoutes'));
 
 
 const PORT = process.env.PORT
