@@ -34,6 +34,60 @@ const options = [
   { value: 'Game Development', label: 'Game Development' },
   { value: 'Software Engineering', label: 'Software Engineering' }
 ];
+var cities = [
+  "Mumbai, Maharashtra",
+  "Delhi, Delhi",
+  "Bangalore, Karnataka",
+  "Hyderabad, Telangana",
+  "Ahmedabad, Gujarat",
+  "Chennai, Tamil Nadu",
+  "Kolkata, West Bengal",
+  "Pune, Maharashtra",
+  "Jaipur, Rajasthan",
+  "Lucknow, Uttar Pradesh",
+  "Kanpur, Uttar Pradesh",
+  "Nagpur, Maharashtra",
+  "Indore, Madhya Pradesh",
+  "Thane, Maharashtra",
+  "Bhopal, Madhya Pradesh",
+  "Visakhapatnam, Andhra Pradesh",
+  "Pimpri-Chinchwad, Maharashtra",
+  "Patna, Bihar",
+  "Vadodara, Gujarat",
+  "Ghaziabad, Uttar Pradesh",
+  "Ludhiana, Punjab",
+  "Agra, Uttar Pradesh",
+  "Nashik, Maharashtra",
+  "Faridabad, Haryana",
+  "Meerut, Uttar Pradesh",
+  "Rajkot, Gujarat",
+  "Varanasi, Uttar Pradesh",
+  "Srinagar, Jammu and Kashmir",
+  "Aurangabad, Maharashtra",
+  "Dhanbad, Jharkhand",
+  "Amritsar, Punjab",
+  "Navi Mumbai, Maharashtra",
+  "Allahabad, Uttar Pradesh",
+  "Ranchi, Jharkhand",
+  "Howrah, West Bengal",
+  "Jabalpur, Madhya Pradesh",
+  "Gwalior, Madhya Pradesh",
+  "Vijayawada, Andhra Pradesh",
+  "Jodhpur, Rajasthan",
+  "Raipur, Chhattisgarh",
+  "Kota, Rajasthan",
+  "Guwahati, Assam",
+  "Chandigarh, Chandigarh",
+  "Solapur, Maharashtra",
+  "Hubballi-Dharwad, Karnataka",
+  "Bareilly, Uttar Pradesh",
+  "Moradabad, Uttar Pradesh",
+  "Mysuru, Karnataka",
+  "Gurgaon, Haryana",
+  "Aligarh, Uttar Pradesh"
+]
+const collageList = ['Universal College of Engineering', 'Thakur College of Engineering', 'Collage Of Engieering Pune'];
+
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -227,13 +281,24 @@ const Profile = () => {
                                 <label className="form-label" htmlFor="college">
                                   <strong>Collage</strong>
                                 </label>
-                                <input
+                                <select id='college' className="form-select shadow-none"
+                                  disabled={!editProfile}
+                                  name="college" value={formData.college}
+                                  onChange={handleInputChange}>
+                                  <option>--Select College--</option>
+                                  {collageList.map((clg) => (
+                                    <option key={clg} value={clg}>
+                                      {clg}
+                                    </option>
+                                  ))}
+                                </select>
+                                {/* <input
                                   className="form-control"
                                   type="text" id="college"
                                   placeholder="Collage Name"
                                   name="college" disabled={!editProfile}
                                   value={formData.college} onChange={handleInputChange}
-                                />
+                                /> */}
                               </div>
                             </div>
                           </div>
@@ -292,14 +357,27 @@ const Profile = () => {
                             <label className="form-label" htmlFor="address">
                               <strong>Address</strong>
                             </label>
-                            <input
+                            <select
+                              className="form-select shadow-none"
+                              name="city"
+                              disabled={!editProfile}
+                              value={formData.city}
+                              onChange={handleInputChange}
+                            >
+                              <option>--Select City--</option>
+                              {cities.map((city) => {
+                                return <option value={city}>{city}</option>
+                              })}
+                            </select>
+
+                            {/* <input
                               className="form-control"
                               type="text" id="city"
                               placeholder="City, State" name="city"
                               disabled={!editProfile}
                               onChange={handleInputChange}
                               value={formData.city}
-                            />
+                            /> */}
                           </div>
                           <div className="row">
                             <div className="col">

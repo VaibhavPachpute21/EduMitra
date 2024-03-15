@@ -3,6 +3,7 @@ const projectInitialState = {
   projects: [],
   userProjects: [],
   collageProjects: [],
+  hrDashboardData: null,
   singleProject: null,
   error: null,
 };
@@ -37,6 +38,23 @@ export const projectReducer = (state = projectInitialState, action) => {
         projects: action.payload,
       };
     case "GET_ALL_PROJECTS_ERROR":
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case "GET_DashboardData_REQUEST":
+      return {
+        ...state,
+        loading: true,
+      };
+    case "GET_DashboardData_SUCCESS":
+      return {
+        ...state,
+        loading: false,
+        hrDashboardData: action.payload,
+      };
+    case "GET_DashboardData_ERROR":
       return {
         ...state,
         loading: false,
@@ -93,23 +111,23 @@ export const projectReducer = (state = projectInitialState, action) => {
         loading: false,
         error: action.payload,
       };
-      case "ADD_GRADES_REQUEST":
-        return {
-          ...state,
-          loading: true,
-        };
-      case "ADD_GRADES_SUCCESS":
-        return {
-          ...state,
-          loading: false,
-          singleProject: action.payload,
-        };
-      case "ADD_GRADES_ERROR":
-        return {
-          ...state,
-          loading: false,
-          error: action.payload,
-        };
+    case "ADD_GRADES_REQUEST":
+      return {
+        ...state,
+        loading: true,
+      };
+    case "ADD_GRADES_SUCCESS":
+      return {
+        ...state,
+        loading: false,
+        singleProject: action.payload,
+      };
+    case "ADD_GRADES_ERROR":
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
     default:
       return state;
   }

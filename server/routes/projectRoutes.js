@@ -48,10 +48,37 @@ router.post('/add', verifyToken, async (req, res) => {
 // API to get all the Project
 router.get('/allProject', async (req, res) => {
   try {
-    const projects = await Project.find({});
+    const projects = (await Project.find({})).reverse();
     res.status(200).json({ projects });
   } catch (error) {
     res.status(400).json({ message: error.message })
+  }
+});
+
+router.get('/getDashboardData', async (req, res) => {
+  try {
+    const latestProjects = await Project.find()
+      .sort({ createdAt: -1 })
+      .limit(4);
+
+    const popularUsers = await userModel.find()
+      .sort({ uViews: -1 })
+      .limit(4);
+
+    const popularProjects = await Project.find()
+      .sort({ views: -1 })
+      .limit(4);
+
+    const dashboardData = {
+      latestProjects,
+      popularUsers,
+      popularProjects,
+    };
+
+    res.status(200).json(dashboardData);
+  } catch (error) {
+    console.error('Error fetching dashboard data:', error);
+    res.status(500).json({ message: 'Internal server error' });
   }
 });
 
@@ -69,7 +96,7 @@ router.get('/userProject', verifyToken, async (req, res) => {
 router.get('/:projectId', async (req, res) => {
   try {
     const project = await Project.findById(req.params.projectId);
-    project.views=project.views+1;
+    project.views = project.views + 1;
     await project.save();
     if (!project) {
       return res.status(404).json({ message: 'Project not found' });
@@ -150,8 +177,8 @@ router.post('/checkSentence', async (req, res) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        key:`${process.env.PLAGIARISM}`,
-        query:req.body.query
+        key: `${process.env.PLAGIARISM}`,
+        query: req.body.query
       }),
     });
 

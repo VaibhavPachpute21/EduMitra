@@ -35,6 +35,19 @@ export const getAllProjects = () => async (dispatch) => {
   }
 };
 
+// Action to get all projects
+export const getDashboardData = () => async (dispatch) => {
+  dispatch({ type: "GET_DashboardData_REQUEST" });
+  try {
+    const res = await axios.get(`${process.env.REACT_APP_SERVER}/api/project/getDashboardData`);
+    console.log(res.data)
+    dispatch({ type: "GET_DashboardData_SUCCESS", payload: res.data });
+  } catch (error) {
+    dispatch({ type: "GET_DashboardData_ERROR", payload: error });
+    toast.error(error.response ? error.response.data.message : "Failed to fetch projects");
+  }
+};
+
 // Action to get user-specific projects
 export const getUserProjects = (userToken) => async (dispatch) => {
   dispatch({ type: "GET_USER_PROJECTS_REQUEST" });

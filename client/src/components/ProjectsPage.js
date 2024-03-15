@@ -30,7 +30,7 @@ const ProjectList = () => {
           </div>
         </div>
         <div className="row gy-4 row-cols-1 row-cols-md-2">
-          {loading ? <><Loading/> </> :projects.reverse().map((project) => (
+          {loading ? <><Loading/> </> :projects.map((project) => (
             <div key={project._id} className="col">
               <Link to={`/Project/${project._id}`} className="text-decoration-none text-black">
                 <div className="d-flex flex-column flex-lg-row cardStyle1">

@@ -16,18 +16,19 @@ export const StudentDashboard = () => {
     const [recommend_users, setRecommendUsers] = useState(null);
     useEffect(() => {
         dispatch(getUserProjects(currentUser.token))
-        console.log(userProjects)
+        // console.log(userProjects)
         getRecomandedUsers();
     }, [dispatch])
 
     async function getRecomandedUsers() {
+        const selectedSkill = currentUser.user.skills && currentUser.user.skills.length > 0 ? currentUser.user.skills[0].value : "PHP";
         fetch(`${process.env.REACT_APP_FLASK_SERVER}/recommend_users`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                'selected_skill': currentUser.user.skills[0] ? currentUser.user.skills[0].value : "PHP"
+                'selected_skill': selectedSkill
             }),
         })
             .then(response => response.json()).then(data => setRecommendUsers(data))
