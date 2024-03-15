@@ -16,6 +16,7 @@ router.get('/getAllJobs', async (req, res) => {
 router.post('/addNewJob', async (req, res) => {
     try {
         const newJob = new JobsModel({
+            creator: req.userId,
             jobName: req.body.jobName,
             jobType: req.body.jobType,
             companyName: req.body.companyName,
