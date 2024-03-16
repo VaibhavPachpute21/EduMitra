@@ -45,12 +45,12 @@ function Sidebar() {
             </svg>
           </Link>
         </li>
-        {/* <li className="nav-item">
-          <Link className={`nav-link py-3 border-bottom rounded-0 ${location.pathname == "/Dashboard/Chats" ? 'bg-terracotta text-white' : ''}`} to={'/Dashboard/Chats'}>
-            <i xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" className="bi bi-chat" data-bs-toggle="tooltip" title="Chats">
+        <li className="nav-item">
+          <Link className={`nav-link py-3 border-bottom rounded-0 ${location.pathname == "/Dashboard/PostedJobs/" ? 'bg-terracotta text-white' : ''}`} to={'/Dashboard/PostedJobs/'}>
+            <i xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" className="bi bi-briefcase" data-bs-toggle="tooltip" title="Jobs">
               </i>
           </Link>
-        </li> */}
+        </li>
       </ul>
 
       <div className="dropdown p-3 border-top">

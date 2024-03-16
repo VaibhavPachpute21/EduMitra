@@ -4,6 +4,7 @@ import {userRegisterReducer,userLoginReducer,getAllUsersReducer,getUsersByCollag
 import {projectReducer} from './reducers/projectReducers'
 import {eventReducers} from './reducers/eventReducer'
 import {chatReducer,getChatsReducer} from './reducers/chatReducers'
+import {jobReducer} from './reducers/jobReducers'
 
 const rootReducer=combineReducers({
     userRegisterReducer:userRegisterReducer,
@@ -15,7 +16,8 @@ const rootReducer=combineReducers({
     eventReducers:eventReducers,
     chatReducer:chatReducer,
     getChatsReducer:getChatsReducer,
-    updateUserReducer:updateUserReducer
+    updateUserReducer:updateUserReducer,
+    jobReducer:jobReducer,
 })
 
 const currentUser = localStorage.getItem('currentUser') ? JSON.parse(localStorage.getItem('currentUser')) : null
