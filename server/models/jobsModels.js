@@ -1,10 +1,10 @@
 const mongoose = require('mongoose')
 
 const jobSchema = mongoose.Schema({
-    creator: {
+    postedBy: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
-        required: true,
+        required: true
     },
     jobName: {
         type: String,
@@ -40,28 +40,11 @@ const jobSchema = mongoose.Schema({
                 type: mongoose.Schema.Types.ObjectId,
                 ref: 'User',
             },
-            name: {
-                type: String,
-                required: true,
-            },
-            email: {
-                type: String,
-                required: true,
-                unique: true,
-            },
-            college: {
-                type: String,
-                required: true,
-            },
-            profilePic: {
-                type: String,
-                required: true,
-            },
-            city: {
-                type: String,
-                default: null,
-            },
-        }
+            name: String,
+            college: String,
+            profilePic: String,
+            city: String
+        },
     ]
 
 }, {
