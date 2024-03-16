@@ -42,6 +42,7 @@ const jobSchema = mongoose.Schema({
             },
             name: String,
             college: String,
+            email:String,
             profilePic: String,
             city: String
         },

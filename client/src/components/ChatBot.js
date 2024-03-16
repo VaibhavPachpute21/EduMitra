@@ -9,7 +9,7 @@ const Chatbot = () => {
 
     script.onload = () => {
       window.botpressWebChat.init({
-        "composerPlaceholder": "Chat with Edumitra",
+        "composerPlaceholder": "Chat with our edumitra",
         "botConversationDescription": "One stop solution for every student.",
         "botId": "0f1227fc-774c-4443-8ea6-793ac87e60b7",
         "hostUrl": "https://cdn.botpress.cloud/webchat/v1",
@@ -19,12 +19,14 @@ const Chatbot = () => {
         "lazySocket": true,
         "themeName": "prism",
         "botName": "Edumitra",
+        "stylesheet": "https://webchat-styler-css.botpress.app/prod/code/af0e7155-d8c5-4928-a6c1-d8abdc24a6c7/v90048/style.css",
         "frontendVersion": "v1",
         "useSessionStorage": true,
         "enableConversationDeletion": true,
-        "showPoweredBy": true,
         "theme": "prism",
-        "themeColor": "#2563eb"
+        "themeColor": "#2563eb",
+        "showCloseButton": true,
+        "closeOnEscape": true
       })
     }
   }, [])

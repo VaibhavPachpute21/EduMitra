@@ -29,10 +29,10 @@ export const addNewJob = (job) => async (dispatch) => {
 }
 
 // Action to get Single Job
-export const getSingleProject = (jobId) => async (dispatch) => {
+export const getSingleJob = (jobId) => async (dispatch) => {
     dispatch({ type: "GET_SINGLE_JOB_REQUEST" });
     try {
-        const res = await axios.get(`${process.env.REACT_APP_SERVER}/jobs/getJob/${jobId}`);
+        const res = await axios.get(`${process.env.REACT_APP_SERVER}/api/jobs/getJob/${jobId}`);
         dispatch({ type: "GET_SINGLE_JOB_SUCCESS", payload: res.data.job });
     } catch (error) {
         dispatch({ type: "GET_SINGLE_JOB_ERROR", payload: error });
