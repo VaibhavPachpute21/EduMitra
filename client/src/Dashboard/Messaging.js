@@ -17,7 +17,7 @@ const Messaging = () => {
     useEffect(() => {
         dispatch(getUserId(userID));
         dispatch(getMessages(currentUserData.currentUser.user._id, userID));
-    }, [])
+    }, [userID])
 
     async function handleSendMSG(text) {
         console.log(text)
@@ -27,7 +27,7 @@ const Messaging = () => {
             "message": text
         }
         await dispatch(sendMessage(messageData));
-        dispatch(getMessages(currentUserData.currentUser.user._id, userID));
+        await dispatch(getMessages(currentUserData.currentUser.user._id, userID));
     }
     return (
         <div>
