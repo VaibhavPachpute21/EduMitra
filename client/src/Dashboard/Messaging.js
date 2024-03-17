@@ -17,7 +17,8 @@ const Messaging = () => {
     useEffect(() => {
         dispatch(getUserId(userID));
         dispatch(getMessages(currentUserData.currentUser.user._id, userID));
-    }, [userID])
+        console.log(chats)
+    }, [dispatch])
 
     async function handleSendMSG(text) {
         console.log(text)
