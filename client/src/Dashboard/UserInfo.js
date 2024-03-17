@@ -16,7 +16,7 @@ const UserInfo = () => {
   useEffect(() => {
     dispatch(getUserId(userID));
     dispatch(getProjectsByUserId(userID))
-    console.log(user);
+    // console.log(user);
   }, [dispatch]);
 
   return (

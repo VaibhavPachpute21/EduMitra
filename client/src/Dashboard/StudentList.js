@@ -12,7 +12,7 @@ const StudentList = () => {
 
   useEffect(() => {
     dispatch(getUsersByCollage(currentUser.user.college))
-    console.log(allColleagues);
+    // console.log(allColleagues);
   }, [dispatch])
 
 
@@ -71,7 +71,7 @@ const StudentList = () => {
                         <img className="rounded-circle img-fluid d-block m-auto" style={{ height: '250px' }} src={collague.profilePic} alt="Project" />
                         <div className="py-3">
                           <h4 className='heading3 text-black'><span>{collague.name}</span></h4>
-                          <p className='textStyle2 text-black'><span>{collague.role == 0 ? "Student" : "Teacher"} at {collague.college}</span></p>
+                          <p className='textStyle2 text-black'><span>{collague.role == 0 ? "Student" : collague.role == 1 ? "Teacher":"Business Person"} |  {collague.college}</span></p>
                           <p className='textStyle1'><span>{collague.email} | {collague.phone}</span></p>
                           <p className='d-flex justify-content-between mt-4 '><Link to={`/Dashboard/Chats/${collague._id}`} className='btn button2 border-0 rounded-pill'>Connect</Link> <button className='btn btn-outline-danger border-0'><i class="bi bi-heart"></i></button></p>
                         </div>

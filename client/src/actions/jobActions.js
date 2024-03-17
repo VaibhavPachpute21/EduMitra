@@ -6,7 +6,7 @@ export const getAllJobs = () => async (dispatch) => {
     dispatch({ type: "GET_ALL_JOB_REQUEST" })
     try {
         const res = await axios.get(`${process.env.REACT_APP_SERVER}/api/jobs/getAllJobs`);
-        console.log(res.data.jobs)
+        // console.log(res.data.jobs)
         dispatch({ type: "GET_ALL_JOB_SUCCESS", payload: res.data.jobs });
     } catch (error) {
         dispatch({ type: "GET_ALL_JOB_ERROR", payload: error });
@@ -19,7 +19,7 @@ export const addNewJob = (job) => async (dispatch) => {
     dispatch({ type: "ADD_JOB_REQUEST" })
     try {
         const res = await axios.post(`${process.env.REACT_APP_SERVER}/api/jobs/addNewJob`, job);
-        console.log(res.data.jobs)
+        // console.log(res.data.jobs)
         dispatch({ type: "ADD_JOB_SUCCESS" });
         toast.success("Job posted!!")
     } catch (error) {
@@ -69,7 +69,7 @@ export const getMyAppliedJObs = (userId) => async (dispatch) => {
 export const getMyPostedJObs = (userToken) => async (dispatch) => {
     dispatch({ type: "GET_POSTED_JOB_REQUEST" })
     try {
-        console.log(userToken)
+        // console.log(userToken)
         const res = await axios.post(`${process.env.REACT_APP_SERVER}/api/jobs/userJobs`,{}, {
             headers: {
                 Authorization: `Bearer ${userToken}`,

@@ -4,9 +4,10 @@ import { toast } from 'react-toastify';
 export const sendMessage = (messageData) => async (dispatch) => {
     dispatch({ type: "SEND_MSG_REQUEST" });
     try {
-        console.log("sending")
         const res = await axios.post(`${process.env.REACT_APP_SERVER}/api/chats/send`, messageData);
         dispatch({ type: "SEND_MSG_SUCCESS" });
+        console.log(messageData)
+        dispatch(getMessages(messageData.senderId,messageData.receiverId))
         // toast.success("Message Sent!");
     } catch (error) {
         dispatch({ type: "SEND_MSG_ERROR", payload: error });
@@ -19,6 +20,7 @@ export const getMessages = (sender, receiver) => async (dispatch) => {
     try {
         const res = await axios.get(`${process.env.REACT_APP_SERVER}/api/chats/conversation/${sender}/${receiver}`);
         dispatch({ type: "GET_MSG_SUCCESS", payload: res.data });
+        console.log(res.data)
     } catch (error) {
         dispatch({ type: "GET_MSG_ERROR", payload: error });
         toast.error(error.response ? error.response.data.message : "Failed to load message");

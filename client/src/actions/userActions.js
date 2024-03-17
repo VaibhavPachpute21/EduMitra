@@ -45,7 +45,7 @@ export const getAllUsers = () => async (dispatch) => {
     dispatch({ type: 'GET_ALL_USERS_REQ' })
     try {
         const res = await axios.get(`${process.env.REACT_APP_SERVER}/api/users/allUsers`);
-        console.log(res.data)
+        // console.log(res.data)
         dispatch({ type: 'GET_ALL_USERS_SUCCESS', payload: res.data.users });
     } catch (error) {
         dispatch({ type: 'GET_ALL_USER_FAIL', payload: error })
@@ -56,7 +56,7 @@ export const getUsersByCollage = (collegeName) => async (dispatch) => {
     dispatch({ type: "GET_ALL_COLLEAGUES_REQ" })
     try {
         const res = await axios.get(`${process.env.REACT_APP_SERVER}/api/users/collageUsers/${collegeName}`);
-        console.log(res.data)
+        // console.log(res.data)
         dispatch({ type: 'GET_ALL_COLLEAGUES_SUCCESS', payload: res.data.users });
     } catch (error) {
         dispatch({ type: 'GET_ALL_COLLEAGUES_FAIL', payload: error })
@@ -69,7 +69,7 @@ export const getUserId = (userID) => async (dispatch) => {
     dispatch({ type: "GET_USER_REQ" })
     try {
         const res = await axios.get(`${process.env.REACT_APP_SERVER}/api/users/profile/${userID}`);
-        console.log(res.data)
+        //console.log(res.data)
         dispatch({ type: 'GET_USER_SUCCESS', payload: res.data });
     } catch (error) {
         dispatch({ type: 'GET_USER_FAIL', payload: error })

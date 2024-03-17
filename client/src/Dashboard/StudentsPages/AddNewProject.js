@@ -139,7 +139,7 @@ function AddNewProject() {
     //   return;
     // }
     dispatch(addNewProject(project, currentUser.token))
-    console.log(project)
+    // console.log(project)
   };
 
   return (

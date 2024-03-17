@@ -14,9 +14,9 @@ const TeachersDashboard = () => {
     const { allColleagues } = collageusList;
     useEffect(() => {
         dispatch(getProjectsByCollegeName(currentUser.user.college))
-        console.log(collageProjects)
+        // console.log(collageProjects)
         dispatch(getUsersByCollage(currentUser.user.college))
-        console.log(allColleagues);
+        // console.log(allColleagues);
     }, [dispatch])
     return (
         <section>

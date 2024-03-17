@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 import { getSingleProject, addComment } from '../actions/projectActions'
 import { toast } from 'react-toastify';
@@ -124,9 +124,11 @@ const SingleProject = () => {
                     <div className="col p-2 rounded-5" style={{ marginTop: '0px', backgroundColor: 'var(--MARMALADE)' }}>
                       <div className="border-0 shadow-none">
                         <div className=" text-center d-flex flex-column align-items-center p-0">
+                          <Link to={`/Dashboard/User/${singleProject.creator}`} className='text-decoration-none text-black'>
                           <img className="rounded-circle mb-3 fit-cover rounded-circle" width="130" height="130" src={singleProject.creatorInfo.profilePic} alt="Image" />
                           <h5 className="heading2 text-black fs-4 mb-0"><strong>{singleProject.creatorInfo.name}</strong></h5>
                           <p className="textStyle2 text-muted card-text mb-2">{singleProject.creatorInfo.college}</p>
+                          </Link>
                         </div>
                       </div>
                     </div>

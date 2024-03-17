@@ -121,7 +121,7 @@ function App() {
             <Route path='/Dashboard/Project/:projectID' element={<GradeProjectPage />} />
             <Route path='/Dashboard/PostedJobs/' element={<MyPostedJobs />} />
             <Route path='/Dashboard/ViewJobs/' element={<AllJobList />} />
-            <Route path='/Dashboard/MyApplies/' element={<MyAppliedJobs />} />
+            {/* <Route path='/Dashboard/MyApplies/' element={<MyAppliedJobs />} /> */}
             <Route path='/Dashboard/Jobs/:jobId' element={<SingleJobDetail />} />
 
           </Route>

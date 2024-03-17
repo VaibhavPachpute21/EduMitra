@@ -12,10 +12,10 @@ const AllJobList = () => {
     const { loading, allJobs,myAppliedJobs, error } = jobsData;
 
     useEffect(() => {
-        console.log(currentUser.token)
+        // console.log(currentUser.token)
         dispatch(getAllJobs())
         dispatch(getMyAppliedJObs(currentUser.user._id))
-        console.log(allJobs)
+        // console.log(allJobs)
     }, [dispatch])
 
     return (

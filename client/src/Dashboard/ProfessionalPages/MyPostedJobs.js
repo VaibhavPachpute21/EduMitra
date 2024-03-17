@@ -12,9 +12,9 @@ const MyPostedJobs = () => {
     const { loading, myPostedJobs, error } = jobsData;
 
     useEffect(() => {
-        console.log(currentUser.token)
+        // console.log(currentUser.token)
         dispatch(getMyPostedJObs(currentUser.token))
-        console.log(myPostedJobs)
+        // console.log(myPostedJobs)
     }, [dispatch])
 
     return (

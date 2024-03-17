@@ -40,7 +40,7 @@ export const getDashboardData = () => async (dispatch) => {
   dispatch({ type: "GET_DashboardData_REQUEST" });
   try {
     const res = await axios.get(`${process.env.REACT_APP_SERVER}/api/project/getDashboardData`);
-    console.log(res.data)
+    // console.log(res.data)
     dispatch({ type: "GET_DashboardData_SUCCESS", payload: res.data });
   } catch (error) {
     dispatch({ type: "GET_DashboardData_ERROR", payload: error });

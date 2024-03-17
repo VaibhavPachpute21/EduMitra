@@ -121,10 +121,10 @@ const Profile = () => {
   };
 
   useEffect(() => {
-    console.log(":::" + currentUser.user.name);
+    // console.log(":::" + currentUser.user.name);
     initialDataLoad()
     dispatch(getUserProjects(currentUser.token));
-    console.log(user);
+    // console.log(user);
   }, [dispatch]);
 
   function initialDataLoad() {
@@ -149,7 +149,7 @@ const Profile = () => {
     const userData = { ...formData, "_id": id, skills };
     dispatch(updateUser(userData, currentUser.token));
 
-    console.log(userData);
+    // console.log(userData);
   }
 
   return (

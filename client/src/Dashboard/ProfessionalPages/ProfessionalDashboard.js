@@ -13,7 +13,7 @@ const ProfessionalDashboard = () => {
     const { loading, hrDashboardData, error } = projectsData;
     useEffect(() => {
         dispatch(getDashboardData())
-        console.log(hrDashboardData)
+        // console.log(hrDashboardData)
     }, [dispatch])
     return (<>
         {loading ? <Loading /> : <section>
