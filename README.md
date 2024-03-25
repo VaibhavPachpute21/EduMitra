@@ -14,10 +14,10 @@
 
 ## Screenshots
 
-![Screenshot 1](https://raw.githubusercontent.com/VaibhavPachpute21/EduMitra/main/outputs/home.png)
-![Screenshot 2](https://raw.githubusercontent.com/VaibhavPachpute21/EduMitra/main/outputs/login.png)
-![Screenshot 3](https://raw.githubusercontent.com/VaibhavPachpute21/EduMitra/main/outputs/peer.png)
-![Screenshot 4](https://raw.githubusercontent.com/VaibhavPachpute21/EduMitra/main/outputs/profile.png)
+![Screenshot 1](https://raw.githubusercontent.com/VaibhavPachpute21/EduMitra/201e4a8dc20ef834d3009b2517ff4eb946247170/outputs/home.png)
+![Screenshot 2](https://raw.githubusercontent.com/VaibhavPachpute21/EduMitra/201e4a8dc20ef834d3009b2517ff4eb946247170/outputs/login.png)
+![Screenshot 3](https://raw.githubusercontent.com/VaibhavPachpute21/EduMitra/201e4a8dc20ef834d3009b2517ff4eb946247170/outputs/peer.png)
+![Screenshot 4](https://raw.githubusercontent.com/VaibhavPachpute21/EduMitra/201e4a8dc20ef834d3009b2517ff4eb946247170/outputs/profile.png)
 ![Screenshot 5](https://raw.githubusercontent.com/VaibhavPachpute21/EduMitra/main/outputs/dashboard.PNG)
 
 ## Development
