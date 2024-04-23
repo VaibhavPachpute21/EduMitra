@@ -16,7 +16,7 @@ export const StudentDashboard = () => {
     const [recommend_users, setRecommendUsers] = useState(null);
     useEffect(() => {
         dispatch(getUserProjects(currentUser.token))
-        // console.log(userProjects)
+        console.log(userProjects)
         getRecomandedUsers();
     }, [dispatch])
 
@@ -43,13 +43,13 @@ export const StudentDashboard = () => {
                         <div className="row row-cols-2 row-cols-md-4">
                             <div className="col">
                                 <div className="p-3">
-                                    <h4 className="display-5 fw-bold text-white mb-0">123+</h4>
+                                    <h4 className="display-5 fw-bold text-white mb-0">{currentUser.user.uViews}+</h4>
                                     <p className="mb-0">Profile Views</p>
                                 </div>
                             </div>
                             <div className="col">
                                 <div className="p-3">
-                                    <h4 className="display-5 fw-bold text-white mb-0">5</h4>
+                                    <h4 className="display-5 fw-bold text-white mb-0">{userProjects.length}</h4>
                                     <p className="mb-0">Project Uploads</p>
                                 </div>
                             </div>
@@ -117,6 +117,7 @@ export const StudentDashboard = () => {
                     </div>
                     <div className="row gy-4 row-cols-1 row-cols-md-2">
                         {recommend_users && recommend_users.map((user) => {
+                            if (currentUser.user._id != user.id) {
                             return <>
                                 <div className="col">
                                     <a className="text-decoration-none text-black">
@@ -124,25 +125,23 @@ export const StudentDashboard = () => {
                                             <div className="col-4">
                                                 <figure>
                                                     <img className="d-block w-100 bg-light" style={{ height: '100%', width: '50%', objectFit: 'contain' }}
-                                                        src={user.gender == "Male" ? malePP[Math.floor(Math.random() * malePP.length)] : user.gender == "Female" ? femalePP[Math.floor(Math.random() * femalePP.length)] : "https://cdn-icons-png.flaticon.com/512/3106/3106773.png"} alt="User" />
+                                                        src={user.profilePic} alt="User" />
                                                 </figure>
                                             </div>
                                             <div className="py-4 py-lg-0 px-lg-4 d-flex align-items-center">
                                                 <div>
                                                     <h4 className='heading2 fs-5 mb-0'>Name: {user.name}</h4>
                                                     <p className='textStyle2 text-black mb-0'>Mail: {user.email}</p>
-                                                    <p className='textStyle2 text-black mb-0'>Phone:{user.phone}</p>
-                                                    <p className='textStyle2 text-black mb-0'>College: {user.college}</p>
                                                     <p className='textStyle2 text-black mb-0'>City: {user.city}</p>
                                                     <p className='textStyle2 text-black'>Gender:{user.gender}</p>
-                                                    <Link to={'/Dashboard/Peers'} className='btn button1'>Connect</Link>
+                                                    <Link to={`/Dashboard/Chats/${user.id}`} className='btn button1'>Connect</Link>
                                                 </div>
 
                                             </div>
                                         </div>
                                     </a>
                                 </div>
-                            </>
+                            </>}
                         })}
                     </div>
                 </div>

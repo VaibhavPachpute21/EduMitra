@@ -1,50 +1,55 @@
-from flask import Flask, render_template, request, jsonify
-from sklearn.preprocessing import OneHotEncoder
+from flask import Flask, request, jsonify, render_template
+from sklearn.preprocessing import MultiLabelBinarizer
 from sklearn.tree import DecisionTreeClassifier
 from collections import defaultdict
-import pandas as pd
+import json
 from flask_cors import CORS
+from sklearn.model_selection import train_test_split
 
 app = Flask(__name__)
 CORS(app)
 
-# Load data
-df = pd.read_csv("MOCK_DATA.csv")
+# Load MongoDB data
+with open('users.json', 'r') as file:
+    users_data = json.load(file)
 
 # Prepare the data for the decision tree classifier
-X = df['skills'].values.reshape(-1, 1)  # Feature: Skills
-y = df['_id']  # Target: User ID
+skills = []
+user_ids = []
+for user in users_data:
+    user_ids.append(user['_id']['$oid'])
+    user_skills = [skill['value'] for skill in user['skills']]
+    skills.append(user_skills)
 
-# One-hot encode the skills
-encoder = OneHotEncoder(handle_unknown='ignore')  # Handle unknown categories gracefully
-X_encoded = encoder.fit_transform(X)
+mlb = MultiLabelBinarizer()
+X_encoded = mlb.fit_transform(skills)
+y = user_ids
+
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X_encoded, y, test_size=0.2, random_state=42)
 
 # Train a decision tree classifier
 clf = DecisionTreeClassifier()
-clf.fit(X_encoded, y)
+clf.fit(X_train, y_train)
 
 # Create a dictionary to store users indexed by their skills
 users_by_skill = defaultdict(list)
-for _, row in df.iterrows():
-    users_by_skill[row['skills']].append(row['_id'])
+for user, user_id in zip(users_data, user_ids):
+    for skill in user['skills']:
+        users_by_skill[skill['value']].append(user_id)
 
 # Function to recommend users based on the input skills
 def recommend_users_for_skills(skills):
-    # Encode the input skills
-    skills_encoded = encoder.transform([[skill] for skill in skills])
-
-    # Predict users with similar skills using the trained classifier
+    skills_encoded = mlb.transform([skills])
     predicted_users = clf.predict(skills_encoded)
-
-    # Get all users with common skills
     recommended_user_ids = set()
     for user_id in predicted_users:
-        recommended_user_ids.update(users_by_skill[df.loc[df['_id'] == user_id, 'skills'].values[0]])
+        recommended_user_ids.update(users_by_skill[skills[0]])
     return recommended_user_ids
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('recommend.html')
 
 @app.route('/recommend_users', methods=['POST'])
 def recommend_users():
@@ -53,17 +58,27 @@ def recommend_users():
 
     # Get recommended users for the selected skill
     recommended_user_ids = recommend_users_for_skills([selected_skill])
-    recommended_users_info = df[df['_id'].isin(recommended_user_ids)][['_id', 'name', 'email', 'phone', 'gender', 'college', 'city']]
+
+    # Filter recommended users' information
+    recommended_users_info = []
+    for user in users_data:
+        if user['_id']['$oid'] in recommended_user_ids:
+            user_info = {
+                'name': user['name'],
+                'email': user['email'],
+                'profilePic': user['profilePic'],
+                'id': user['_id']['$oid'],
+                'gender': user['gender'],
+                'city': user['city']
+            }
+            recommended_users_info.append(user_info)
 
     # Prepare response
-    if not recommended_users_info.empty:
-        response = recommended_users_info.to_dict(orient='records')
-        # Make email addresses clickable links
-        for user in response:
-            user['email'] = f'{user["email"]}'
+    if recommended_users_info:
+        response = recommended_users_info
     else:
         response = {"message": "No users found with the selected skill."}
-
+    print(jsonify(response))
     return jsonify(response)
 
 if __name__ == '__main__':

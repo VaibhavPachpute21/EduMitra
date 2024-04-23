@@ -1,0 +1,851 @@
+[{
+  "_id": {
+    "$oid": "6530d945129632b6d272444c"
+  },
+  "name": "Vaibhav Ganesh Pachpute",
+  "email": "vpachpute22@gmail.com",
+  "phone": "1234567890",
+  "gender": "Male",
+  "role": 0,
+  "college": "Universal College of Engineering",
+  "profilePic": "https://img.freepik.com/free-psd/3d-illustration-human-avatar-profile_23-2150671116.jpg",
+  "createdAt": {
+    "$date": "2023-10-19T07:22:45.800Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-19T14:21:33.013Z"
+  },
+  "__v": 0,
+  "skills": [
+    {
+      "value": "Web Development",
+      "label": "Web Development",
+      "_id": {
+        "$oid": "65ad3440cf9cba9e15def7f8"
+      }
+    },
+    {
+      "value": "Software Engineering",
+      "label": "Software Engineering",
+      "_id": {
+        "$oid": "65ad3440cf9cba9e15def7f9"
+      }
+    }
+  ],
+  "bio": "Hi Im a Web Developer!!",
+  "city": "Mumbai, Maharashtra",
+  "github": "https://github.com/VaibhavPachpute21/",
+  "linkedin": "https://www.linkedin.com/in/vaibhavpachpute/",
+  "uViews": 30
+},
+{
+  "_id": {
+    "$oid": "6530d9d3129632b6d272444e"
+  },
+  "name": "Anita Patel",
+  "email": "anita@gmail.com",
+  "phone": "1234567890",
+  "gender": "Female",
+  "role": 0,
+  "college": "Universal College of Engineering",
+  "profilePic": "https://img.freepik.com/premium-photo/cute-emoji-person-speaking-with-no-background-3_634278-1248.jpg",
+  "createdAt": {
+    "$date": "2023-10-19T07:25:07.918Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-26T07:36:42.244Z"
+  },
+  "__v": 0,
+  "skills": [
+    {
+      "value": "PHP",
+      "label": "PHP",
+      "_id": {
+        "$oid": "65f318fffa8ca459a82c2f2e"
+      }
+    }
+  ],
+  "uViews": 12,
+  "bio": "Student at UCoE and PHP developer",
+  "city": "Mumbai, Maharashtra",
+  "github": "https://github.com/VaibhavPachpute21/",
+  "linkedin": "https://www.linkedin.com/in/vaibhavpachpute/"
+},
+{
+  "_id": {
+    "$oid": "6530db0f129632b6d2724451"
+  },
+  "name": "Radhika",
+  "email": "radhika@gmail.com",
+  "phone": "1234567890",
+  "gender": "Female",
+  "role": 0,
+  "college": "Thakur College of Engineering",
+  "profilePic": "https://img.freepik.com/free-vector/young-woman-white_25030-39552.jpg",
+  "createdAt": {
+    "$date": "2023-10-19T07:30:23.981Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-26T07:38:20.535Z"
+  },
+  "__v": 0,
+  "skills": [
+    {
+      "value": "Artificial Intelligence",
+      "label": "Artificial Intelligence",
+      "_id": {
+        "$oid": "66027b6c7377cf695bc4a299"
+      }
+    },
+    {
+      "value": "Machine Learning",
+      "label": "Machine Learning",
+      "_id": {
+        "$oid": "66027b6c7377cf695bc4a29a"
+      }
+    }
+  ],
+  "uViews": 2,
+  "bio": "Aspiring AIML engineer",
+  "city": "Mumbai, Maharashtra",
+  "github": "https://github.com/VaibhavPachpute21/",
+  "linkedin": "https://www.linkedin.com/in/vaibhavpachpute/"
+},
+{
+  "_id": {
+    "$oid": "6531148a0d207bce0cfb57b2"
+  },
+  "name": "John Doe",
+  "email": "john@gmail.com",
+  "phone": "1234567890",
+  "gender": "Male",
+  "role": 1,
+  "college": "Universal College of Engineering",
+  "profilePic": "https://img.freepik.com/premium-vector/man-character_665280-46969.jpg",
+  "createdAt": {
+    "$date": "2023-10-19T11:35:38.160Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-19T14:10:44.868Z"
+  },
+  "__v": 0,
+  "skills": [
+    {
+      "value": "Software Engineering",
+      "label": "Software Engineering",
+      "_id": {
+        "$oid": "65c33009ba8d09bdba6c3d14"
+      }
+    }
+  ],
+  "bio": "Hi Im a developer",
+  "city": null,
+  "github": "https://github.com/VaibhavPachpute21/",
+  "linkedin": "https://www.linkedin.com/in/vaibhavpachpute/",
+  "uViews": 27
+},
+{
+  "_id": {
+    "$oid": "6534dfda5b5916ee3cad0b21"
+  },
+  "name": "Ajay Sharma",
+  "email": "ajay@gmail.com",
+  "phone": "2398431197",
+  "gender": "Male",
+  "role": 0,
+  "college": "Universal College of Engineering",
+  "profilePic": "https://img.freepik.com/free-psd/3d-illustration-human-avatar-profile_23-2150671116.jpg",
+  "createdAt": {
+    "$date": "2023-10-22T08:39:54.924Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-26T07:39:50.913Z"
+  },
+  "__v": 0,
+  "skills": [
+    {
+      "value": "Artificial Intelligence",
+      "label": "Artificial Intelligence",
+      "_id": {
+        "$oid": "66027bc67377cf695bc4a2a2"
+      }
+    },
+    {
+      "value": "Data Analytics",
+      "label": "Data Analytics",
+      "_id": {
+        "$oid": "66027bc67377cf695bc4a2a3"
+      }
+    }
+  ],
+  "uViews": 5,
+  "bio": "AI enthusiast!",
+  "city": "Thane, Maharashtra",
+  "github": "https://github.com/VaibhavPachpute21/",
+  "linkedin": "https://www.linkedin.com/in/vaibhavpachpute/"
+},
+{
+  "_id": {
+    "$oid": "65c31005ba8d09bdba6c3be5"
+  },
+  "name": "Krupa",
+  "email": "dharamshikrupa@gmail.com",
+  "phone": "8850613151",
+  "gender": "Female",
+  "role": 0,
+  "college": "Universal College of Engineering", "profilePic": "https://img.freepik.com/free-vector/young-woman-white_25030-39546.jpg",
+  "city": "Mumbai, Maharashtra",
+  "linkedin": "https://www.linkedin.com/in/vaibhavpachpute/",
+  "github": "https://github.com/VaibhavPachpute21",
+  "bio": "Hi Im a developer",
+  "skills": [
+    {
+      "value": "Web Development",
+      "label": "Web Development",
+      "_id": {
+        "$oid": "65c31e65ba8d09bdba6c3bf2"
+      }
+    },
+    {
+      "value": "Software Engineering",
+      "label": "Software Engineering",
+      "_id": {
+        "$oid": "65c31e65ba8d09bdba6c3bf3"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": "2024-02-07T05:07:17.441Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-19T14:12:40.487Z"
+  },
+  "__v": 0,
+  "uViews": 60
+},
+{
+  "_id": {
+    "$oid": "65ef1ca794eb0d8a901344b8"
+  },
+  "name": "Vijay Patil",
+  "email": "vpachpute21@gmail.com",
+  "phone": "1234567890",
+  "gender": "Male",
+  "role": 2,
+  "college": "Universal College of Engineering",
+  "profilePic": "https://img.freepik.com/free-vector/isolated-young-handsome-man-different-poses-white-background-illustration_632498-859.jpg?size=626&ext=jpg",
+  "city": "Pune, Maharashtra",
+  "linkedin": "https://www.linkedin.com/in/vaibhavpachpute/",
+  "github": "https://github.com/VaibhavPachpute21",
+  "bio": "Software developer with 2+ experience",
+  "skills": [
+    {
+      "value": "Software Engineering",
+      "label": "Software Engineering",
+      "_id": {
+        "$oid": "65f52ae9c0c2a9bc1aaad79b"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": "2024-03-11T15:00:55.085Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-26T08:01:43.820Z"
+  },
+  "__v": 0,
+  "uViews": 24
+},
+{
+  "_id": {
+    "$oid": "65f16e956590354d0b749e32"
+  },
+  "name": "Amit Sen",
+  "email": "amitsen@gmail.com",
+  "phone": "2319002430",
+  "gender": "Male",
+  "role": 0,
+  "college": "Thakur College of Engineering",
+  "profilePic": "https://img.freepik.com/free-vector/handsome-man_1308-85984.jpg",
+  "city": "Mumbai, Maharashtra",
+  "linkedin": "https://www.linkedin.com/in/vaibhavpachpute/",
+  "github": "https://github.com/VaibhavPachpute21/",
+  "bio": "Let's connect",
+  "uViews": 1,
+  "skills": [
+    {
+      "value": "JavaScript",
+      "label": "JavaScript",
+      "_id": {
+        "$oid": "65f171d66590354d0b749e4e"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": "2024-03-13T09:15:01.650Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-14T15:37:13.000Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65f31103fa8ca459a82c2f10"
+  },
+  "name": "Terry Medhurst",
+  "email": "atuny0@sohu.com",
+  "phone": "7916758914",
+  "gender": "Male",
+  "role": 0,
+  "college": "Thakur College of Engineering",
+  "profilePic": "https://img.freepik.com/free-vector/handsome-man_1308-85984.jpg",
+  "city": "Mumbai, Maharashtra",
+  "linkedin": "https://www.linkedin.com/in/vaibhavpachpute/",
+  "github": "https://github.com/VaibhavPachpute21/",
+  "bio": "Aspiring Data engineer",
+  "uViews": 1,
+  "skills": [
+    {
+      "value": "Data Science",
+      "label": "Data Science",
+      "_id": {
+        "$oid": "66027c667377cf695bc4a2be"
+      }
+    },
+    {
+      "value": "Java",
+      "label": "Java",
+      "_id": {
+        "$oid": "66027c667377cf695bc4a2bf"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": "2024-03-14T15:00:19.504Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-26T07:42:30.698Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65f311c7fa8ca459a82c2f12"
+  },
+  "name": "Sheldon Quigley",
+  "email": "hbingley1@plala.or.jp",
+  "phone": "8131177139",
+  "gender": "Male",
+  "role": 0,
+  "college": "Thakur College of Engineering",
+  "profilePic": "https://img.freepik.com/free-psd/3d-illustration-human-avatar-profile_23-2150671116.jpg",
+  "city": "Kolkata, West Bengal",
+  "linkedin": "https://www.linkedin.com/in/vaibhavpachpute/",
+  "github": "https://github.com/VaibhavPachpute21/",
+  "bio": "Im Developer",
+  "uViews": 0,
+  "skills": [
+    {
+      "value": "JavaScript",
+      "label": "JavaScript",
+      "_id": {
+        "$oid": "66027cae7377cf695bc4a2c7"
+      }
+    },
+    {
+      "value": "Python",
+      "label": "Python",
+      "_id": {
+        "$oid": "66027cae7377cf695bc4a2c8"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": "2024-03-14T15:03:35.554Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-26T07:43:42.717Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65f31210fa8ca459a82c2f14"
+  },
+  "name": "Terrill Hills",
+  "email": "rshawe2@51.la",
+  "phone": "7392927942",
+  "gender": "Male",
+  "role": 0,
+  "college": "Thakur College of Engineering",
+  "profilePic": "https://img.freepik.com/free-vector/isolated-young-handsome-man-different-poses-white-background-illustration_632498-859.jpg?size=626&ext=jpg",
+  "city": "Thane, Maharashtra",
+  "linkedin": "https://www.linkedin.com/in/vaibhavpachpute/",
+  "github": "https://github.com/VaibhavPachpute21/",
+  "bio": "engineer",
+  "uViews": 0,
+  "skills": [
+    {
+      "value": "PHP",
+      "label": "PHP",
+      "_id": {
+        "$oid": "66027cf47377cf695bc4a2d0"
+      }
+    },
+    {
+      "value": "Python",
+      "label": "Python",
+      "_id": {
+        "$oid": "66027cf47377cf695bc4a2d1"
+      }
+    },
+    {
+      "value": "Computer Vision",
+      "label": "Computer Vision",
+      "_id": {
+        "$oid": "66027cf47377cf695bc4a2d2"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": "2024-03-14T15:04:48.701Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-26T07:44:52.003Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65f3127ffa8ca459a82c2f16"
+  },
+  "name": "Miles Cummerata",
+  "email": "yraigatt3@nature.com",
+  "phone": "4611454186",
+  "gender": "Male",
+  "role": 0,
+  "college": "Thakur College of Engineering",
+  "profilePic": "https://img.freepik.com/premium-vector/man-character_665280-46969.jpg",
+  "city": "Pune, Maharashtra",
+  "linkedin": "https://www.linkedin.com/in/Miles",
+  "github": "https://github.com/VaibhavPachpute21/",
+  "bio": "Aspiring AIML engineer",
+  "uViews": 0,
+  "skills": [
+    {
+      "value": "Natural Language Processing",
+      "label": "Natural Language Processing",
+      "_id": {
+        "$oid": "66027d597377cf695bc4a2dd"
+      }
+    },
+    {
+      "value": "Artificial Intelligence",
+      "label": "Artificial Intelligence",
+      "_id": {
+        "$oid": "66027d597377cf695bc4a2de"
+      }
+    },
+    {
+      "value": "Game Development",
+      "label": "Game Development",
+      "_id": {
+        "$oid": "66027d597377cf695bc4a2df"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": "2024-03-14T15:06:39.529Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-26T07:46:33.178Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65f312bbfa8ca459a82c2f18"
+  },
+  "name": "Mavis Schultz",
+  "email": "kmeus4@upenn.edu",
+  "phone": "2857711911",
+  "gender": "Male",
+  "role": 1,
+  "college": "Thakur College of Engineering",
+  "profilePic": "https://img.freepik.com/free-psd/3d-illustration-human-avatar-profile_23-2150671116.jpg",
+  "city": "Delhi, Delhi",
+  "linkedin": "https://www.linkedin.com/in/mavis",
+  "github": "https://github.com/mavis",
+  "bio": "engineering teacher at Thakur College of Engineering",
+  "uViews": 0,
+  "skills": [
+    {
+      "value": "Software Engineering",
+      "label": "Software Engineering",
+      "_id": {
+        "$oid": "66027dc57377cf695bc4a2f7"
+      }
+    },
+    {
+      "value": "JavaScript",
+      "label": "JavaScript",
+      "_id": {
+        "$oid": "66027dc57377cf695bc4a2f8"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": "2024-03-14T15:07:39.136Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-26T07:48:21.296Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65f314dcfa8ca459a82c2f1a"
+  },
+  "name": "Alison Reichert",
+  "email": "jtreleven5@nhs.uk",
+  "phone": "5277353642",
+  "gender": "Female",
+  "role": 2,
+  "college": "Thakur College of Engineering",
+  "profilePic": "https://img.freepik.com/free-vector/3d-cartoon-young-woman-smiling-circle-frame-character-illustration-vector-design_40876-3100.jpg?size=626&ext=jpg",
+  "city": "Ahmedabad, Gujarat",
+  "linkedin": "https://www.linkedin.com/in/Miles",
+  "github": "https://github.com/mavis",
+  "bio": "Hii Developers",
+  "uViews": 0,
+  "skills": [
+    {
+      "value": "Cyber Security",
+      "label": "Cyber Security",
+      "_id": {
+        "$oid": "66027e0a7377cf695bc4a30c"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": "2024-03-14T15:16:44.114Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-26T07:49:30.253Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65f31648fa8ca459a82c2f1c"
+  },
+  "name": "Oleta Abbott",
+  "email": "dpettegre6@columbia.edu",
+  "phone": "6408027111",
+  "gender": "Female",
+  "role": 2,
+  "college": "Collage Of Engieering Pune",
+  "profilePic": "https://img.freepik.com/free-vector/young-woman-white_25030-39546.jpg",
+  "city": "Kolkata, West Bengal",
+  "linkedin": null,
+  "github": "",
+  "bio": "Oleta Abbott",
+  "uViews": 0,
+  "skills": [
+    {
+      "value": "Cyber Security",
+      "label": "Cyber Security",
+      "_id": {
+        "$oid": "66027e547377cf695bc4a31f"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": "2024-03-14T15:22:48.833Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-26T07:50:44.360Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65f31689fa8ca459a82c2f1e"
+  },
+  "name": "Ewell Mueller",
+  "email": "ggude7@chron.com",
+  "phone": "9462972275",
+  "gender": "Male",
+  "role": 1,
+  "college": "Collage Of Engieering Pune",
+  "profilePic": "https://img.freepik.com/premium-vector/man-character_665280-46969.jpg",
+  "city": "Jaipur, Rajasthan",
+  "linkedin": "https://www.linkedin.com/in/Ewell",
+  "github": "https://github.com/Ewell",
+  "bio": "Aspiring Devops engineer",
+  "uViews": 0,
+  "skills": [
+    {
+      "value": "DevOps",
+      "label": "DevOps",
+      "_id": {
+        "$oid": "66027eb37377cf695bc4a329"
+      }
+    },
+    {
+      "value": "Ruby",
+      "label": "Ruby",
+      "_id": {
+        "$oid": "66027eb37377cf695bc4a32a"
+      }
+    },
+    {
+      "value": "Python",
+      "label": "Python",
+      "_id": {
+        "$oid": "66027eb37377cf695bc4a32b"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": "2024-03-14T15:23:53.577Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-26T07:52:19.333Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65f31727fa8ca459a82c2f20"
+  },
+  "name": "Demetrius Corkery",
+  "email": "nloiterton8@aol.com",
+  "phone": "3565909727",
+  "gender": "Male",
+  "role": 0,
+  "college": "Collage Of Engieering Pune",
+  "profilePic": "https://img.freepik.com/free-vector/handsome-man_1308-85984.jpg",
+  "city": "Ahmedabad, Gujarat",
+  "linkedin": "https://www.linkedin.com/in/SheldonQuigley",
+  "github": "https://github.com/VaibhavPachpute21/",
+  "bio": "Aspiring engineer",
+  "uViews": 0,
+  "skills": [
+    {
+      "value": "Computer Vision",
+      "label": "Computer Vision",
+      "_id": {
+        "$oid": "66027efc7377cf695bc4a334"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": "2024-03-14T15:26:31.135Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-26T07:53:32.117Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65f3175cfa8ca459a82c2f22"
+  },
+  "name": "Eleanora Price",
+  "email": "umcgourty9@jalbum.net",
+  "phone": "1844080824",
+  "gender": "Female",
+  "role": 0,
+  "college": "Collage Of Engieering Pune",
+  "profilePic": "https://img.freepik.com/free-vector/pop-art-fashion-beautiful-woman-cartoon_18591-52376.jpg",
+  "city": "Thane, Maharashtra",
+  "linkedin": null,
+  "github": null,
+  "bio": "Full Stack Developer",
+  "uViews": 0,
+  "skills": [
+    {
+      "value": "DevOps",
+      "label": "DevOps",
+      "_id": {
+        "$oid": "66027f477377cf695bc4a33b"
+      }
+    },
+    {
+      "value": "Full Stack Developer",
+      "label": "Full Stack Developer",
+      "_id": {
+        "$oid": "66027f477377cf695bc4a33c"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": "2024-03-14T15:27:24.783Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-26T07:54:47.446Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65f317c1fa8ca459a82c2f24"
+  },
+  "name": "Marcel",
+  "email": "acharlota@liveinternet.ru",
+  "phone": "2532100344",
+  "gender": "Male",
+  "role": 0,
+  "college": "Collage Of Engieering Pune",
+  "profilePic": "https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg",
+  "city": "Thane, Maharashtra",
+  "linkedin": null,
+  "github": null,
+  "bio": "Aspiring AIML engineer",
+  "uViews": 0,
+  "skills": [
+    {
+      "value": "Natural Language Processing",
+      "label": "Natural Language Processing",
+      "_id": {
+        "$oid": "66027f907377cf695bc4a344"
+      }
+    },
+    {
+      "value": "Machine Learning",
+      "label": "Machine Learning",
+      "_id": {
+        "$oid": "66027f907377cf695bc4a345"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": "2024-03-14T15:29:05.771Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-26T07:56:00.398Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65f317effa8ca459a82c2f26"
+  },
+  "name": "Assunta Rath",
+  "email": "rhallawellb@dropbox.com",
+  "phone": "9625426549",
+  "gender": "Female",
+  "role": 0,
+  "college": "Collage Of Engieering Pune",
+  "profilePic": "https://img.freepik.com/free-vector/young-woman-white_25030-39552.jpg",
+  "city": "Mumbai, Maharashtra",
+  "linkedin": null,
+  "github": null,
+  "bio": "Aspiring engineer",
+  "uViews": 0,
+  "skills": [
+    {
+      "value": "Robotics",
+      "label": "Robotics",
+      "_id": {
+        "$oid": "66027fcc7377cf695bc4a34d"
+      }
+    },
+    {
+      "value": "C++",
+      "label": "C++",
+      "_id": {
+        "$oid": "66027fcc7377cf695bc4a34e"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": "2024-03-14T15:29:51.104Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-26T07:57:00.654Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65f3187efa8ca459a82c2f28"
+  },
+  "name": "Trace Douglas",
+  "email": "lgribbinc@posterous.com",
+  "phone": "6099373468",
+  "gender": "Male",
+  "role": 0,
+  "college": "Collage Of Engieering Pune",
+  "profilePic": "https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg",
+  "city": "Navi Mumbai, Maharashtra",
+  "linkedin": null,
+  "github": null,
+  "bio": "Aspiring engineer",
+  "uViews": 0,
+  "skills": [
+    {
+      "value": "Web Development",
+      "label": "Web Development",
+      "_id": {
+        "$oid": "6602802f7377cf695bc4a356"
+      }
+    },
+    {
+      "value": "Software Engineering",
+      "label": "Software Engineering",
+      "_id": {
+        "$oid": "6602802f7377cf695bc4a357"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": "2024-03-14T15:32:14.832Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-26T07:58:39.170Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65f3204efa8ca459a82c2fc6"
+  },
+  "name": "Enoch Lynch",
+  "email": "mturleyd@tumblr.com",
+  "phone": "9121005118",
+  "gender": "Male",
+  "role": 0,
+  "college": "Thakur College of Engineering",
+  "profilePic": "https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg",
+  "city": "Navi Mumbai, Maharashtra",
+  "linkedin": "https://www.linkedin.com/in/vaibhavpachpute/",
+  "github": "https://github.com/VaibhavPachpute21",
+  "bio": "Web Developer",
+  "uViews": 0,
+  "skills": [
+    {
+      "value": "Web Development",
+      "label": "Web Development",
+      "_id": {
+        "$oid": "660280737377cf695bc4a35f"
+      }
+    },
+    {
+      "value": "Backend Development",
+      "label": "Backend Development",
+      "_id": {
+        "$oid": "660280737377cf695bc4a360"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": "2024-03-14T16:05:34.369Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-26T07:59:47.555Z"
+  },
+  "__v": 0
+}]

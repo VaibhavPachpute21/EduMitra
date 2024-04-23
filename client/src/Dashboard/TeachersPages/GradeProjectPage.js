@@ -6,6 +6,7 @@ import { getUserId } from '../../actions/userActions';
 import emailjs from 'emailjs-com'
 import Loading from '../../components/Common/Loading'
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 
 const GradeProjectPage = () => {
@@ -25,14 +26,21 @@ const GradeProjectPage = () => {
   })
   const [pres, setPRes] = useState(null)
 
-  const checkPlagiarism=async ()=>{
-    setIsLoading(true)
-    console.log(process.env.REACT_APP_PLAGIARISM)
-    const res=await axios.post(`${process.env.REACT_APP_SERVER}/api/project/checkSentence`,{
-      query:singleProject.shortDescription
-    });
-    setPRes(res.data)
-    setIsLoading(false)
+  const checkPlagiarism = async () => {
+    try {
+      setIsLoading(true)
+      console.log(process.env.REACT_APP_PLAGIARISM)
+      const res = await axios.post(`${process.env.REACT_APP_SERVER}/api/project/checkSentence`, {
+        query: singleProject.shortDescription
+      });
+      setPRes(res.data)
+
+    } catch (error) {
+      toast.error("Error while checking...")
+    } finally {
+      setIsLoading(false)
+    }
+
   }
 
   const handleGradeChange = (e) => {
@@ -207,10 +215,10 @@ Description: ${singleProject.shortDescription}`,
                   <div> <input type="range" name="PC" id="PC" min="1" max="10" step="1" value={gradeData.PC} onChange={handleGradeChange} /> {gradeData.PC}</div>
                   <button href="#" class="btn btn-primary mt-2 rounded-0 m-1" onClick={handleSubmit}>Add Grade</button>
                   <button href="#" class="btn btn-primary mt-2 rounded-0 m-1" onClick={checkPlagiarism}>Check Plagiarism</button>
-                  <div style={{maxHeight:'150px',overflowY:'scroll'}}>
-                    {pres && <><p> {pres.unique ? "This Project is Unique":"There are Projects similar to this"} </p> </>}
-                    {pres && pres.webs.map((w)=>{
-                        return <><details>
+                  <div style={{ maxHeight: '150px', overflowY: 'scroll' }}>
+                    {pres && <><p> {pres.unique ? "This Project is Unique" : "There are Projects similar to this"} </p> </>}
+                    {pres && pres.webs.map((w) => {
+                      return <><details>
                         <summary>{w.title}</summary>
                         <p><a href={w.url} target='_blank'>{w.url}</a> </p>
                       </details></>
