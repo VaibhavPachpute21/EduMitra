@@ -14,11 +14,11 @@
 
 ## Screenshots
 
-![Screenshot 1](https://raw.githubusercontent.com/VaibhavPachpute21/EduMitra/201e4a8dc20ef834d3009b2517ff4eb946247170/outputs/home.png)
-![Screenshot 2](https://raw.githubusercontent.com/VaibhavPachpute21/EduMitra/201e4a8dc20ef834d3009b2517ff4eb946247170/outputs/login.png)
-![Screenshot 3](https://raw.githubusercontent.com/VaibhavPachpute21/EduMitra/201e4a8dc20ef834d3009b2517ff4eb946247170/outputs/peer.png)
-![Screenshot 4](https://raw.githubusercontent.com/VaibhavPachpute21/EduMitra/201e4a8dc20ef834d3009b2517ff4eb946247170/outputs/profile.png)
-![Screenshot 5](https://raw.githubusercontent.com/VaibhavPachpute21/EduMitra/201e4a8dc20ef834d3009b2517ff4eb946247170/outputs/dashboard.PNG)
+![Screenshot 1](https://raw.githubusercontent.com/VaibhavPachpute21/EduMitra/main/outputs/home.png)
+![Screenshot 2](https://raw.githubusercontent.com/VaibhavPachpute21/EduMitra/main/outputs/signin.png)
+![Screenshot 3](https://raw.githubusercontent.com/VaibhavPachpute21/EduMitra/main/outputs/dashboard.png)
+![Screenshot 4](https://raw.githubusercontent.com/VaibhavPachpute21/EduMitra/main/outputs/jobs.png)
+![Screenshot 5](https://raw.githubusercontent.com/VaibhavPachpute21/EduMitra/main/outputs/events.png)
 
 ## Development
 
@@ -42,10 +42,9 @@ npm start
 
 ## Technologies used
 
- - HTML/CSS, Javascript
- - React Js 
- - MongoDB
- - MailJs
+ - HTML/CSS, Javascript, Bootstrap, ReactJS
+ - MongoDB, NodeJS
+ - Python, Flask, sklearn
  - Power BI - for dashboards
 
 ## License
